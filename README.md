@@ -2,7 +2,7 @@
 
 This curated collection of skills, tools, and AI-ready documentation injects Chrome's web platform knowledge directly into your workflow, ensuring your coding agent builds apps that are modern, fast, and secure by default.
 
-#### Skill Coverage in `v0.0.5`
+#### Skill Coverage in `v0.0.6`
 
 <details>
 <summary><strong>17 web features with implementation guidance from Chrome's experts</strong>: :user-valid and :user-invalid, &lt;details>, &lt;link rel="preload">, AbortController and AbortSignal, color-scheme, Fetch, Fetch priority, fetchLater, hidden="until-found", Mutually exclusive &lt;details> elements, prefers-color-scheme media query, prefers-contrast media query, Registered custom properties, Scroll-driven animations, scrollbar-color, scrollbar-width, Speculation rules</summary>
