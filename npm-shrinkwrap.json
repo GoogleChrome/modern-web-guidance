@@ -1,12 +1,12 @@
 {
   "name": "modern-web",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "modern-web",
-      "version": "0.0.8",
+      "version": "0.0.9",
       "dependencies": {
         "@huggingface/transformers": "^3.8.1",
         "@lancedb/lancedb": "^0.26.2"
