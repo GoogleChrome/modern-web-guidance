@@ -3,11 +3,11 @@
 // bin/modern-web.ts
 import { parseArgs } from "util";
 
-// mcp-server/lib/store.ts
+// lib/store.ts
 import lancedb from "@lancedb/lancedb";
 import path from "path";
 import fs from "fs";
-var DATA_DIR = path.resolve(import.meta.dirname, "../../.modern-web-data");
+var DATA_DIR = path.resolve(import.meta.dirname, "../vector_store");
 var Store = class {
   dbUrl;
   constructor() {
@@ -128,11 +128,12 @@ async function searchUseCases(query) {
   return results;
 }
 
-// mcp-server/data/modern-practices.ts
+// lib/practices.ts
 import { promises as fs2 } from "fs";
+import { existsSync } from "fs";
 import path3 from "path";
 
-// mcp-server/data/use-cases.gen.ts
+// lib/use-cases.gen.ts
 var USE_CASES = [
   {
     "id": "accessible-error-announcement",
@@ -361,11 +362,12 @@ var USE_CASES = [
   }
 ];
 
-// mcp-server/data/modern-practices.ts
+// lib/practices.ts
 async function getGuide(useCaseId) {
   const useCase = USE_CASES.find((u) => u.id === useCaseId);
   if (!useCase) return null;
-  const guidesDir = path3.resolve(import.meta.dirname, "../../build/guides");
+  const localDistPath = path3.resolve(import.meta.dirname, "../guides");
+  const guidesDir = existsSync(localDistPath) ? localDistPath : path3.resolve(import.meta.dirname, "../build/guides");
   const filePath = path3.join(guidesDir, useCase.category, `${useCaseId}.md`);
   try {
     const content = await fs2.readFile(filePath, "utf-8");

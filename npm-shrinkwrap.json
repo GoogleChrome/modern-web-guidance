@@ -1,18 +1,18 @@
 {
-  "name": "skills-alpha",
-  "version": "0.0.7",
+  "name": "modern-web",
+  "version": "0.0.8",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
-      "name": "skills-alpha",
-      "version": "0.0.7",
+      "name": "modern-web",
+      "version": "0.0.8",
       "dependencies": {
         "@huggingface/transformers": "^3.8.1",
         "@lancedb/lancedb": "^0.26.2"
       },
       "bin": {
-        "modern-web": "skills/modern-web-use-cases/cli/serving/bin/modern-web.mjs"
+        "modern-web": "bin/modern-web.mjs"
       },
       "engines": {
         "node": ">=20.0.0",
