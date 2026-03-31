@@ -1,49 +1,23 @@
 #!/usr/bin/env node --experimental-strip-types
-"use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
 
 // bin/modern-web.ts
-var import_util = require("util");
+import { parseArgs } from "util";
 
 // mcp-server/lib/store.ts
-var import_lancedb = __toESM(require("@lancedb/lancedb"), 1);
-var import_path = __toESM(require("path"), 1);
-var import_fs = __toESM(require("fs"), 1);
-var import_url = require("url");
-var __filename = (0, import_url.fileURLToPath)(require('url').pathToFileURL(__filename).toString());
-var __dirname = import_path.default.dirname(__filename);
-var DATA_DIR = import_path.default.resolve(__dirname, "../../.modern-web-data");
+import lancedb from "@lancedb/lancedb";
+import path from "path";
+import fs from "fs";
+var DATA_DIR = path.resolve(import.meta.dirname, "../../.modern-web-data");
 var Store = class {
   dbUrl;
   constructor() {
     this.dbUrl = DATA_DIR;
-    if (!import_fs.default.existsSync(this.dbUrl)) {
-      import_fs.default.mkdirSync(this.dbUrl, { recursive: true });
+    if (!fs.existsSync(this.dbUrl)) {
+      fs.mkdirSync(this.dbUrl, { recursive: true });
     }
   }
   async getTable() {
-    const db = await import_lancedb.default.connect(this.dbUrl);
+    const db = await lancedb.connect(this.dbUrl);
     try {
       return await db.openTable("use_cases");
     } catch {
@@ -51,7 +25,7 @@ var Store = class {
     }
   }
   async upsert(data) {
-    const db = await import_lancedb.default.connect(this.dbUrl);
+    const db = await lancedb.connect(this.dbUrl);
     const tableNames = await db.tableNames();
     if (tableNames.includes("use_cases")) {
       await db.dropTable("use_cases");
@@ -86,38 +60,44 @@ var Store = class {
 };
 
 // mcp-server/lib/embedder.ts
-var import_transformers = require("@huggingface/transformers");
+import { pipeline } from "@huggingface/transformers";
 var Embedder = class _Embedder {
   static instance;
   pipe = null;
   modelName = "Xenova/all-MiniLM-L6-v2";
-  constructor() {
+  constructor(modelName) {
+    if (modelName) {
+      this.modelName = modelName;
+    }
   }
-  static getInstance() {
-    if (!_Embedder.instance) {
-      _Embedder.instance = new _Embedder();
+  static getInstance(modelName) {
+    if (!_Embedder.instance || modelName && _Embedder.instance.modelName !== modelName) {
+      _Embedder.instance = new _Embedder(modelName);
     }
     return _Embedder.instance;
   }
   async init() {
     if (this.pipe) return;
-    this.pipe = await (0, import_transformers.pipeline)("feature-extraction", this.modelName, { dtype: "q8" });
+    let repo = this.modelName;
+    let dtype = "q8";
+    if (this.modelName.includes("@")) {
+      const parts = this.modelName.split("@");
+      repo = parts[0];
+      dtype = parts[1];
+    }
+    this.pipe = await pipeline("feature-extraction", repo, { dtype });
   }
   async embed(text) {
-    if (!this.pipe) {
-      await this.init();
-    }
-    if (!this.pipe) {
-      throw new Error("Failed to initialize embedding pipeline");
-    }
+    if (!this.pipe) await this.init();
+    if (!this.pipe) throw new Error("Failed to initialize embedding pipeline");
     const output = await this.pipe(text, { pooling: "mean", normalize: true });
     return Array.from(output.data);
   }
 };
 
 // lib/logger.ts
-var import_fs2 = require("fs");
-var import_path2 = __toESM(require("path"), 1);
+import { appendFileSync } from "fs";
+import path2 from "path";
 
 // ../constants.ts
 var MODERN_WEB_LOG_FILE = "modern-web.log";
@@ -126,13 +106,13 @@ var MODERN_WEB_LOG_FILE = "modern-web.log";
 function logToolResult(toolName, result) {
   try {
     const logDir = process.env.MODERN_WEB_LOG_DIR || process.cwd();
-    const logPath = import_path2.default.join(logDir, MODERN_WEB_LOG_FILE);
+    const logPath = path2.join(logDir, MODERN_WEB_LOG_FILE);
     const logEntry = {
       timestamp: (/* @__PURE__ */ new Date()).toISOString(),
       tool: toolName,
       result
     };
-    (0, import_fs2.appendFileSync)(logPath, JSON.stringify(logEntry) + "\n", "utf8");
+    appendFileSync(logPath, JSON.stringify(logEntry) + "\n", "utf8");
   } catch (err) {
     console.error("Failed to log tool result:", err);
   }
@@ -149,9 +129,8 @@ async function searchUseCases(query) {
 }
 
 // mcp-server/data/modern-practices.ts
-var import_fs3 = require("fs");
-var import_path3 = __toESM(require("path"), 1);
-var import_url2 = require("url");
+import { promises as fs2 } from "fs";
+import path3 from "path";
 
 // mcp-server/data/use-cases.gen.ts
 var USE_CASES = [
@@ -164,12 +143,97 @@ var USE_CASES = [
     ]
   },
   {
+    "id": "autofill-address-form",
+    "description": "Build an address form with correct autocomplete attributes and autofill support.",
+    "category": "forms",
+    "featuresUsed": [
+      ":autofill"
+    ]
+  },
+  {
+    "id": "autofill-highlight-inputs",
+    "description": "Use CSS to highlight form fields that have been autofilled by the browser and not edited by the user.",
+    "category": "forms",
+    "featuresUsed": [
+      ":autofill"
+    ]
+  },
+  {
+    "id": "autofill-payment-form",
+    "description": "Build a payment form that collects card details with correct autocomplete values and autofill support.",
+    "category": "forms",
+    "featuresUsed": [
+      "enterkeyhint",
+      "Email, telephone, and URL <input> types",
+      "inputmode"
+    ]
+  },
+  {
+    "id": "autofill-sign-in-form",
+    "description": "Build a sign-in form with correct autocomplete values and autofill support.",
+    "category": "forms",
+    "featuresUsed": [
+      "Email, telephone, and URL <input> types",
+      "inputmode"
+    ]
+  },
+  {
+    "id": "autofill-sign-up-form",
+    "description": "Build a sign-up form with correct autocomplete values and autofill support.",
+    "category": "forms",
+    "featuresUsed": [
+      "Email, telephone, and URL <input> types",
+      "inputmode"
+    ]
+  },
+  {
+    "id": "form-fields-automatically-fit-contents",
+    "description": "Allow form fields to grow and shrink to fit the user input, e.g. as the user types or selects a different option. Apply maximum and minimum size limits to create dynamic and responsive form fields that conform with the page design.",
+    "category": "forms",
+    "featuresUsed": [
+      "field-sizing"
+    ]
+  },
+  {
+    "id": "required-field-feedback",
+    "description": "Provide error message for required form fields that were skipped or left empty *only* after user interaction, to avoid preemptive errors and ensure feedback is timely and contextually relevant to the user's flow.",
+    "category": "forms",
+    "featuresUsed": [
+      ":user-valid and :user-invalid"
+    ]
+  },
+  {
+    "id": "select-menu-interaction",
+    "description": "Validate that a non-default option has been chosen in a select menu only after the user has interacted with the control.",
+    "category": "forms",
+    "featuresUsed": [
+      ":user-valid and :user-invalid"
+    ]
+  },
+  {
+    "id": "validate-input-after-interaction",
+    "description": "Show form field validation feedback (e.g. password complexity or email format requirements) only after the user has finished their initial interaction, avoiding premature errors on page load or while the user is typing.",
+    "category": "forms",
+    "featuresUsed": [
+      ":user-valid and :user-invalid"
+    ]
+  },
+  {
     "id": "batch-analytics-events",
     "description": "Debounce and batch multiple analytics events together in a single beacon to minimize network contention and reduce server load, while still delivering real-time updates.",
     "category": "performance",
     "featuresUsed": [
       "fetchLater",
       "AbortController and AbortSignal"
+    ]
+  },
+  {
+    "id": "defer-rendering-heavy-content",
+    "description": "Reduce rendering times in content-heavy web pages (e.g. pages with long feeds, lots of articles, or complex dashboards), by deferring rendering for any content that is not immediately visible to the user.",
+    "category": "performance",
+    "featuresUsed": [
+      'hidden="until-found"',
+      "content-visibility"
     ]
   },
   {
@@ -188,6 +252,22 @@ var USE_CASES = [
     "featuresUsed": [
       "fetchLater",
       "AbortController and AbortSignal"
+    ]
+  },
+  {
+    "id": "identify-heavy-scripts",
+    "description": "Identify the scripts most responsible for long animation frames",
+    "category": "performance",
+    "featuresUsed": [
+      "Long animation frames"
+    ]
+  },
+  {
+    "id": "identify-inp-causes",
+    "description": "Identify slow running JavaScript that is impacting INP metric",
+    "category": "performance",
+    "featuresUsed": [
+      "Long animation frames"
     ]
   },
   {
@@ -262,14 +342,6 @@ var USE_CASES = [
     ]
   },
   {
-    "id": "required-field-feedback",
-    "description": "Provide error message for required form fields that were skipped or left empty *only* after user interaction, to avoid preemptive errors and ensure feedback is timely and contextually relevant to the user's flow.",
-    "category": "user-experience",
-    "featuresUsed": [
-      ":user-valid and :user-invalid"
-    ]
-  },
-  {
     "id": "search-hidden-content",
     "description": 'Hide content from view using patterns such as accordions, tabs, and "Read more" sections, while ensuring the hidden text reveals itself during native "Find in page" searches, allows search engine indexing, supports URL fragment deep links, and maintains ARIA accessibility.',
     "category": "user-experience",
@@ -280,24 +352,8 @@ var USE_CASES = [
     ]
   },
   {
-    "id": "select-menu-interaction",
-    "description": "Validate that a non-default option has been chosen in a select menu only after the user has interacted with the control.",
-    "category": "user-experience",
-    "featuresUsed": [
-      ":user-valid and :user-invalid"
-    ]
-  },
-  {
     "id": "style-parent-with-has",
     "description": "Style parent elements of a form field (e.g. labels or fieldsets) when the field is invalid.",
-    "category": "user-experience",
-    "featuresUsed": [
-      ":user-valid and :user-invalid"
-    ]
-  },
-  {
-    "id": "validate-input-after-interaction",
-    "description": "Show form field validation feedback (e.g. password complexity or email format requirements) only after the user has finished their initial interaction, avoiding premature errors on page load or while the user is typing.",
     "category": "user-experience",
     "featuresUsed": [
       ":user-valid and :user-invalid"
@@ -306,15 +362,13 @@ var USE_CASES = [
 ];
 
 // mcp-server/data/modern-practices.ts
-var __filename2 = (0, import_url2.fileURLToPath)(require('url').pathToFileURL(__filename).toString());
-var __dirname2 = import_path3.default.dirname(__filename2);
 async function getGuide(useCaseId) {
   const useCase = USE_CASES.find((u) => u.id === useCaseId);
   if (!useCase) return null;
-  const guidesDir = import_path3.default.resolve(__dirname2, "../../build/guides");
-  const filePath = import_path3.default.join(guidesDir, useCase.category, `${useCaseId}.md`);
+  const guidesDir = path3.resolve(import.meta.dirname, "../../build/guides");
+  const filePath = path3.join(guidesDir, useCase.category, `${useCaseId}.md`);
   try {
-    const content = await import_fs3.promises.readFile(filePath, "utf-8");
+    const content = await fs2.readFile(filePath, "utf-8");
     return content;
   } catch (error) {
     if (error.code === "ENOENT") {
@@ -335,7 +389,7 @@ async function retrieveUseCase(useCaseId) {
 }
 
 // bin/modern-web.ts
-var { values } = (0, import_util.parseArgs)({
+var { values } = parseArgs({
   args: process.argv.slice(2),
   options: {
     search: { type: "string", short: "s" },
