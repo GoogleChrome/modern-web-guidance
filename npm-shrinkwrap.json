@@ -1,18 +1,18 @@
 {
   "name": "modern-web",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "modern-web",
-      "version": "0.0.10",
+      "version": "0.0.11",
       "dependencies": {
         "@huggingface/transformers": "^3.8.1",
         "@lancedb/lancedb": "^0.26.2"
       },
       "bin": {
-        "modern-web": "bin/modern-web.mjs"
+        "modern-web": "skills/modern-web-use-cases/modern-web.mjs"
       },
       "engines": {
         "node": ">=20.0.0",

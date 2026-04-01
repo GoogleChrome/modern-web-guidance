@@ -8,6 +8,9 @@ import lancedb from "@lancedb/lancedb";
 import path from "path";
 import fs from "fs";
 var DATA_DIR = path.resolve(import.meta.dirname, "../vector_store");
+if (!fs.existsSync(DATA_DIR)) {
+  DATA_DIR = path.resolve(import.meta.dirname, "../../vector_store");
+}
 var Store = class {
   dbUrl;
   constructor() {
@@ -366,7 +369,10 @@ var USE_CASES = [
 async function getGuide(useCaseId) {
   const useCase = USE_CASES.find((u) => u.id === useCaseId);
   if (!useCase) return null;
-  const localDistPath = path3.resolve(import.meta.dirname, "../guides");
+  let localDistPath = path3.resolve(import.meta.dirname, "../guides");
+  if (!existsSync(localDistPath)) {
+    localDistPath = path3.resolve(import.meta.dirname, "../../guides");
+  }
   const guidesDir = existsSync(localDistPath) ? localDistPath : path3.resolve(import.meta.dirname, "../build/guides");
   const filePath = path3.join(guidesDir, useCase.category, `${useCaseId}.md`);
   try {
