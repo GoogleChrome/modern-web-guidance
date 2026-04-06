@@ -8,8 +8,8 @@ import lancedb from "@lancedb/lancedb";
 import path from "path";
 import fs from "fs";
 var DATA_DIR = path.resolve(import.meta.dirname, "../vector_store");
-if (!fs.existsSync(DATA_DIR)) {
-  DATA_DIR = path.resolve(import.meta.dirname, "../../vector_store");
+if (!fs.existsSync(DATA_DIR) && fs.existsSync(path.resolve(import.meta.dirname, "./vector_store"))) {
+  DATA_DIR = path.resolve(import.meta.dirname, "./vector_store");
 }
 var Store = class {
   dbUrl;
@@ -147,6 +147,14 @@ var USE_CASES = [
     ]
   },
   {
+    "id": "animated-select-picker",
+    "description": "Create a custom select component whose dropdown is animated. For example, the menu fades or slides into view, or the options animate upon selection.",
+    "category": "forms",
+    "featuresUsed": [
+      "Customizable <select>"
+    ]
+  },
+  {
     "id": "autofill-address-form",
     "description": "Build an address form with correct autocomplete attributes and autofill support.",
     "category": "forms",
@@ -191,6 +199,22 @@ var USE_CASES = [
     ]
   },
   {
+    "id": "branded-select-styling",
+    "description": "Create custom select elements whose button, picker, arrow icon, and checkmark all seamlessly match your brand or design system's typography, colors, spacing, and border treatments.",
+    "category": "forms",
+    "featuresUsed": [
+      "Customizable <select>"
+    ]
+  },
+  {
+    "id": "custom-select-picker-layouts",
+    "description": "Create custom select pickers whose options are positioned in unique or interesting ways, rather than the traditional stacked list of options.",
+    "category": "forms",
+    "featuresUsed": [
+      "Customizable <select>"
+    ]
+  },
+  {
     "id": "form-fields-automatically-fit-contents",
     "description": "Allow form fields to grow and shrink to fit the user input, e.g. as the user types or selects a different option. Apply maximum and minimum size limits to create dynamic and responsive form fields that conform with the page design.",
     "category": "forms",
@@ -204,6 +228,14 @@ var USE_CASES = [
     "category": "forms",
     "featuresUsed": [
       ":user-valid and :user-invalid"
+    ]
+  },
+  {
+    "id": "rich-media-picker",
+    "description": "Create a custom select component whose options can contain complex HTML formatting (e.g. images, icons, and other rich formatting) rather than just plain text.",
+    "category": "forms",
+    "featuresUsed": [
+      "Customizable <select>"
     ]
   },
   {
@@ -308,6 +340,14 @@ var USE_CASES = [
     ]
   },
   {
+    "id": "sequence-distributed-events",
+    "description": "Log and sequence operations in distributed microservices or high-throughput tracing environments by recording timestamps with nanosecond resolution.",
+    "category": "performance",
+    "featuresUsed": [
+      "Temporal"
+    ]
+  },
+  {
     "id": "adapt-scrollbar-to-contrast-preferences",
     "description": "Enhance scrollbar visibility for users who prefer high-contrast interfaces",
     "category": "user-experience",
@@ -327,6 +367,15 @@ var USE_CASES = [
     ]
   },
   {
+    "id": "anchor-positioning-tab-underline",
+    "description": "Transition an element seamlessly between two target element positions. For example, moving a selected tab underline between the previously selected tab and the currently selected tab.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Anchor positioning",
+      "prefers-reduced-motion media query"
+    ]
+  },
+  {
     "id": "animate-scrollbar-color-on-scroll",
     "description": "Animate the scrollbar color dynamically as the user scrolls down the page",
     "category": "user-experience",
@@ -334,6 +383,51 @@ var USE_CASES = [
       "scrollbar-color",
       "Scroll-driven animations",
       "Registered custom properties"
+    ]
+  },
+  {
+    "id": "calculate-event-differentials",
+    "description": "Calculate the duration and time remaining between dates and times.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Temporal"
+    ]
+  },
+  {
+    "id": "carousel-item-effects",
+    "description": "Create a carousel of slides with images or other visual elements, where each slide animates as they enter/center/exit their scroller. For example, the slides may fade-in/fade-out, rotate, get bigger or smaller, etc.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Scroll-driven animations",
+      "Scroll snap"
+    ]
+  },
+  {
+    "id": "child-state-based-styling",
+    "description": "Build a component that changes its styling based on the state of one of its child elements. For example, a component that renders in light or dark mode based on whether a theme toggle is checked (or not).",
+    "category": "user-experience",
+    "featuresUsed": [
+      ":has()",
+      ":not()"
+    ]
+  },
+  {
+    "id": "consistent-cross-document-transitions",
+    "description": "Ensure critical page state is loaded and stable before initiating a cross-document view transition. This means critical CSS styles are loaded and applied, critical JavaScript is loaded and run, and the HTML visible for the user's initial view of the page has been parsed before the transition runs.",
+    "category": "user-experience",
+    "featuresUsed": [
+      'blocking="render"',
+      '<link rel="expect">',
+      "Cross-document view transitions"
+    ]
+  },
+  {
+    "id": "content-based-styling",
+    "description": "Build a component that changes its layout based on whether it contains specific child elements (or not). For example, if the component contains an image, use a multi-column layout, otherwise default to a single-column layout.",
+    "category": "user-experience",
+    "featuresUsed": [
+      ":has()",
+      ":not()"
     ]
   },
   {
@@ -346,6 +440,148 @@ var USE_CASES = [
     ]
   },
   {
+    "id": "declarative-dialog-popover-control",
+    "description": "Toggle the visibility of a dialog or popover from a button without writing JavaScript.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Invoker commands",
+      "Popover",
+      "<dialog>"
+    ]
+  },
+  {
+    "id": "dynamic-sibling-animations",
+    "description": "Stagger animation or transition timing across sibling elements so each one starts after a computed delay based on its position in the sibling list.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "sibling-count() and sibling-index()"
+    ]
+  },
+  {
+    "id": "dynamic-sibling-styling",
+    "description": "Create dynamic visual spectrums or layout arrangements that automatically adapt to the number of elements in a group.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "sibling-count() and sibling-index()",
+      "sin(), cos(), tan(), asin(), acos(), atan(), and atan2() (CSS)"
+    ]
+  },
+  {
+    "id": "flicker-free-client-side-ab-testing",
+    "description": "Deliver and render A/B tests, multi-variate tests, or other experiments using client-side JavaScript to alter or inject HTML, CSS, and JavaScript without the original content showing first before flickering or flashing to show the experiment content.",
+    "category": "user-experience",
+    "featuresUsed": [
+      'blocking="render"'
+    ]
+  },
+  {
+    "id": "interest-triggered-tooltips",
+    "description": "Show a tooltip or supplemental information when a user hovers over, focuses on, or long-presses an interactive element, without requiring a click.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Interest invokers",
+      "Popover",
+      'popover="hint"',
+      "Anchor positioning"
+    ]
+  },
+  {
+    "id": "intl-duration-format",
+    "description": "Create locale-aware duration strings from objects representing time units like days, hours, and minutes.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Intl.DurationFormat"
+    ]
+  },
+  {
+    "id": "light-dismiss-content-overlay",
+    "description": "Create swipeable layered navigation menus using native overlays and scroll gestures.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Popover",
+      "Scroll snap",
+      "inert"
+    ]
+  },
+  {
+    "id": "parallax-scroll-effects",
+    "description": "Create scroll-based effects (such as parallax) where foreground and background layers move at different rates, creating a sense of depth as the user scrolls.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Scroll-driven animations"
+    ]
+  },
+  {
+    "id": "persistent-app-tours",
+    "description": "Create persistent onboarding walkthroughs using tethered native overlays that stay open during user interaction.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Popover",
+      "Anchor positioning"
+    ]
+  },
+  {
+    "id": "persistent-toast-notifications",
+    "description": "Create non-intrusive toast and overlay notifications for persistent, stackable messaging and state communication.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Popover",
+      "Anchor positioning",
+      "sibling-count() and sibling-index()",
+      "transition-behavior"
+    ]
+  },
+  {
+    "id": "prevent-text-wrapping",
+    "description": "Ensure the browser does not insert line breaks into text and will allow text to overflow its container.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "text-wrap"
+    ]
+  },
+  {
+    "id": "pull-to-reveal",
+    "description": "Build a pull-to-reveal feature that would enable the user to pull down on the screen to reveal more content, like a search bar.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "scroll-initial-target",
+      "Scroll snap"
+    ]
+  },
+  {
+    "id": "scroll-entry-exit-effects",
+    "description": "Create fade-in, scale-up, or other complex reveal-type effects on elements as they enter and exit the scrollport (or viewport) while the user is scrolling.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Scroll-driven animations"
+    ]
+  },
+  {
+    "id": "scroll-progress-indicator",
+    "description": "Create a scroll progress bar, stepped progress tracker, or any visual affordance that communicates how far through a page or section the user has scrolled.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Scroll-driven animations"
+    ]
+  },
+  {
+    "id": "scroll-target-on-load",
+    "description": "Build a scrollable list of elements (e.g. a carousel of images or a chat conversation thread) that can be displayed with a particular element scrolled into view on the initial render.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "scroll-initial-target",
+      "scrollIntoView()"
+    ]
+  },
+  {
+    "id": "scrollytelling",
+    "description": "Animate visual properties on a target element \u2014 such as fading a backdrop, shifting a background color, or to create scrollytelling experiences \u2014 driven entirely by the scrollport position of a completely different element.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Scroll-driven animations"
+    ]
+  },
+  {
     "id": "search-hidden-content",
     "description": 'Hide content from view using patterns such as accordions, tabs, and "Read more" sections, while ensuring the hidden text reveals itself during native "Find in page" searches, allows search engine indexing, supports URL fragment deep links, and maintains ARIA accessibility.',
     "category": "user-experience",
@@ -353,6 +589,14 @@ var USE_CASES = [
       "<details>",
       "Mutually exclusive <details> elements",
       'hidden="until-found"'
+    ]
+  },
+  {
+    "id": "shrinking-header-on-scroll",
+    "description": "Smoothly animate a fixed header or full-page cover on scroll to dynamically shrink, gain shadows, and transform its layout over a predefined scroll distance.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Scroll-driven animations"
     ]
   },
   {
@@ -369,11 +613,9 @@ var USE_CASES = [
 async function getGuide(useCaseId) {
   const useCase = USE_CASES.find((u) => u.id === useCaseId);
   if (!useCase) return null;
-  let localDistPath = path3.resolve(import.meta.dirname, "../guides");
-  if (!existsSync(localDistPath)) {
-    localDistPath = path3.resolve(import.meta.dirname, "../../guides");
-  }
-  const guidesDir = existsSync(localDistPath) ? localDistPath : path3.resolve(import.meta.dirname, "../build/guides");
+  const devGuidesDir = path3.resolve(import.meta.dirname, "../build/guides");
+  const prodGuidesDir = path3.resolve(import.meta.dirname, "./guides");
+  const guidesDir = existsSync(devGuidesDir) ? devGuidesDir : prodGuidesDir;
   const filePath = path3.join(guidesDir, useCase.category, `${useCaseId}.md`);
   try {
     const content = await fs2.readFile(filePath, "utf-8");
