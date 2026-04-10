@@ -120,6 +120,12 @@ Here’s how to create a basic parallax effect:
   animation: parallax linear both;
   animation-timeline: --wrapper;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    animation: none;
+  }
+}
 ```
 
 Alternatively, you can use the `animation-range` property to achieve a similar effect:
@@ -139,6 +145,12 @@ Alternatively, you can use the `animation-range` property to achieve a similar e
   animation: parallax linear both;
   animation-timeline: --wrapper;
   animation-range: entry 25% exit calc(100% / sibling-count() * sibling-index());
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    animation: none;
+  }
 }
 ```
 

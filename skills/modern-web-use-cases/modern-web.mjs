@@ -3,138 +3,10 @@
 // bin/modern-web.ts
 import { parseArgs } from "util";
 
-// lib/store.ts
-import lancedb from "@lancedb/lancedb";
-import path from "path";
-import fs from "fs";
-var DATA_DIR = path.resolve(import.meta.dirname, "../vector_store");
-if (!fs.existsSync(DATA_DIR) && fs.existsSync(path.resolve(import.meta.dirname, "./vector_store"))) {
-  DATA_DIR = path.resolve(import.meta.dirname, "./vector_store");
-}
-var Store = class {
-  dbUrl;
-  constructor() {
-    this.dbUrl = DATA_DIR;
-    if (!fs.existsSync(this.dbUrl)) {
-      fs.mkdirSync(this.dbUrl, { recursive: true });
-    }
-  }
-  async getTable() {
-    const db = await lancedb.connect(this.dbUrl);
-    try {
-      return await db.openTable("use_cases");
-    } catch {
-      return null;
-    }
-  }
-  async upsert(data) {
-    const db = await lancedb.connect(this.dbUrl);
-    const tableNames = await db.tableNames();
-    if (tableNames.includes("use_cases")) {
-      await db.dropTable("use_cases");
-    }
-    await db.createTable("use_cases", data);
-  }
-  async search(queryVector, limit = 5, maxDistance = 1.5) {
-    const table = await this.getTable();
-    if (!table) {
-      return [];
-    }
-    const fetchLimit = limit * 3;
-    const results = await table.vectorSearch(queryVector).limit(fetchLimit).toArray();
-    const seenIds = /* @__PURE__ */ new Set();
-    const uniqueResults = [];
-    for (const r of results) {
-      const dist = r._distance;
-      if (dist === void 0 || dist > maxDistance) continue;
-      if (seenIds.has(r.id)) continue;
-      seenIds.add(r.id);
-      uniqueResults.push({
-        id: r.id,
-        description: r.description,
-        category: r.category,
-        featuresUsed: Array.from(r.featuresUsed),
-        distance: dist.toFixed(2)
-      });
-      if (uniqueResults.length >= limit) break;
-    }
-    return uniqueResults;
-  }
-};
-
-// mcp-server/lib/embedder.ts
-import { pipeline } from "@huggingface/transformers";
-var Embedder = class _Embedder {
-  static instance;
-  pipe = null;
-  modelName = "Xenova/all-MiniLM-L6-v2";
-  constructor(modelName) {
-    if (modelName) {
-      this.modelName = modelName;
-    }
-  }
-  static getInstance(modelName) {
-    if (!_Embedder.instance || modelName && _Embedder.instance.modelName !== modelName) {
-      _Embedder.instance = new _Embedder(modelName);
-    }
-    return _Embedder.instance;
-  }
-  async init() {
-    if (this.pipe) return;
-    let repo = this.modelName;
-    let dtype = "q8";
-    if (this.modelName.includes("@")) {
-      const parts = this.modelName.split("@");
-      repo = parts[0];
-      dtype = parts[1];
-    }
-    this.pipe = await pipeline("feature-extraction", repo, { dtype });
-  }
-  async embed(text) {
-    if (!this.pipe) await this.init();
-    if (!this.pipe) throw new Error("Failed to initialize embedding pipeline");
-    const output = await this.pipe(text, { pooling: "mean", normalize: true });
-    return Array.from(output.data);
-  }
-};
-
-// lib/logger.ts
-import { appendFileSync } from "fs";
-import path2 from "path";
-
-// ../constants.ts
-var MODERN_WEB_LOG_FILE = "modern-web.log";
-
-// lib/logger.ts
-function logToolResult(toolName, result) {
-  try {
-    const logDir = process.env.MODERN_WEB_LOG_DIR || process.cwd();
-    const logPath = path2.join(logDir, MODERN_WEB_LOG_FILE);
-    const logEntry = {
-      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
-      tool: toolName,
-      result
-    };
-    appendFileSync(logPath, JSON.stringify(logEntry) + "\n", "utf8");
-  } catch (err) {
-    console.error("Failed to log tool result:", err);
-  }
-}
-
-// lib/search.ts
-async function searchUseCases(query) {
-  const store = new Store();
-  const embedder = Embedder.getInstance();
-  const vector = await embedder.embed(query);
-  const results = await store.search(vector);
-  logToolResult("search_use_cases", results.map((r) => ({ id: r.id, distance: r.distance })));
-  return results;
-}
-
 // lib/practices.ts
-import { promises as fs2 } from "fs";
+import { promises as fs } from "fs";
 import { existsSync } from "fs";
-import path3 from "path";
+import path from "path";
 
 // lib/use-cases.gen.ts
 var USE_CASES = [
@@ -394,6 +266,14 @@ var USE_CASES = [
     ]
   },
   {
+    "id": "capture-location-agnostic-data",
+    "description": "Record chronological data that should not change based on a user's location, such as birthdates, recurring alarms, or national holidays.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Temporal"
+    ]
+  },
+  {
     "id": "carousel-item-effects",
     "description": "Create a carousel of slides with images or other visual elements, where each slide animates as they enter/center/exit their scroller. For example, the slides may fade-in/fade-out, rotate, get bigger or smaller, etc.",
     "category": "user-experience",
@@ -440,6 +320,14 @@ var USE_CASES = [
     ]
   },
   {
+    "id": "declarative-button-actions",
+    "description": "Declaratively connect a button to any element to trigger custom, application-specific actions.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "Invoker commands"
+    ]
+  },
+  {
     "id": "declarative-dialog-popover-control",
     "description": "Toggle the visibility of a dialog or popover from a button without writing JavaScript.",
     "category": "user-experience",
@@ -475,6 +363,15 @@ var USE_CASES = [
     ]
   },
   {
+    "id": "improve-heading-text-layout-and-legibility",
+    "description": "Improve the layout and legibility of short standalone text content, such as headings no longer than a few lines, by enabling the browser to apply evenly balanced line breaks when wrapping text.",
+    "category": "user-experience",
+    "featuresUsed": [
+      "text-wrap",
+      "text-wrap: balance"
+    ]
+  },
+  {
     "id": "interest-triggered-tooltips",
     "description": "Show a tooltip or supplemental information when a user hovers over, focuses on, or long-presses an interactive element, without requiring a click.",
     "category": "user-experience",
@@ -486,14 +383,6 @@ var USE_CASES = [
     ]
   },
   {
-    "id": "intl-duration-format",
-    "description": "Create locale-aware duration strings from objects representing time units like days, hours, and minutes.",
-    "category": "user-experience",
-    "featuresUsed": [
-      "Intl.DurationFormat"
-    ]
-  },
-  {
     "id": "light-dismiss-content-overlay",
     "description": "Create swipeable layered navigation menus using native overlays and scroll gestures.",
     "category": "user-experience",
@@ -501,6 +390,22 @@ var USE_CASES = [
       "Popover",
       "Scroll snap",
       "inert"
+    ]
+  },
+  {
+    "id": "light-dismiss-dialog",
+    "description": "Create a modal dialog that can be closed via light dismiss (i.e. clicking or tapping outside of the dialog)",
+    "category": "user-experience",
+    "featuresUsed": [
+      "<dialog closedby>"
+    ]
+  },
+  {
+    "id": "move-dom-element-without-losing-state",
+    "description": "Move or reparent a DOM element without losing important element state, such as interactivity states (:focus/:active), <iframe> loading state, animation/transition state, etc",
+    "category": "user-experience",
+    "featuresUsed": [
+      "moveBefore()"
     ]
   },
   {
@@ -613,18 +518,44 @@ var USE_CASES = [
 async function getGuide(useCaseId) {
   const useCase = USE_CASES.find((u) => u.id === useCaseId);
   if (!useCase) return null;
-  const devGuidesDir = path3.resolve(import.meta.dirname, "../build/guides");
-  const prodGuidesDir = path3.resolve(import.meta.dirname, "./guides");
+  const devGuidesDir = path.resolve(import.meta.dirname, "../build/guides");
+  const prodGuidesDir = path.resolve(import.meta.dirname, "./guides");
   const guidesDir = existsSync(devGuidesDir) ? devGuidesDir : prodGuidesDir;
-  const filePath = path3.join(guidesDir, useCase.category, `${useCaseId}.md`);
+  const filePath = path.join(guidesDir, useCase.category, `${useCaseId}.md`);
   try {
-    const content = await fs2.readFile(filePath, "utf-8");
+    const content = await fs.readFile(filePath, "utf-8");
     return content;
   } catch (error) {
     if (error.code === "ENOENT") {
       return null;
     }
     throw error;
+  }
+}
+
+// lib/logger.ts
+import { appendFileSync } from "fs";
+import path2 from "path";
+
+// ../constants.ts
+var MODERN_WEB_LOG_FILE = "modern-web.log";
+
+// lib/logger.ts
+function logToolResult(toolName, result) {
+  if (process.env.ENABLE_FILE_LOGGING !== "true") {
+    return;
+  }
+  try {
+    const logDir = process.env.MODERN_WEB_LOG_DIR || process.cwd();
+    const logPath = path2.join(logDir, MODERN_WEB_LOG_FILE);
+    const logEntry = {
+      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+      tool: toolName,
+      result
+    };
+    appendFileSync(logPath, JSON.stringify(logEntry) + "\n", "utf8");
+  } catch (err) {
+    console.error("Failed to log tool result:", err);
   }
 }
 
@@ -665,8 +596,14 @@ async function main() {
   }
   if (values.search) {
     try {
+      const { searchUseCases } = await import("./search.mjs");
       const results = await searchUseCases(values.search);
-      console.log(JSON.stringify(results, null, 2));
+      if (results.length === 0) {
+        console.log("[]");
+      } else {
+        const jsonLines = results.map((r) => JSON.stringify(r));
+        console.log("[" + jsonLines.join(",\n") + "]");
+      }
     } catch (error) {
       console.error("Search failed:", error);
       process.exit(1);

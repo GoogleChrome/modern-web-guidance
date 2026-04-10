@@ -2,10 +2,10 @@
 
 This curated collection of skills, tools, and AI-ready documentation injects Chrome's web platform knowledge directly into your workflow, ensuring your coding agent builds apps that are modern, fast, and secure by default.
 
-#### Skill Coverage in `v0.0.12`
+#### Skill Coverage in `v0.0.13`
 
 <details>
-<summary><strong>47 web features with implementation guidance from Chrome's experts</strong>: `:autofill`, `:has()`, `:not()`, `:user-valid and :user-invalid`, `&lt;details>`, `&lt;dialog>`, `&lt;link rel="expect">`, `&lt;link rel="preload">`, `AbortController and AbortSignal`, `Anchor positioning`, `blocking="render"`, `color-scheme`, `content-visibility`, `Cross-document view transitions`, `Customizable &lt;select>`, `Email, telephone, and URL &lt;input> types`, `enterkeyhint`, `Fetch`, `Fetch priority`, `fetchLater`, `field-sizing`, `hidden="until-found"`, `inert`, `inputmode`, `Interest invokers`, `Intl.DurationFormat`, `Invoker commands`, `Long animation frames`, `Mutually exclusive &lt;details> elements`, `Popover`, `popover="hint"`, `prefers-color-scheme media query`, `prefers-contrast media query`, `prefers-reduced-motion media query`, `Registered custom properties`, `Scroll snap`, `Scroll-driven animations`, `scroll-initial-target`, `scrollbar-color`, `scrollbar-width`, `scrollIntoView()`, `sibling-count() and sibling-index()`, `sin(), cos(), tan(), asin(), acos(), atan(), and atan2() (CSS)`, `Speculation rules`, `Temporal`, `text-wrap`, `transition-behavior`</summary>
+<summary><strong>49 web features with implementation guidance from Chrome's experts</strong>: `:autofill`, `:has()`, `:not()`, `:user-valid and :user-invalid`, `&lt;details>`, `&lt;dialog closedby>`, `&lt;dialog>`, `&lt;link rel="expect">`, `&lt;link rel="preload">`, `AbortController and AbortSignal`, `Anchor positioning`, `blocking="render"`, `color-scheme`, `content-visibility`, `Cross-document view transitions`, `Customizable &lt;select>`, `Email, telephone, and URL &lt;input> types`, `enterkeyhint`, `Fetch`, `Fetch priority`, `fetchLater`, `field-sizing`, `hidden="until-found"`, `inert`, `inputmode`, `Interest invokers`, `Invoker commands`, `Long animation frames`, `moveBefore()`, `Mutually exclusive &lt;details> elements`, `Popover`, `popover="hint"`, `prefers-color-scheme media query`, `prefers-contrast media query`, `prefers-reduced-motion media query`, `Registered custom properties`, `Scroll snap`, `Scroll-driven animations`, `scroll-initial-target`, `scrollbar-color`, `scrollbar-width`, `scrollIntoView()`, `sibling-count() and sibling-index()`, `sin(), cos(), tan(), asin(), acos(), atan(), and atan2() (CSS)`, `Speculation rules`, `Temporal`, `text-wrap`, `text-wrap: balance`, `transition-behavior`</summary>
 
 - **[:autofill](https://webstatus.dev/features/autofill)**
   - **autofill-address-form**: Build an address form with correct autocomplete attributes and autofill support.
@@ -21,6 +21,8 @@ This curated collection of skills, tools, and AI-ready documentation injects Chr
   - **style-parent-with-has**: Style parent elements of a form field (e.g. labels or fieldsets) when the field is invalid.
 - **[&lt;details>](https://webstatus.dev/features/details), [Mutually exclusive &lt;details> elements](https://webstatus.dev/features/details-name), [hidden="until-found"](https://webstatus.dev/features/hidden-until-found)**
   - **search-hidden-content**: Hide content from view using patterns such as accordions, tabs, and "Read more" sections, while ensuring the hidden text reveals itself during native "Find in page" searches, allows search engine indexing, supports URL fragment deep links, and maintains ARIA accessibility.
+- **[&lt;dialog closedby>](https://webstatus.dev/features/dialog-closedby)**
+  - **light-dismiss-dialog**: Create a modal dialog that can be closed via light dismiss (i.e. clicking or tapping outside of the dialog)
 - **[&lt;dialog>](https://webstatus.dev/features/dialog), [Invoker commands](https://webstatus.dev/features/invoker-commands), [Popover](https://webstatus.dev/features/popover)**
   - **declarative-dialog-popover-control**: Toggle the visibility of a dialog or popover from a button without writing JavaScript.
 - **[AbortController and AbortSignal](https://webstatus.dev/features/aborting), [fetchLater](https://webstatus.dev/features/fetchlater)**
@@ -63,11 +65,13 @@ This curated collection of skills, tools, and AI-ready documentation injects Chr
   - **form-fields-automatically-fit-contents**: Allow form fields to grow and shrink to fit the user input, e.g. as the user types or selects a different option. Apply maximum and minimum size limits to create dynamic and responsive form fields that conform with the page design.
 - **[inert](https://webstatus.dev/features/inert), [Popover](https://webstatus.dev/features/popover), [Scroll snap](https://webstatus.dev/features/scroll-snap)**
   - **light-dismiss-content-overlay**: Create swipeable layered navigation menus using native overlays and scroll gestures.
-- **[Intl.DurationFormat](https://webstatus.dev/features/intl-duration-format)**
-  - **intl-duration-format**: Create locale-aware duration strings from objects representing time units like days, hours, and minutes.
+- **[Invoker commands](https://webstatus.dev/features/invoker-commands)**
+  - **declarative-button-actions**: Declaratively connect a button to any element to trigger custom, application-specific actions.
 - **[Long animation frames](https://webstatus.dev/features/long-animation-frames)**
   - **identify-heavy-scripts**: Identify the scripts most responsible for long animation frames
   - **identify-inp-causes**: Identify slow running JavaScript that is impacting INP metric
+- **[moveBefore()](https://webstatus.dev/features/move-before)**
+  - **move-dom-element-without-losing-state**: Move or reparent a DOM element without losing important element state, such as interactivity states (:focus/:active), <iframe> loading state, animation/transition state, etc
 - **[prefers-contrast media query](https://webstatus.dev/features/prefers-contrast), [scrollbar-color](https://webstatus.dev/features/scrollbar-color)**
   - **adapt-scrollbar-to-contrast-preferences**: Enhance scrollbar visibility for users who prefer high-contrast interfaces
 - **[Registered custom properties](https://webstatus.dev/features/registered-custom-properties), [Scroll-driven animations](https://webstatus.dev/features/scroll-driven-animations), [scrollbar-color](https://webstatus.dev/features/scrollbar-color)**
@@ -95,6 +99,9 @@ This curated collection of skills, tools, and AI-ready documentation injects Chr
 - **[Temporal](https://webstatus.dev/features/temporal)**
   - **sequence-distributed-events**: Log and sequence operations in distributed microservices or high-throughput tracing environments by recording timestamps with nanosecond resolution.
   - **calculate-event-differentials**: Calculate the duration and time remaining between dates and times.
+  - **capture-location-agnostic-data**: Record chronological data that should not change based on a user's location, such as birthdates, recurring alarms, or national holidays.
+- **[text-wrap](https://webstatus.dev/features/text-wrap), [text-wrap: balance](https://webstatus.dev/features/text-wrap-balance)**
+  - **improve-heading-text-layout-and-legibility**: Improve the layout and legibility of short standalone text content, such as headings no longer than a few lines, by enabling the browser to apply evenly balanced line breaks when wrapping text.
 - **[text-wrap](https://webstatus.dev/features/text-wrap)**
   - **prevent-text-wrapping**: Ensure the browser does not insert line breaks into text and will allow text to overflow its container.
 </details>
