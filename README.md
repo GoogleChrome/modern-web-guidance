@@ -2,10 +2,10 @@
 
 This curated collection of skills, tools, and AI-ready documentation injects Chrome's web platform knowledge directly into your workflow, ensuring your coding agent builds apps that are modern, fast, and secure by default.
 
-#### Skill Coverage in `v0.0.13`
+#### Skill Coverage in `v0.0.14`
 
 <details>
-<summary><strong>49 web features with implementation guidance from Chrome's experts</strong>: `:autofill`, `:has()`, `:not()`, `:user-valid and :user-invalid`, `&lt;details>`, `&lt;dialog closedby>`, `&lt;dialog>`, `&lt;link rel="expect">`, `&lt;link rel="preload">`, `AbortController and AbortSignal`, `Anchor positioning`, `blocking="render"`, `color-scheme`, `content-visibility`, `Cross-document view transitions`, `Customizable &lt;select>`, `Email, telephone, and URL &lt;input> types`, `enterkeyhint`, `Fetch`, `Fetch priority`, `fetchLater`, `field-sizing`, `hidden="until-found"`, `inert`, `inputmode`, `Interest invokers`, `Invoker commands`, `Long animation frames`, `moveBefore()`, `Mutually exclusive &lt;details> elements`, `Popover`, `popover="hint"`, `prefers-color-scheme media query`, `prefers-contrast media query`, `prefers-reduced-motion media query`, `Registered custom properties`, `Scroll snap`, `Scroll-driven animations`, `scroll-initial-target`, `scrollbar-color`, `scrollbar-width`, `scrollIntoView()`, `sibling-count() and sibling-index()`, `sin(), cos(), tan(), asin(), acos(), atan(), and atan2() (CSS)`, `Speculation rules`, `Temporal`, `text-wrap`, `text-wrap: balance`, `transition-behavior`</summary>
+<summary><strong>53 web features with implementation guidance from Chrome's experts</strong>: `:autofill`, `:has()`, `:not()`, `:user-valid and :user-invalid`, `@starting-style`, `&lt;details>`, `&lt;dialog closedby>`, `&lt;dialog>`, `&lt;link rel="expect">`, `&lt;link rel="preload">`, `AbortController and AbortSignal`, `Anchor positioning`, `blocking="render"`, `calc-size()`, `color-scheme`, `content-visibility`, `Cross-document view transitions`, `Customizable &lt;select>`, `Email, telephone, and URL &lt;input> types`, `enterkeyhint`, `Fetch`, `Fetch priority`, `fetchLater`, `field-sizing`, `font-size-adjust`, `hidden="until-found"`, `inert`, `inputmode`, `Interest invokers`, `interpolate-size`, `Invoker commands`, `Long animation frames`, `moveBefore()`, `Mutually exclusive &lt;details> elements`, `Popover`, `popover="hint"`, `prefers-color-scheme media query`, `prefers-contrast media query`, `prefers-reduced-motion media query`, `Scroll snap`, `Scroll-driven animations`, `scroll-initial-target`, `scrollbar-color`, `scrollbar-width`, `scrollIntoView()`, `sibling-count() and sibling-index()`, `sin(), cos(), tan(), asin(), acos(), atan(), and atan2() (CSS)`, `Speculation rules`, `Temporal`, `text-box`, `text-wrap`, `text-wrap: balance`, `transition-behavior`</summary>
 
 - **[:autofill](https://webstatus.dev/features/autofill)**
   - **autofill-address-form**: Build an address form with correct autocomplete attributes and autofill support.
@@ -19,6 +19,8 @@ This curated collection of skills, tools, and AI-ready documentation injects Chr
   - **select-menu-interaction**: Validate that a non-default option has been chosen in a select menu only after the user has interacted with the control.
   - **validate-input-after-interaction**: Show form field validation feedback (e.g. password complexity or email format requirements) only after the user has finished their initial interaction, avoiding premature errors on page load or while the user is typing.
   - **style-parent-with-has**: Style parent elements of a form field (e.g. labels or fieldsets) when the field is invalid.
+- **[@starting-style](https://webstatus.dev/features/starting-style), [transition-behavior](https://webstatus.dev/features/transition-behavior)**
+  - **animate-element-entry-exit**: Smoothly hide/show elements as they are added/removed from the DOM or as their display values are toggled.
 - **[&lt;details>](https://webstatus.dev/features/details), [Mutually exclusive &lt;details> elements](https://webstatus.dev/features/details-name), [hidden="until-found"](https://webstatus.dev/features/hidden-until-found)**
   - **search-hidden-content**: Hide content from view using patterns such as accordions, tabs, and "Read more" sections, while ensuring the hidden text reveals itself during native "Find in page" searches, allows search engine indexing, supports URL fragment deep links, and maintains ARIA accessibility.
 - **[&lt;dialog closedby>](https://webstatus.dev/features/dialog-closedby)**
@@ -40,6 +42,8 @@ This curated collection of skills, tools, and AI-ready documentation injects Chr
   - **consistent-cross-document-transitions**: Ensure critical page state is loaded and stable before initiating a cross-document view transition. This means critical CSS styles are loaded and applied, critical JavaScript is loaded and run, and the HTML visible for the user's initial view of the page has been parsed before the transition runs.
 - **[blocking="render"](https://webstatus.dev/features/blocking-render)**
   - **flicker-free-client-side-ab-testing**: Deliver and render A/B tests, multi-variate tests, or other experiments using client-side JavaScript to alter or inject HTML, CSS, and JavaScript without the original content showing first before flickering or flashing to show the experiment content.
+- **[calc-size()](https://webstatus.dev/features/calc-size), [interpolate-size](https://webstatus.dev/features/interpolate-size)**
+  - **animate-to-intrinsic-sizes**: Smoothly animate interactive components (like accordions, menus, and expanding cards) to and from their natural dimensions.
 - **[color-scheme](https://webstatus.dev/features/color-scheme), [prefers-color-scheme media query](https://webstatus.dev/features/prefers-color-scheme), [scrollbar-color](https://webstatus.dev/features/scrollbar-color)**
   - **adapt-scrollbar-to-light-dark-preferences**: Ensure the scrollbar visually matches the user's operating system light/dark mode preference
 - **[content-visibility](https://webstatus.dev/features/content-visibility), [hidden="until-found"](https://webstatus.dev/features/hidden-until-found)**
@@ -63,6 +67,9 @@ This curated collection of skills, tools, and AI-ready documentation injects Chr
   - **optimize-preload-priority**: Optimize the relative priority of preloaded content to reduce critical resource load delays.
 - **[field-sizing](https://webstatus.dev/features/field-sizing)**
   - **form-fields-automatically-fit-contents**: Allow form fields to grow and shrink to fit the user input, e.g. as the user types or selects a different option. Apply maximum and minimum size limits to create dynamic and responsive form fields that conform with the page design.
+- **[font-size-adjust](https://webstatus.dev/features/font-size-adjust)**
+  - **visually-stable-font-fallbacks**: Define font styles such that text remains readable and visually consistent in the event that there's a swap between the perferred font and one of the fallbacks (or vise versa).
+  - **visually-stable-mixed-fonts**: Define font styles such that text remains readable and visually consistent in situations where multiple fonts are used to render a single block of text.
 - **[inert](https://webstatus.dev/features/inert), [Popover](https://webstatus.dev/features/popover), [Scroll snap](https://webstatus.dev/features/scroll-snap)**
   - **light-dismiss-content-overlay**: Create swipeable layered navigation menus using native overlays and scroll gestures.
 - **[Invoker commands](https://webstatus.dev/features/invoker-commands)**
@@ -74,8 +81,6 @@ This curated collection of skills, tools, and AI-ready documentation injects Chr
   - **move-dom-element-without-losing-state**: Move or reparent a DOM element without losing important element state, such as interactivity states (:focus/:active), <iframe> loading state, animation/transition state, etc
 - **[prefers-contrast media query](https://webstatus.dev/features/prefers-contrast), [scrollbar-color](https://webstatus.dev/features/scrollbar-color)**
   - **adapt-scrollbar-to-contrast-preferences**: Enhance scrollbar visibility for users who prefer high-contrast interfaces
-- **[Registered custom properties](https://webstatus.dev/features/registered-custom-properties), [Scroll-driven animations](https://webstatus.dev/features/scroll-driven-animations), [scrollbar-color](https://webstatus.dev/features/scrollbar-color)**
-  - **animate-scrollbar-color-on-scroll**: Animate the scrollbar color dynamically as the user scrolls down the page
 - **[Scroll-driven animations](https://webstatus.dev/features/scroll-driven-animations), [Scroll snap](https://webstatus.dev/features/scroll-snap)**
   - **carousel-item-effects**: Create a carousel of slides with images or other visual elements, where each slide animates as they enter/center/exit their scroller. For example, the slides may fade-in/fade-out, rotate, get bigger or smaller, etc.
 - **[Scroll-driven animations](https://webstatus.dev/features/scroll-driven-animations)**
@@ -100,6 +105,9 @@ This curated collection of skills, tools, and AI-ready documentation injects Chr
   - **sequence-distributed-events**: Log and sequence operations in distributed microservices or high-throughput tracing environments by recording timestamps with nanosecond resolution.
   - **calculate-event-differentials**: Calculate the duration and time remaining between dates and times.
   - **capture-location-agnostic-data**: Record chronological data that should not change based on a user's location, such as birthdates, recurring alarms, or national holidays.
+  - **model-partial-time-concepts**: Model date and time concepts that inherently lack a standard component (such as a specific year, day, or date) without using arbitrary placeholder values that introduce calculation errors.
+- **[text-box](https://webstatus.dev/features/text-box)**
+  - **precise-text-alignment**: Achieve precise vertical alignment with text of any font. For example, exactly equal visual padding above and below text, or aligning text perfectly flush with adjacent icons or images.
 - **[text-wrap](https://webstatus.dev/features/text-wrap), [text-wrap: balance](https://webstatus.dev/features/text-wrap-balance)**
   - **improve-heading-text-layout-and-legibility**: Improve the layout and legibility of short standalone text content, such as headings no longer than a few lines, by enabling the browser to apply evenly balanced line breaks when wrapping text.
 - **[text-wrap](https://webstatus.dev/features/text-wrap)**
