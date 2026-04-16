@@ -81,6 +81,7 @@ This curated collection of skills, tools, and AI-ready documentation injects Chr
   - **identify-inp-causes**: Identify slow running JavaScript that is impacting INP metric
 - **[moveBefore()](https://webstatus.dev/features/move-before)**
   - **move-dom-element-without-losing-state**: Move or reparent a DOM element without losing important element state, such as interactivity states (:focus/:active), <iframe> loading state, animation/transition state, etc
+  - **persistent-top-layer**: Keep a modal dialog, fullscreen element, or native popover visibly open and functionally active when its underlying DOM node is moved or reparented in the DOM.
 - **[prefers-contrast media query](https://webstatus.dev/features/prefers-contrast), [scrollbar-color](https://webstatus.dev/features/scrollbar-color)**
   - **adapt-scrollbar-to-contrast-preferences**: Enhance scrollbar visibility for users who prefer high-contrast interfaces
 - **[Scroll-driven animations](https://webstatus.dev/features/scroll-driven-animations), [Scroll snap](https://webstatus.dev/features/scroll-snap)**
