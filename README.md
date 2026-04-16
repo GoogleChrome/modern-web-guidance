@@ -111,6 +111,7 @@ This curated collection of skills, tools, and AI-ready documentation injects Chr
   - **calculate-event-differentials**: Calculate the duration and time remaining between dates and times.
   - **capture-location-agnostic-data**: Record chronological data that should not change based on a user's location, such as birthdates, recurring alarms, or national holidays.
   - **coordinate-global-events**: Schedule future meetings or events by explicitly binding them to a geographical IANA time zone so that event times remain accurate regardless of Daylight Saving Time (DST) transitions, "skipped" or "repeated" hours during clock changes.
+  - **manage-recurring-intervals**: Calculate recurring intervals for subscription billings or payroll cycles, automatically adjusting for edge cases such as month-end transitions (e.g., adding one month to January 31st) to ensure accurate period calculations.
   - **model-partial-time-concepts**: Model date and time concepts that inherently lack a standard component (such as a specific year, day, or date) without using arbitrary placeholder values that introduce calculation errors.
 - **[text-box](https://webstatus.dev/features/text-box)**
   - **precise-text-alignment**: Achieve precise vertical alignment with text of any font. For example, exactly equal visual padding above and below text, or aligning text perfectly flush with adjacent icons or images.
