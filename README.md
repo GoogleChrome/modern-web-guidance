@@ -108,6 +108,7 @@ This curated collection of skills, tools, and AI-ready documentation injects Chr
   - **adapt-scrollbar-to-contrast-preferences**: Enhance scrollbar visibility for users who prefer high-contrast interfaces
 - **[Scheduler API](https://webstatus.dev/features/scheduler)**
   - **break-up-long-tasks**: Break up heavy synchronous processing (complex computations and/or long loops) or DOM updates, to let the browser handle user input and repaint the screen.
+  - **schedule-tasks-by-priority**: Schedule tasks with different priorities to ensure critical work runs first while background work is deferred.
 - **[Scroll-driven animations](https://webstatus.dev/features/scroll-driven-animations), [Scroll snap](https://webstatus.dev/features/scroll-snap)**
   - **carousel-slide-effects**: Create a carousel of slides with images or other visual elements, where each slide animates as they enter/center/exit their scroller. For example, the slides may fade-in/fade-out, rotate, get bigger or smaller, etc.
 - **[Scroll-driven animations](https://webstatus.dev/features/scroll-driven-animations)**
