@@ -2,7 +2,7 @@
   "name": "modern-web-guidance",
   "displayName": "Modern Web Guidance",
   "description": "Curated collection of agent skills for modern web development.",
-  "version": "0.0.84",
+  "version": "0.0.85",
   "publisher": "GoogleChrome",
   "engines": {
     "vscode": "^1.90.0",
@@ -20,6 +20,6 @@
     ]
   },
   "bin": {
-    "modern-web": "./skills/modern-web/modern-web.mjs"
+    "modern-web": "skills/modern-web/modern-web.mjs"
   }
 }
