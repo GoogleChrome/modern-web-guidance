@@ -39,7 +39,7 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 #### Full Skill Coverage (v0.0.109)
 
 <details>
-<summary>Includes expert guidance across <strong>83 modern web features</strong></summary>
+<summary>Includes expert guidance across <strong>84 modern web features</strong></summary>
 
 - [::backdrop](https://web-platform-dx.github.io/web-features-explorer/features/backdrop/)
 - [:autofill](https://web-platform-dx.github.io/web-features-explorer/features/autofill/)
@@ -104,6 +104,7 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 - [Registered custom properties](https://web-platform-dx.github.io/web-features-explorer/features/registered-custom-properties/)
 - [Scheduler API](https://web-platform-dx.github.io/web-features-explorer/features/scheduler/)
 - [Scroll snap](https://web-platform-dx.github.io/web-features-explorer/features/scroll-snap/)
+- [Scroll snap events](https://web-platform-dx.github.io/web-features-explorer/features/scroll-snap-events/)
 - [Scroll-driven animations](https://web-platform-dx.github.io/web-features-explorer/features/scroll-driven-animations/)
 - [scroll-initial-target](https://web-platform-dx.github.io/web-features-explorer/features/scroll-initial-target/)
 - [scrollbar-color](https://web-platform-dx.github.io/web-features-explorer/features/scrollbar-color/)
@@ -127,7 +128,7 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 </details>
 
 <details>
-<summary>Covers <strong>106 real-world developer use cases</strong> with production-ready code patterns</summary>
+<summary>Covers <strong>107 real-world developer use cases</strong> with production-ready code patterns</summary>
 
 <h3>accessibility</h3>
 
@@ -236,6 +237,7 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 - **[scroll-entry-exit-effects](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/scroll-entry-exit-effects.md)**: Create fade-in, scale-up, or other complex reveal-type effects on elements as they enter and exit the scrollport (or viewport) while the user is scrolling.
 - **[scroll-position-aware-elements](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/scroll-position-aware-elements.md)**: Build floating buttons or widgets (back-to-top, scroll-to-bottom, chat launchers, etc.) that appear and disappear based on whether the user has scrolled at all.
 - **[scroll-progress-indicator](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/scroll-progress-indicator.md)**: Create a scroll progress bar, stepped progress tracker, or any visual affordance that communicates how far through a page or section the user has scrolled.
+- **[scroll-snap-state-sync](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/scroll-snap-state-sync.md)**: Synchronize navigation indicators, linked content panels, and analytics tracking with the actively snapped item in a scrollable container.
 - **[scroll-target-on-load](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/scroll-target-on-load.md)**: Build a scrollable list of elements (e.g. a carousel of images or a chat conversation thread) that can be displayed with a particular element scrolled into view on the initial render.
 - **[scrollability-affordance-hints](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/scrollability-affordance-hints.md)**: Build scroll-shadow overlays, gradient fades, or directional arrow indicators that appear only when there's actually more content to scroll to in that direction.
 - **[scrollytelling](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/scrollytelling.md)**: Animate visual properties on a target element — such as fading a backdrop, shifting a background color, or to create scrollytelling experiences — driven entirely by the scrollport position of a completely different element.
