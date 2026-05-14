@@ -36,10 +36,10 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 * **Accessibility & Security**: accessible error announcements, keyboard focus management.  
 * **Built-in AI**: Leveraging local, on-device client models (native Language Detection, Summarization, and Translation APIs).
 
-#### Full Skill Coverage (v0.0.124)
+#### Full Skill Coverage (v0.0.125)
 
 <details>
-<summary>Includes expert guidance across <strong>90 modern web features</strong></summary>
+<summary>Includes expert guidance across <strong>94 modern web features</strong></summary>
 
 - [::backdrop](https://web-platform-dx.github.io/web-features-explorer/features/backdrop/)
 - [:autofill](https://web-platform-dx.github.io/web-features-explorer/features/autofill/)
@@ -69,6 +69,7 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 - [Email, telephone, and URL &lt;input> types](https://web-platform-dx.github.io/web-features-explorer/features/input-email-tel-url/)
 - [enterkeyhint](https://web-platform-dx.github.io/web-features-explorer/features/enterkeyhint/)
 - [Event timing](https://web-platform-dx.github.io/web-features-explorer/features/event-timing/)
+- [Federated credential management](https://web-platform-dx.github.io/web-features-explorer/features/fedcm/)
 - [Fetch](https://web-platform-dx.github.io/web-features-explorer/features/fetch/)
 - [Fetch priority](https://web-platform-dx.github.io/web-features-explorer/features/fetch-priority/)
 - [fetchLater](https://web-platform-dx.github.io/web-features-explorer/features/fetchlater/)
@@ -100,6 +101,8 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 - [overscroll-behavior](https://web-platform-dx.github.io/web-features-explorer/features/overscroll-behavior/)
 - [Page visibility](https://web-platform-dx.github.io/web-features-explorer/features/page-visibility/)
 - [Page visibility state](https://web-platform-dx.github.io/web-features-explorer/features/page-visibility-state/)
+- [Partitioned cookies](https://web-platform-dx.github.io/web-features-explorer/features/partitioned-cookies/)
+- [Permissions policy](https://web-platform-dx.github.io/web-features-explorer/features/permissions-policy/)
 - [Popover](https://web-platform-dx.github.io/web-features-explorer/features/popover/)
 - [popover="hint"](https://web-platform-dx.github.io/web-features-explorer/features/popover-hint/)
 - [prefers-color-scheme media query](https://web-platform-dx.github.io/web-features-explorer/features/prefers-color-scheme/)
@@ -128,13 +131,14 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 - [Top-level await](https://web-platform-dx.github.io/web-features-explorer/features/top-level-await/)
 - [transition-behavior](https://web-platform-dx.github.io/web-features-explorer/features/transition-behavior/)
 - [Translator](https://web-platform-dx.github.io/web-features-explorer/features/translator/)
+- [User agent client hints](https://web-platform-dx.github.io/web-features-explorer/features/ua-client-hints/)
 - [View transitions](https://web-platform-dx.github.io/web-features-explorer/features/view-transitions/)
 - [view-transition-class](https://web-platform-dx.github.io/web-features-explorer/features/view-transition-class/)
 - [Web animations](https://web-platform-dx.github.io/web-features-explorer/features/web-animations/)
 </details>
 
 <details>
-<summary>Covers <strong>112 real-world developer use cases</strong> with production-ready code patterns</summary>
+<summary>Covers <strong>113 real-world developer use cases</strong> with production-ready code patterns</summary>
 
 <h3>accessibility</h3>
 
@@ -187,6 +191,10 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 - **[resolution-optimized-pseudo-elements](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/performance/resolution-optimized-pseudo-elements.md)**: Use resolution-optimized images in CSS pseudo-elements (such as `::before` and `::after`) to reduce the number of DOM nodes.
 - **[schedule-tasks-by-priority](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/performance/schedule-tasks-by-priority.md)**: Schedule tasks with different priorities to ensure critical work runs first while background work is deferred.
 - **[sequence-distributed-events](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/performance/sequence-distributed-events.md)**: Log and sequence operations in distributed microservices or high-throughput tracing environments by recording timestamps with nanosecond resolution.
+
+<h3>privacy</h3>
+
+- **[privacy](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/privacy/privacy.md)**: Action-oriented guidelines for web developers to implement privacy by design, data minimization, third-party audits, and secure data handling. Use this skill when designing applications, integrating third-party services, handling user data, or configuring security headers.
 
 <h3>user-experience</h3>
 
