@@ -36,10 +36,10 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 * **Accessibility & Security**: accessible error announcements, keyboard focus management.  
 * **Built-in AI**: Leveraging local, on-device client models (native Language Detection, Summarization, and Translation APIs).
 
-#### Full Skill Coverage (v0.0.116)
+#### Full Skill Coverage (v0.0.117)
 
 <details>
-<summary>Includes expert guidance across <strong>85 modern web features</strong></summary>
+<summary>Includes expert guidance across <strong>86 modern web features</strong></summary>
 
 - [::backdrop](https://web-platform-dx.github.io/web-features-explorer/features/backdrop/)
 - [:autofill](https://web-platform-dx.github.io/web-features-explorer/features/autofill/)
@@ -86,6 +86,7 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 - [Intl.DurationFormat](https://web-platform-dx.github.io/web-features-explorer/features/intl-duration-format/)
 - [Invoker commands](https://web-platform-dx.github.io/web-features-explorer/features/invoker-commands/)
 - [Language detector](https://web-platform-dx.github.io/web-features-explorer/features/languagedetector/)
+- [LanguageModel](https://web-platform-dx.github.io/web-features-explorer/features/languagemodel/)
 - [light-dark()](https://web-platform-dx.github.io/web-features-explorer/features/light-dark/)
 - [linear() easing](https://web-platform-dx.github.io/web-features-explorer/features/linear-easing/)
 - [Long animation frames](https://web-platform-dx.github.io/web-features-explorer/features/long-animation-frames/)
@@ -129,7 +130,7 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 </details>
 
 <details>
-<summary>Covers <strong>109 real-world developer use cases</strong> with production-ready code patterns</summary>
+<summary>Covers <strong>110 real-world developer use cases</strong> with production-ready code patterns</summary>
 
 <h3>accessibility</h3>
 
@@ -138,6 +139,7 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 <h3>built-in-ai</h3>
 
 - **[language-detection](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/built-in-ai/language-detection.md)**: Detect the language of user-generated content or already present site content.
+- **[language-model](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/built-in-ai/language-model.md)**: Run on-device natural language inference in the browser using the Prompt API, with streaming output, structured JSON responses, and multi-turn session management.
 - **[summarizer](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/built-in-ai/summarizer.md)**: Summarize text content using the on-device Summarizer API.
 - **[translator](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/built-in-ai/translator.md)**: Translate text between languages using the on-device Translator API.
 
