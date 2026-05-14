@@ -36,7 +36,7 @@ Here's a tiny sampling of the **122 use-case-centric guides**:
 * **Accessibility & Security**: accessible error announcements, keyboard focus management.  
 * **Built-in AI**: Leveraging local, on-device client models (native Language Detection, Summarization, and Translation APIs).
 
-#### Full Skill Coverage (v0.0.139)
+#### Full Skill Coverage (v0.0.140)
 
 <details>
 <summary>Includes expert guidance across <strong>97 modern web features</strong></summary>
@@ -333,9 +333,9 @@ npx modern-web-guidance@latest retrieve "animate-to-from-top-layer"
 
 #### Google Antigravity: `agy plugin install https://github.com/GoogleChrome/modern-web-guidance`
 
-#### Github CLI: `gh skill install GoogleChrome/modern-web-guidance`
+#### GitHub CLI: `gh skill install GoogleChrome/modern-web-guidance`
 
-#### Github Copilot CLI: 
+#### GitHub Copilot CLI: 
 
 ```shell
 /plugin marketplace add GoogleChrome/modern-web-guidance
