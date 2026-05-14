@@ -36,7 +36,7 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 * **Accessibility & Security**: accessible error announcements, keyboard focus management.  
 * **Built-in AI**: Leveraging local, on-device client models (native Language Detection, Summarization, and Translation APIs).
 
-#### Full Skill Coverage (v0.0.121)
+#### Full Skill Coverage (v0.0.122)
 
 <details>
 <summary>Includes expert guidance across <strong>86 modern web features</strong></summary>
@@ -130,7 +130,7 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 </details>
 
 <details>
-<summary>Covers <strong>110 real-world developer use cases</strong> with production-ready code patterns</summary>
+<summary>Covers <strong>111 real-world developer use cases</strong> with production-ready code patterns</summary>
 
 <h3>accessibility</h3>
 
@@ -250,6 +250,7 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 - **[shrinking-header-on-scroll](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/shrinking-header-on-scroll.md)**: Smoothly animate a fixed header or full-page cover on scroll to dynamically shrink, gain shadows, and transform its layout over a predefined scroll distance.
 - **[size-aware-styling](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/size-aware-styling.md)**: Build a component whose styles can be conditionally dependent on its own width or height, rather than the width or height of the viewport. For example a card component that can change its layouts depending on how large it is, or a call-to-action button that can conditionally display helper text based on its width.
 - **[stabilize-reactive-state](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/stabilize-reactive-state.md)**: Manage task deadlines or schedules in data-driven views without unexpected side effects from shared mutable state.
+- **[stack-drill-down](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/stack-drill-down.md)**: Build full-screen hierarchical navigation that lets users drill down into nested views and swipe or navigate back to return, with browser history kept in sync.
 - **[style-parent-with-has](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/style-parent-with-has.md)**: Style parent elements of a form field (e.g. labels or fieldsets) when the field is invalid.
 - **[support-global-calendar-systems](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/support-global-calendar-systems.md)**: Display and calculate dates in non-Gregorian calendar systems (e.g., Islamic, Hebrew, or Chinese) accurately for international users.
 - **[visually-stable-font-fallbacks](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/visually-stable-font-fallbacks.md)**: Define font styles such that text remains readable and visually consistent in the event that there's a swap between the perferred font and one of the fallbacks (or vise versa).
