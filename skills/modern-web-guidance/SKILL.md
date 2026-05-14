@@ -35,7 +35,7 @@ Must use this skill:
 Search with an action-oriented query summarizing what you want to achieve using the `search` command. Run `modern-web-guidance` directly with `npx`.
 
 ```sh
-npx -y modern-web-guidance@latest --skill-version 2026_05_14-6d34b725 search "<query>"
+npx -y modern-web-guidance@latest --skill-version 2026_05_14-84df2f42 search "<query>"
 ```
 
 **Example Output**:
@@ -69,11 +69,17 @@ npx -y modern-web-guidance@latest retrieve "<id>"
 **Example Output**:
 `The markdown content of the guide describing implementation steps...`
 
+## Using npx
+
+-   IMPORTANT: on Windows, using `npx` may fail. Use `npx.cmd ...` instead.
+-   Network access is required for fetching npm packages needed by the task.
+-   If the `npx -y modern-web-guidance…` command hangs, you may be offline. Try running again in offline
+    mode: `npx --offline …`.
+-   The `--skill-version` flag is used to determine if this SKILL.md is out of date. If it is, a warning
+    message is logged to stderr.
+
 ## Guidelines
 
 -   Always search **first** to find the most specific design/performance patterns.
 -   These guides are usually framework-agnostic; adapt them correctly to your setup.
 -   Do not hallucinate guides or ignore them; they represent the preferred local standard for the user's project.
--   Note: if the `npx -y modern-web-guidance…` command hangs, try running again in offline mode: `npx --offline …`
--   Note: the `--skill-version` flag is used to determine if this SKILL.md is out of date. If it is, a warning message
-    is logged to stderr.
