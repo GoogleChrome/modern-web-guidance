@@ -26,7 +26,7 @@ Our content is evergrowing, we cover the bleeding edge of the web platform as we
 
 ### Core disciplines
 
-Here's a tiny sampling of the **113 use-case-centric guides**: 
+Here's a tiny sampling of the **117 use-case-centric guides**: 
 
 * **User Experience**: Smooth and modern visual states: View Transitions, CSS `scrollbar-color` styling, high-contrast adaptation, entry/exit transition animations, parallax scrolling.  
 * **CSS layout:** container queries (both size and style queries), modern color spaces (`oklch`, `color-mix`) and `subgrid`, text-wrap tuning (`balance`, `pretty`), subgrid, and typography line height trimming (`text-box`)  
@@ -36,10 +36,10 @@ Here's a tiny sampling of the **113 use-case-centric guides**:
 * **Accessibility & Security**: accessible error announcements, keyboard focus management.  
 * **Built-in AI**: Leveraging local, on-device client models (native Language Detection, Summarization, and Translation APIs).
 
-#### Full Skill Coverage (v0.0.134)
+#### Full Skill Coverage (v0.0.135)
 
 <details>
-<summary>Includes expert guidance across <strong>94 modern web features</strong></summary>
+<summary>Includes expert guidance across <strong>95 modern web features</strong></summary>
 
 - [::backdrop](https://web-platform-dx.github.io/web-features-explorer/features/backdrop/)
 - [:autofill](https://web-platform-dx.github.io/web-features-explorer/features/autofill/)
@@ -77,6 +77,7 @@ Here's a tiny sampling of the **113 use-case-centric guides**:
 - [font-size-adjust](https://web-platform-dx.github.io/web-features-explorer/features/font-size-adjust/)
 - [Form-associated WebMCP attributes](https://web-platform-dx.github.io/web-features-explorer/features/declarative-webmcp/)
 - [hidden="until-found"](https://web-platform-dx.github.io/web-features-explorer/features/hidden-until-found/)
+- [HTML in canvas](https://web-platform-dx.github.io/web-features-explorer/features/canvas-html/)
 - [image-set()](https://web-platform-dx.github.io/web-features-explorer/features/image-set/)
 - [Individual transform properties](https://web-platform-dx.github.io/web-features-explorer/features/individual-transforms/)
 - [inert](https://web-platform-dx.github.io/web-features-explorer/features/inert/)
@@ -138,7 +139,7 @@ Here's a tiny sampling of the **113 use-case-centric guides**:
 </details>
 
 <details>
-<summary>Covers <strong>113 real-world developer use cases</strong> with production-ready code patterns</summary>
+<summary>Covers <strong>117 real-world developer use cases</strong> with production-ready code patterns</summary>
 
 <h3>accessibility</h3>
 
@@ -204,6 +205,7 @@ Here's a tiny sampling of the **113 use-case-centric guides**:
 - **[animate-element-entry-exit](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/animate-element-entry-exit.md)**: Smoothly hide/show elements as they are added/removed from the DOM or as their display values are toggled.
 - **[animate-to-from-top-layer](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/animate-to-from-top-layer.md)**: Animate elements such as dialogs, popovers, and tooltips as they're entering/exiting the top layer.
 - **[animate-to-intrinsic-sizes](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/animate-to-intrinsic-sizes.md)**: Smoothly animate interactive components (like accordions, menus, and expanding cards) to and from their natural dimensions.
+- **[apply-webgl-shaders](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/apply-webgl-shaders.md)**: Apply custom visual effects with WebGL shaders to HTML content.
 - **[browser-ui-color-theme](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/browser-ui-color-theme.md)**: Configure built-in browser UI (e.g. scrollbars, form controls, etc) to respect the user's light/dark theme preference.
 - **[calculate-event-differentials](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/calculate-event-differentials.md)**: Calculate the duration and time remaining between dates and times.
 - **[calculate-with-intrinsic-sizes](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/calculate-with-intrinsic-sizes.md)**: Calculate the size of an element based on its intrinsic size, while ensuring it fits within given design constraints.
@@ -223,12 +225,15 @@ Here's a tiny sampling of the **113 use-case-centric guides**:
 - **[directional-navigation-transitions](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/directional-navigation-transitions.md)**: Animate visual state changes to reflect the direction of a user's navigational flow, such as sliding new content in from the right when advancing forward or from the left when returning to a previous screen.
 - **[dynamic-sibling-animations](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/dynamic-sibling-animations.md)**: Stagger animation or transition timing across sibling elements so each one starts after a computed delay based on its position in the sibling list.
 - **[dynamic-sibling-styling](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/dynamic-sibling-styling.md)**: Create dynamic visual spectrums or layout arrangements that automatically adapt to the number of elements in a group.
+- **[export-html-media-from-canvas](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/export-html-media-from-canvas.md)**: Capture and export dynamic HTML content as images or video frames from within canvas.
+- **[expose-canvas-content-to-browser-features](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/expose-canvas-content-to-browser-features.md)**: Expose content rendered in a canvas to browser features like assistive technologies, translation, or reading mode.
 - **[flicker-free-client-side-ab-testing](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/flicker-free-client-side-ab-testing.md)**: Deliver and render A/B tests, multi-variate tests, or other experiments using client-side JavaScript to alter or inject HTML, CSS, and JavaScript without the original content showing first before flickering or flashing to show the experiment content.
 - **[fluid-scaling](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/fluid-scaling.md)**: Scale items like font size, spacing, and media sizes smoothly based on the parent container's size rather than using fixed breakpoints
 - **[format-human-readable-durations](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/format-human-readable-durations.md)**: Present elapsed time or durations to users in a readable, localized format, with the flexibility to display either detailed unit breakdowns (e.g., "1 hour and 30 minutes") or total unit counts (e.g., "90 minutes") depending on context.
 - **[group-element-transitions](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/group-element-transitions.md)**: Transition a group of similar elements simultaneously using the same transition logic, such as removing a product from a shopping cart and having all the other products animate into their new positions.
 - **[improve-text-layout-and-legibility](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/improve-text-layout-and-legibility.md)**: Improve the layout and legibility of short standalone text content, such as headings no longer than a few lines, by enabling the browser to apply evenly balanced line breaks when wrapping text.
 - **[individual-transform-properties](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/individual-transform-properties.md)**: Animate or override individual CSS transform properties (e.g. translate, rotate, scale) independently of other transform properties on a single element.
+- **[interactive-content-in-3d-scenes](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/interactive-content-in-3d-scenes.md)**: Integrate interactive HTML elements into a 3D scene.
 - **[interactive-content-reveal](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/interactive-content-reveal.md)**: Create interactive reveal effects, such as a spotlight that follows the user's pointer to uncover details within an image or UI section.
 - **[interest-triggered-action-previews](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/interest-triggered-action-previews.md)**: Show a live preview of a button's effect when a user signals interest (e.g. hovering, focusing, or long-pressing) but before they commit to clicking.
 - **[interest-triggered-tooltips](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/interest-triggered-tooltips.md)**: Show a tooltip or supplemental information when a user hovers over, focuses on, or long-presses an interactive element, without requiring a click.
