@@ -36,10 +36,10 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 * **Accessibility & Security**: accessible error announcements, keyboard focus management.  
 * **Built-in AI**: Leveraging local, on-device client models (native Language Detection, Summarization, and Translation APIs).
 
-#### Full Skill Coverage (v0.0.122)
+#### Full Skill Coverage (v0.0.123)
 
 <details>
-<summary>Includes expert guidance across <strong>86 modern web features</strong></summary>
+<summary>Includes expert guidance across <strong>90 modern web features</strong></summary>
 
 - [::backdrop](https://web-platform-dx.github.io/web-features-explorer/features/backdrop/)
 - [:autofill](https://web-platform-dx.github.io/web-features-explorer/features/autofill/)
@@ -92,10 +92,12 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 - [Long animation frames](https://web-platform-dx.github.io/web-features-explorer/features/long-animation-frames/)
 - [Masks](https://web-platform-dx.github.io/web-features-explorer/features/masks/)
 - [moveBefore()](https://web-platform-dx.github.io/web-features-explorer/features/move-before/)
+- [MutationObserver](https://web-platform-dx.github.io/web-features-explorer/features/mutationobserver/)
 - [Mutually exclusive &lt;details> elements](https://web-platform-dx.github.io/web-features-explorer/features/details-name/)
 - [Navigation API](https://web-platform-dx.github.io/web-features-explorer/features/navigation/)
 - [navigator.modelContext](https://web-platform-dx.github.io/web-features-explorer/features/navigator-modelcontext/)
 - [overlay](https://web-platform-dx.github.io/web-features-explorer/features/overlay/)
+- [overscroll-behavior](https://web-platform-dx.github.io/web-features-explorer/features/overscroll-behavior/)
 - [Page visibility](https://web-platform-dx.github.io/web-features-explorer/features/page-visibility/)
 - [Page visibility state](https://web-platform-dx.github.io/web-features-explorer/features/page-visibility-state/)
 - [Popover](https://web-platform-dx.github.io/web-features-explorer/features/popover/)
@@ -104,6 +106,7 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 - [prefers-contrast media query](https://web-platform-dx.github.io/web-features-explorer/features/prefers-contrast/)
 - [prefers-reduced-motion media query](https://web-platform-dx.github.io/web-features-explorer/features/prefers-reduced-motion/)
 - [Registered custom properties](https://web-platform-dx.github.io/web-features-explorer/features/registered-custom-properties/)
+- [Resize observer](https://web-platform-dx.github.io/web-features-explorer/features/resize-observer/)
 - [Scheduler API](https://web-platform-dx.github.io/web-features-explorer/features/scheduler/)
 - [Scroll snap](https://web-platform-dx.github.io/web-features-explorer/features/scroll-snap/)
 - [Scroll snap events](https://web-platform-dx.github.io/web-features-explorer/features/scroll-snap-events/)
@@ -127,10 +130,11 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 - [Translator](https://web-platform-dx.github.io/web-features-explorer/features/translator/)
 - [View transitions](https://web-platform-dx.github.io/web-features-explorer/features/view-transitions/)
 - [view-transition-class](https://web-platform-dx.github.io/web-features-explorer/features/view-transition-class/)
+- [Web animations](https://web-platform-dx.github.io/web-features-explorer/features/web-animations/)
 </details>
 
 <details>
-<summary>Covers <strong>111 real-world developer use cases</strong> with production-ready code patterns</summary>
+<summary>Covers <strong>112 real-world developer use cases</strong> with production-ready code patterns</summary>
 
 <h3>accessibility</h3>
 
@@ -253,6 +257,7 @@ Just a tiny sampling of the **134+ use-case-centric guides**:
 - **[stack-drill-down](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/stack-drill-down.md)**: Build full-screen hierarchical navigation that lets users drill down into nested views and swipe or navigate back to return, with browser history kept in sync.
 - **[style-parent-with-has](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/style-parent-with-has.md)**: Style parent elements of a form field (e.g. labels or fieldsets) when the field is invalid.
 - **[support-global-calendar-systems](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/support-global-calendar-systems.md)**: Display and calculate dates in non-Gregorian calendar systems (e.g., Islamic, Hebrew, or Chinese) accurately for international users.
+- **[swipe-to-remove](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/swipe-to-remove.md)**: Let users act on items in a list (remove, archive, mark as read, etc.) with a horizontal swipe gesture, so they can process entries quickly without tapping a separate control.
 - **[visually-stable-font-fallbacks](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/visually-stable-font-fallbacks.md)**: Define font styles such that text remains readable and visually consistent in the event that there's a swap between the perferred font and one of the fallbacks (or vise versa).
 - **[visually-stable-mixed-fonts](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/visually-stable-mixed-fonts.md)**: Define font styles such that text remains readable and visually consistent in situations where multiple fonts are used to render a single block of text.
 

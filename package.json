@@ -2,7 +2,7 @@
   "name": "modern-web-guidance",
   "displayName": "Modern Web Guidance",
   "description": "Keep your agent up to date on the latest web best practices.",
-  "version": "0.0.122",
+  "version": "0.0.123",
   "publisher": "GoogleChrome",
   "engines": {
     "vscode": "^1.90.0",
