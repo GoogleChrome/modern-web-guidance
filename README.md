@@ -36,7 +36,7 @@ Here's a tiny sampling of the **123 use-case-centric guides**:
 * **Accessibility & Security**: accessible error announcements, keyboard focus management.  
 * **Built-in AI**: Leveraging local, on-device client models (native Language Detection, Summarization, and Translation APIs).
 
-#### Full Skill Coverage (v0.0.144)
+#### Full Skill Coverage (v0.0.145)
 
 <details>
 <summary>Includes expert guidance across <strong>98 modern web features</strong></summary>
@@ -157,7 +157,7 @@ Here's a tiny sampling of the **123 use-case-centric guides**:
 
 <h3>css</h3>
 
-- **[css-custom-highlights](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/css/css-custom-highlights.md)**: Highlight arbitrary text ranges on a page without modifying the DOM, using the CSS Custom Highlight API. For example, highlighting search results, spelling errors, or collaborative editing cursors.
+- **[highlight-text-ranges](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/css/highlight-text-ranges.md)**: Highlight arbitrary text ranges on a page such as search results, spelling errors, or collaborative editing cursors.
 
 <h3>forms</h3>
 

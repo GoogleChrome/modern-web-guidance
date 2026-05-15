@@ -79,12 +79,12 @@ Custom highlights are purely presentational and are not exposed to the accessibi
 Highlights should not rely solely on color to convey meaning. If a highlight indicates an error, pair it with another visual indicator such as `text-decoration: wavy underline` or an adjacent text label. Ensure sufficient contrast between the highlight background and text color to meet WCAG 2.1 requirements (at least 4.5:1 for normal text).
 
 ### Fallback strategies
+
 Baseline status for Custom highlights: Newly available. It's been Baseline since 2026-03-24.
 Supported by: Chrome 105 (Sep 2022), Edge 105 (Sep 2022), Firefox 149 (Mar 2026), and Safari 17.2 (Dec 2023).
 
 For browsers that do not support the CSS Custom Highlight API, you should provide a functional base experience where text is still legible, even without the visual highlight.
 
-#### Feature detection
 You can detect support before using the API:
 
 ```javascript
@@ -95,18 +95,34 @@ if (CSS.highlights) {
 }
 ```
 
-#### DOM-based fallback
-
 If the highlight is critical for the user experience, fall back to wrapping matched text in `<mark>` elements. This modifies the DOM, so take care to preserve event listeners and avoid breaking the document structure.
 
 ```javascript
 if (!CSS.highlights) {
-  // IMPORTANT: Escape user input to prevent XSS when using innerHTML.
-  const escaped = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const regex = new RegExp(`(${escaped})`, "gi");
-  article.innerHTML = article.textContent.replace(
-    regex,
-    "<mark>$1</mark>"
-  );
+  // Walk text nodes and wrap matches in <mark>, preserving structure.
+  const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  for (let n = walker.nextNode(); n; n = walker.nextNode()) nodes.push(n);
+
+  const term = searchTerm.toLowerCase();
+  for (const textNode of nodes) {
+    const text = textNode.textContent;
+    let pos = text.toLowerCase().indexOf(term);
+    if (pos === -1) continue;
+
+    const frag = document.createDocumentFragment();
+    let last = 0;
+    while (pos !== -1) {
+      frag.append(text.slice(last, pos));
+      const mark = document.createElement("mark");
+      // textContent assignment avoids HTML injection.
+      mark.textContent = text.slice(pos, pos + term.length);
+      frag.append(mark);
+      last = pos + term.length;
+      pos = text.toLowerCase().indexOf(term, last);
+    }
+    frag.append(text.slice(last));
+    textNode.replaceWith(frag);
+  }
 }
 ```
