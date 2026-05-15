@@ -26,7 +26,7 @@ Our content is evergrowing, we cover the bleeding edge of the web platform as we
 
 ### Core disciplines
 
-Here's a tiny sampling of the **122 use-case-centric guides**: 
+Here's a tiny sampling of the **123 use-case-centric guides**: 
 
 * **User Experience**: Smooth and modern visual states: View Transitions, CSS `scrollbar-color` styling, high-contrast adaptation, entry/exit transition animations, parallax scrolling.  
 * **CSS layout:** container queries (both size and style queries), modern color spaces (`oklch`, `color-mix`) and `subgrid`, text-wrap tuning (`balance`, `pretty`), subgrid, and typography line height trimming (`text-box`)  
@@ -36,10 +36,10 @@ Here's a tiny sampling of the **122 use-case-centric guides**:
 * **Accessibility & Security**: accessible error announcements, keyboard focus management.  
 * **Built-in AI**: Leveraging local, on-device client models (native Language Detection, Summarization, and Translation APIs).
 
-#### Full Skill Coverage (v0.0.143)
+#### Full Skill Coverage (v0.0.144)
 
 <details>
-<summary>Includes expert guidance across <strong>97 modern web features</strong></summary>
+<summary>Includes expert guidance across <strong>98 modern web features</strong></summary>
 
 - [::backdrop](https://web-platform-dx.github.io/web-features-explorer/features/backdrop/)
 - [:autofill](https://web-platform-dx.github.io/web-features-explorer/features/autofill/)
@@ -65,6 +65,7 @@ Here's a tiny sampling of the **122 use-case-centric guides**:
 - [Container scroll-state queries](https://web-platform-dx.github.io/web-features-explorer/features/container-scroll-state-queries/)
 - [content-visibility](https://web-platform-dx.github.io/web-features-explorer/features/content-visibility/)
 - [Cross-document view transitions](https://web-platform-dx.github.io/web-features-explorer/features/cross-document-view-transitions/)
+- [Custom highlights](https://web-platform-dx.github.io/web-features-explorer/features/highlight/)
 - [Customizable &lt;select>](https://web-platform-dx.github.io/web-features-explorer/features/customizable-select/)
 - [Email, telephone, and URL &lt;input> types](https://web-platform-dx.github.io/web-features-explorer/features/input-email-tel-url/)
 - [enterkeyhint](https://web-platform-dx.github.io/web-features-explorer/features/enterkeyhint/)
@@ -141,7 +142,7 @@ Here's a tiny sampling of the **122 use-case-centric guides**:
 </details>
 
 <details>
-<summary>Covers <strong>122 real-world developer use cases</strong> with production-ready code patterns</summary>
+<summary>Covers <strong>123 real-world developer use cases</strong> with production-ready code patterns</summary>
 
 <h3>accessibility</h3>
 
@@ -153,6 +154,10 @@ Here's a tiny sampling of the **122 use-case-centric guides**:
 - **[language-model](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/built-in-ai/language-model.md)**: Run on-device natural language inference in the browser using the Prompt API, with streaming output, structured JSON responses, and multi-turn session management.
 - **[summarizer](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/built-in-ai/summarizer.md)**: Summarize text content using the on-device Summarizer API.
 - **[translator](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/built-in-ai/translator.md)**: Translate text between languages using the on-device Translator API.
+
+<h3>css</h3>
+
+- **[css-custom-highlights](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/css/css-custom-highlights.md)**: Highlight arbitrary text ranges on a page without modifying the DOM, using the CSS Custom Highlight API. For example, highlighting search results, spelling errors, or collaborative editing cursors.
 
 <h3>forms</h3>
 
