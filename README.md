@@ -36,7 +36,7 @@ Here's a tiny sampling of the **123 use-case-centric guides**:
 * **Accessibility & Security**: accessible error announcements, keyboard focus management.
 * **Built-in AI**: Leveraging local, on-device client models (native Language Detection, Summarization, and Translation APIs).
 
-#### Full Skill Coverage (v0.0.147)
+#### Full Skill Coverage (v0.0.148)
 
 <details>
 <summary>Includes expert guidance across <strong>98 modern web features</strong></summary>
@@ -428,7 +428,7 @@ npx modern-web-guidance@latest install --choose
 
 ## Usage Statistics & Opt-Out
 
-Google collects anonymous usage statistics (such as search queries, guide retrievals, and installation) to improve the reliability, relevance, and performance of the Modern Web Guidance tool. See [modern-web.ts](https://github.com/GoogleChrome/guidance/blob/main/serving/bin/modern-web.ts) to see exactly what data is collected.
+Google collects anonymous usage statistics (such as search queries, guide retrievals, and installation) to improve the reliability, relevance, and performance of the Modern Web Guidance tool. See [modern-web.ts](https://github.com/GoogleChrome/modern-web-guidance-src/blob/main/serving/bin/modern-web.ts) to see exactly what data is collected.
 
 Data collection is enabled by default. You can opt-out completely at any time (suppressing all local console telemetry warnings, search/retrieve metric dispatches, and installation telemetry) by setting the `DISABLE_TELEMETRY=1` environment variable in your shell profile (e.g., `.bashrc` or `.zshrc`):
 
