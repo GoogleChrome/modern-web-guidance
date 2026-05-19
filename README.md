@@ -36,7 +36,7 @@ Here's a tiny sampling of the **128 use-case-centric guides**:
 * **Accessibility & Security**: accessible error announcements, keyboard focus management.
 * **Built-in AI**: Leveraging local, on-device client models (native Language Detection, Summarization, and Translation APIs).
 
-#### Full Skill Coverage (v0.0.160)
+#### Full Skill Coverage (v0.0.161)
 
 <details>
 <summary>Includes expert guidance across <strong>102 modern web features</strong></summary>
