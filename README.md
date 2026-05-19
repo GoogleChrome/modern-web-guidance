@@ -1,152 +1,142 @@
+<p align="center">
+  <img src="assets/modern-web-guidance.svg" alt="Modern Web Guidance Logo" width="150" />
+</p>
+
 # Modern Web Guidance
 
 Inject web platform expertise, best practices, and modern API patterns directly into your AI coding agents.
 
-modern-web-guidance is an agent skill (aka [SKILL.md](http://SKILL.md)) that helps your coding agent build better web apps. It uses modern, high-performance, accessible, and secure APIs rather than legacy, outdated workarounds. This project is supported by the Google Chrome team, the Microsoft Edge team, and the web development community.
+**Modern Web Guidance** is an agent skill (aka `SKILL.md`) with a CLI that helps AI agents build better web applications using modern, high-performance, accessible, and secure APIs instead of legacy workarounds.
+
+*Supported by the Google Chrome team, the Microsoft Edge team, and the web development community.*
 
 <!-- <LIKE A DEMO VIDEO LOOP OR SOMETHING?> -->
 
-## Why?
+## <img src=".github/img/terminal.svg" width="24" height="24" style="vertical-align: middle; margin-right: 4px;"> Quickstart
 
-AI coding agents often default to older patterns/libraries because their training data contains vast amounts of legacy code. This often leads them to generate unnecessary, bloated JavaScript for common tasks that are now native in the web platform.
+```shell
+npx modern-web-guidance@latest install
+```
 
-### Bridging the "High-Recall, Low-Coverage" Knowledge Gap
+This command runs an interactive wizard to place the SKILL.md appropriately. See [Alternative Installation Methods](#alternative-installation-methods) below.
 
-Every developer knows about the **knowledge cutoff**—but for coding agents, the real issue is **knowledge representation**. Even for web platform features released over the last 10 years, even current frontier models lack the density and coverage of high-quality, modern implementation patterns. The models have *high recall* (they know an API exists) but *low coverage* of actual production best practices.
+#### Try it out (without installing)
 
-**This repository bridges that gap.** We don't waste your agent's context on general knowledge it already has. Instead, we inject targeted, high-density, expert-curated guidance specifically focused on:
+```shell
+# Search for relevant guides
+npx modern-web-guidance@latest search "animate a dialog modal backdrop"
 
-1. Advanced browser APIs models consistently misuse or fail to structure.
-2. High-performance, accessible, and secure patterns that eliminate legacy bloat.
-3. Responsible cross-browser fallback strategies that models are incapable of inventing on-the-fly.
+# Retrieve a guide by ID
+npx modern-web-guidance@latest retrieve "animate-to-from-top-layer"
+```
 
-## What
+## <img src=".github/img/lightbulb.svg" width="24" height="24" style="vertical-align: middle; margin-right: 4px;"> Why?
 
-Our content is evergrowing, we cover the bleeding edge of the web platform as well as the past several years of new features handling fallback strategies. The skill is designed **not to waste your tokens** on stuff models already know.
+Coding agents often default to older patterns because LLM training data contains vast amounts of legacy code. This often leads them to generate bloated JavaScript for tasks that now have native, high-performance web platform solutions.
 
-### Core disciplines
+Even if a model knows an API exists, it often lacks the density of real-world, modern implementation patterns required for production-ready code.
 
-Here's a tiny sampling of the **128 use-case-centric guides**:
+**Modern Web Guidance bridges this gap.** Our skill's CLI returns targeted, expert-curated guidelines directly into your agent's context window, focusing on:
+* **Modern Browser APIs**: Helping models correctly structure APIs they frequently misuse.
+* **Performance & Accessibility**: Eliminating legacy bloat with clean, native patterns.
+* **Responsible Fallbacks**: Guiding models to use sensible, lightweight fallbacks instead of heavy polyfills or legacy libraries.
 
-* **User Experience**: Smooth and modern visual states: View Transitions, CSS `scrollbar-color` styling, high-contrast adaptation, entry/exit transition animations, parallax scrolling.
-* **CSS layout:** container queries (both size and style queries), modern color spaces (`oklch`, `color-mix`) and `subgrid`, text-wrap tuning (`balance`, `pretty`), subgrid, and typography line height trimming (`text-box`)
-* **Performance**: instant page preloading, Interaction to Next Paint (INP) diagnostics, and background task scheduling using `scheduler.yield`.
-* **Forms**: auto-sizing input fields (`field-sizing: content`), precise validation with `:user-invalid`, and accent color synchronization.
-* **Native UI Components**: Direct control over dialogs, CSS Anchor Positioning for tooltips, same-document and cross-document View Transitions, and the Popover API.
-* **Accessibility & Security**: accessible error announcements, keyboard focus management.
-* **Built-in AI**: Leveraging local, on-device client models (native Language Detection, Summarization, and Translation APIs).
+## <img src=".github/img/package.svg" width="24" height="24" style="vertical-align: middle; margin-right: 4px;"> What's Included?
 
-#### Full Skill Coverage (v0.0.161)
+We cover the past several years of the web platform's new features, all the way up to the cutting edge. The guides are **designed to be token-efficient**; we run evals enabling us to prune lowest-common-denominator content that models already know.
+
+### Core Disciplines
+
+<table width="100%" style="border-collapse: collapse; border: none;">
+  <tr style="border: none;">
+    <td width="33%" valign="top" style="border: none; padding: 6px;">
+      <h4>🎨 User Experience</h4>
+      <p style="font-size: 0.9em; line-height: 1.4;">Smooth visual states (View Transitions, entry/exit animations, parallax scroll, CSS <code>scrollbar-color</code>).</p>
+    </td>
+    <td width="33%" valign="top" style="border: none; padding: 6px;">
+      <h4>📐 CSS Layout</h4>
+      <p style="font-size: 0.9em; line-height: 1.4;">Modern layout systems (container queries, <code>subgrid</code>, modern color spaces like <code>oklch</code>, text-wrap tuning, and line-height trimming).</p>
+    </td>
+    <td width="33%" valign="top" style="border: none; padding: 6px;">
+      <h4>⚡ Performance</h4>
+      <p style="font-size: 0.9em; line-height: 1.4;">Speed optimizations (instant preloading, Interaction to Next Paint (INP) diagnostics, and scheduling tasks via <code>scheduler.yield</code>).</p>
+    </td>
+  </tr>
+  <tr style="border: none;">
+    <td width="33%" valign="top" style="border: none; padding: 6px;">
+      <h4>📝 Forms & UI</h4>
+      <p style="font-size: 0.9em; line-height: 1.4;">Native components (Anchor Positioning for tooltips, Popover API, dialogs, <code>:user-invalid</code> validation, and auto-sizing fields).</p>
+    </td>
+    <td width="33%" valign="top" style="border: none; padding: 6px;">
+      <h4>♿ Accessibility</h4>
+      <p style="font-size: 0.9em; line-height: 1.4;">Hardened patterns (accessible error announcements, keyboard focus management).</p>
+    </td>
+    <td width="33%" valign="top" style="border: none; padding: 6px;">
+      <h4>🤖 Built-in AI</h4>
+      <p style="font-size: 0.9em; line-height: 1.4;">Local client models (native translation, summarization, and language detection APIs).</p>
+    </td>
+  </tr>
+</table>
+
+#### The full list
 
 <details>
-<summary>Includes expert guidance across <strong>102 modern web features</strong></summary>
+<summary><strong>102 modern web features</strong></summary>
 
-- [::backdrop](https://web-platform-dx.github.io/web-features-explorer/features/backdrop/)
-- [:autofill](https://web-platform-dx.github.io/web-features-explorer/features/autofill/)
-- [:has()](https://web-platform-dx.github.io/web-features-explorer/features/has/)
-- [:not()](https://web-platform-dx.github.io/web-features-explorer/features/not/)
-- [:user-valid and :user-invalid](https://web-platform-dx.github.io/web-features-explorer/features/user-pseudos/)
-- [@function](https://web-platform-dx.github.io/web-features-explorer/features/function/)
-- [@starting-style](https://web-platform-dx.github.io/web-features-explorer/features/starting-style/)
-- [&lt;details>](https://web-platform-dx.github.io/web-features-explorer/features/details/)
-- [&lt;dialog closedby>](https://web-platform-dx.github.io/web-features-explorer/features/dialog-closedby/)
-- [&lt;dialog>](https://web-platform-dx.github.io/web-features-explorer/features/dialog/)
-- [&lt;link rel="expect">](https://web-platform-dx.github.io/web-features-explorer/features/link-rel-expect/)
-- [&lt;link rel="preload">](https://web-platform-dx.github.io/web-features-explorer/features/link-rel-preload/)
-- [AbortController and AbortSignal](https://web-platform-dx.github.io/web-features-explorer/features/aborting/)
-- [accent-color](https://web-platform-dx.github.io/web-features-explorer/features/accent-color/)
-- [Active view transition](https://web-platform-dx.github.io/web-features-explorer/features/active-view-transition/)
-- [Anchor position container queries](https://web-platform-dx.github.io/web-features-explorer/features/container-anchor-position-queries/)
-- [Anchor positioning](https://web-platform-dx.github.io/web-features-explorer/features/anchor-positioning/)
-- [blocking="render"](https://web-platform-dx.github.io/web-features-explorer/features/blocking-render/)
-- [calc-size()](https://web-platform-dx.github.io/web-features-explorer/features/calc-size/)
-- [color-scheme](https://web-platform-dx.github.io/web-features-explorer/features/color-scheme/)
-- [Container queries](https://web-platform-dx.github.io/web-features-explorer/features/container-queries/)
-- [Container scroll-state queries](https://web-platform-dx.github.io/web-features-explorer/features/container-scroll-state-queries/)
-- [Container style queries](https://web-platform-dx.github.io/web-features-explorer/features/container-style-queries/)
-- [content-visibility](https://web-platform-dx.github.io/web-features-explorer/features/content-visibility/)
-- [Cross-document view transitions](https://web-platform-dx.github.io/web-features-explorer/features/cross-document-view-transitions/)
-- [Custom highlights](https://web-platform-dx.github.io/web-features-explorer/features/highlight/)
-- [Customizable &lt;select>](https://web-platform-dx.github.io/web-features-explorer/features/customizable-select/)
-- [Email, telephone, and URL &lt;input> types](https://web-platform-dx.github.io/web-features-explorer/features/input-email-tel-url/)
-- [enterkeyhint](https://web-platform-dx.github.io/web-features-explorer/features/enterkeyhint/)
-- [Event timing](https://web-platform-dx.github.io/web-features-explorer/features/event-timing/)
-- [Federated credential management](https://web-platform-dx.github.io/web-features-explorer/features/fedcm/)
-- [Fetch](https://web-platform-dx.github.io/web-features-explorer/features/fetch/)
-- [Fetch priority](https://web-platform-dx.github.io/web-features-explorer/features/fetch-priority/)
-- [fetchLater](https://web-platform-dx.github.io/web-features-explorer/features/fetchlater/)
-- [field-sizing](https://web-platform-dx.github.io/web-features-explorer/features/field-sizing/)
-- [font-size-adjust](https://web-platform-dx.github.io/web-features-explorer/features/font-size-adjust/)
-- [Form-associated WebMCP attributes](https://web-platform-dx.github.io/web-features-explorer/features/declarative-webmcp/)
-- [hidden="until-found"](https://web-platform-dx.github.io/web-features-explorer/features/hidden-until-found/)
-- [HTML in canvas](https://web-platform-dx.github.io/web-features-explorer/features/canvas-html/)
-- [image-set()](https://web-platform-dx.github.io/web-features-explorer/features/image-set/)
-- [Individual transform properties](https://web-platform-dx.github.io/web-features-explorer/features/individual-transforms/)
-- [inert](https://web-platform-dx.github.io/web-features-explorer/features/inert/)
-- [inputmode](https://web-platform-dx.github.io/web-features-explorer/features/inputmode/)
-- [Interest invokers](https://web-platform-dx.github.io/web-features-explorer/features/interest-invokers/)
-- [interpolate-size](https://web-platform-dx.github.io/web-features-explorer/features/interpolate-size/)
-- [Intersection observer](https://web-platform-dx.github.io/web-features-explorer/features/intersection-observer/)
-- [Intl.DurationFormat](https://web-platform-dx.github.io/web-features-explorer/features/intl-duration-format/)
-- [Invoker commands](https://web-platform-dx.github.io/web-features-explorer/features/invoker-commands/)
-- [Language detector](https://web-platform-dx.github.io/web-features-explorer/features/languagedetector/)
-- [LanguageModel](https://web-platform-dx.github.io/web-features-explorer/features/languagemodel/)
-- [light-dark()](https://web-platform-dx.github.io/web-features-explorer/features/light-dark/)
-- [linear() easing](https://web-platform-dx.github.io/web-features-explorer/features/linear-easing/)
-- [Long animation frames](https://web-platform-dx.github.io/web-features-explorer/features/long-animation-frames/)
-- [Masks](https://web-platform-dx.github.io/web-features-explorer/features/masks/)
-- [moveBefore()](https://web-platform-dx.github.io/web-features-explorer/features/move-before/)
-- [MutationObserver](https://web-platform-dx.github.io/web-features-explorer/features/mutationobserver/)
-- [Mutually exclusive &lt;details> elements](https://web-platform-dx.github.io/web-features-explorer/features/details-name/)
-- [Navigation API](https://web-platform-dx.github.io/web-features-explorer/features/navigation/)
-- [navigator.modelContext](https://web-platform-dx.github.io/web-features-explorer/features/navigator-modelcontext/)
-- [overflow-clip-margin](https://web-platform-dx.github.io/web-features-explorer/features/overflow-clip-margin/)
-- [overflow: clip](https://web-platform-dx.github.io/web-features-explorer/features/overflow-clip/)
-- [overlay](https://web-platform-dx.github.io/web-features-explorer/features/overlay/)
-- [overscroll-behavior](https://web-platform-dx.github.io/web-features-explorer/features/overscroll-behavior/)
-- [Page visibility](https://web-platform-dx.github.io/web-features-explorer/features/page-visibility/)
-- [Page visibility state](https://web-platform-dx.github.io/web-features-explorer/features/page-visibility-state/)
-- [Partitioned cookies](https://web-platform-dx.github.io/web-features-explorer/features/partitioned-cookies/)
-- [Permissions policy](https://web-platform-dx.github.io/web-features-explorer/features/permissions-policy/)
-- [Popover](https://web-platform-dx.github.io/web-features-explorer/features/popover/)
-- [popover="hint"](https://web-platform-dx.github.io/web-features-explorer/features/popover-hint/)
-- [prefers-color-scheme media query](https://web-platform-dx.github.io/web-features-explorer/features/prefers-color-scheme/)
-- [prefers-contrast media query](https://web-platform-dx.github.io/web-features-explorer/features/prefers-contrast/)
-- [prefers-reduced-motion media query](https://web-platform-dx.github.io/web-features-explorer/features/prefers-reduced-motion/)
-- [Registered custom properties](https://web-platform-dx.github.io/web-features-explorer/features/registered-custom-properties/)
-- [Resize observer](https://web-platform-dx.github.io/web-features-explorer/features/resize-observer/)
-- [Scheduler API](https://web-platform-dx.github.io/web-features-explorer/features/scheduler/)
-- [Scroll snap](https://web-platform-dx.github.io/web-features-explorer/features/scroll-snap/)
-- [Scroll snap events](https://web-platform-dx.github.io/web-features-explorer/features/scroll-snap-events/)
-- [Scroll-driven animations](https://web-platform-dx.github.io/web-features-explorer/features/scroll-driven-animations/)
-- [scroll-initial-target](https://web-platform-dx.github.io/web-features-explorer/features/scroll-initial-target/)
-- [scrollbar-color](https://web-platform-dx.github.io/web-features-explorer/features/scrollbar-color/)
-- [scrollbar-width](https://web-platform-dx.github.io/web-features-explorer/features/scrollbar-width/)
-- [scrollend](https://web-platform-dx.github.io/web-features-explorer/features/scrollend/)
-- [scrollIntoView()](https://web-platform-dx.github.io/web-features-explorer/features/scroll-into-view/)
-- [sibling-count() and sibling-index()](https://web-platform-dx.github.io/web-features-explorer/features/sibling-count/)
-- [sin(), cos(), tan(), asin(), acos(), atan(), and atan2() (CSS)](https://web-platform-dx.github.io/web-features-explorer/features/trig-functions/)
-- [Speculation rules](https://web-platform-dx.github.io/web-features-explorer/features/speculation-rules/)
-- [Summarizer](https://web-platform-dx.github.io/web-features-explorer/features/summarizer/)
-- [SVG](https://web-platform-dx.github.io/web-features-explorer/features/svg/)
-- [Temporal](https://web-platform-dx.github.io/web-features-explorer/features/temporal/)
-- [text-box](https://web-platform-dx.github.io/web-features-explorer/features/text-box/)
-- [text-wrap](https://web-platform-dx.github.io/web-features-explorer/features/text-wrap/)
-- [text-wrap: balance](https://web-platform-dx.github.io/web-features-explorer/features/text-wrap-balance/)
-- [text-wrap: pretty](https://web-platform-dx.github.io/web-features-explorer/features/text-wrap-pretty/)
-- [Top-level await](https://web-platform-dx.github.io/web-features-explorer/features/top-level-await/)
-- [transition-behavior](https://web-platform-dx.github.io/web-features-explorer/features/transition-behavior/)
-- [Translator](https://web-platform-dx.github.io/web-features-explorer/features/translator/)
-- [User agent client hints](https://web-platform-dx.github.io/web-features-explorer/features/ua-client-hints/)
-- [View transitions](https://web-platform-dx.github.io/web-features-explorer/features/view-transitions/)
-- [view-transition-class](https://web-platform-dx.github.io/web-features-explorer/features/view-transition-class/)
-- [Web animations](https://web-platform-dx.github.io/web-features-explorer/features/web-animations/)
-- [Web authentication](https://web-platform-dx.github.io/web-features-explorer/features/webauthn/)
-- [Web authentication signal methods](https://web-platform-dx.github.io/web-features-explorer/features/webauthn-signals/)
+### CSS & Layout (51 features)
+
+| | | |
+| :--- | :--- | :--- |
+| [::backdrop](https://web-platform-dx.github.io/web-features-explorer/features/backdrop/) | [Custom highlights](https://web-platform-dx.github.io/web-features-explorer/features/highlight/) | [Scroll snap events](https://web-platform-dx.github.io/web-features-explorer/features/scroll-snap-events/) |
+| [:has()](https://web-platform-dx.github.io/web-features-explorer/features/has/) | [field-sizing](https://web-platform-dx.github.io/web-features-explorer/features/field-sizing/) | [Scroll-driven animations](https://web-platform-dx.github.io/web-features-explorer/features/scroll-driven-animations/) |
+| [:not()](https://web-platform-dx.github.io/web-features-explorer/features/not/) | [font-size-adjust](https://web-platform-dx.github.io/web-features-explorer/features/font-size-adjust/) | [scroll-initial-target](https://web-platform-dx.github.io/web-features-explorer/features/scroll-initial-target/) |
+| [:user-valid and :user-invalid](https://web-platform-dx.github.io/web-features-explorer/features/user-pseudos/) | [image-set()](https://web-platform-dx.github.io/web-features-explorer/features/image-set/) | [scrollbar-color](https://web-platform-dx.github.io/web-features-explorer/features/scrollbar-color/) |
+| [@function](https://web-platform-dx.github.io/web-features-explorer/features/function/) | [Individual transform properties](https://web-platform-dx.github.io/web-features-explorer/features/individual-transforms/) | [scrollbar-width](https://web-platform-dx.github.io/web-features-explorer/features/scrollbar-width/) |
+| [@starting-style](https://web-platform-dx.github.io/web-features-explorer/features/starting-style/) | [interpolate-size](https://web-platform-dx.github.io/web-features-explorer/features/interpolate-size/) | [scrollend](https://web-platform-dx.github.io/web-features-explorer/features/scrollend/) |
+| [accent-color](https://web-platform-dx.github.io/web-features-explorer/features/accent-color/) | [light-dark()](https://web-platform-dx.github.io/web-features-explorer/features/light-dark/) | [scrollIntoView()](https://web-platform-dx.github.io/web-features-explorer/features/scroll-into-view/) |
+| [Active view transition](https://web-platform-dx.github.io/web-features-explorer/features/active-view-transition/) | [linear() easing](https://web-platform-dx.github.io/web-features-explorer/features/linear-easing/) | [sibling-count() and sibling-index()](https://web-platform-dx.github.io/web-features-explorer/features/sibling-count/) |
+| [Anchor position container queries](https://web-platform-dx.github.io/web-features-explorer/features/container-anchor-position-queries/) | [Masks](https://web-platform-dx.github.io/web-features-explorer/features/masks/) | [sin(), cos(), tan(), asin(), acos(), atan(), and atan2() (CSS)](https://web-platform-dx.github.io/web-features-explorer/features/trig-functions/) |
+| [Anchor positioning](https://web-platform-dx.github.io/web-features-explorer/features/anchor-positioning/) | [overflow-clip-margin](https://web-platform-dx.github.io/web-features-explorer/features/overflow-clip-margin/) | [text-box](https://web-platform-dx.github.io/web-features-explorer/features/text-box/) |
+| [calc-size()](https://web-platform-dx.github.io/web-features-explorer/features/calc-size/) | [overflow: clip](https://web-platform-dx.github.io/web-features-explorer/features/overflow-clip/) | [text-wrap](https://web-platform-dx.github.io/web-features-explorer/features/text-wrap/) |
+| [color-scheme](https://web-platform-dx.github.io/web-features-explorer/features/color-scheme/) | [overlay](https://web-platform-dx.github.io/web-features-explorer/features/overlay/) | [text-wrap: balance](https://web-platform-dx.github.io/web-features-explorer/features/text-wrap-balance/) |
+| [Container queries](https://web-platform-dx.github.io/web-features-explorer/features/container-queries/) | [overscroll-behavior](https://web-platform-dx.github.io/web-features-explorer/features/overscroll-behavior/) | [text-wrap: pretty](https://web-platform-dx.github.io/web-features-explorer/features/text-wrap-pretty/) |
+| [Container scroll-state queries](https://web-platform-dx.github.io/web-features-explorer/features/container-scroll-state-queries/) | [prefers-color-scheme media query](https://web-platform-dx.github.io/web-features-explorer/features/prefers-color-scheme/) | [transition-behavior](https://web-platform-dx.github.io/web-features-explorer/features/transition-behavior/) |
+| [Container style queries](https://web-platform-dx.github.io/web-features-explorer/features/container-style-queries/) | [prefers-contrast media query](https://web-platform-dx.github.io/web-features-explorer/features/prefers-contrast/) | [View transitions](https://web-platform-dx.github.io/web-features-explorer/features/view-transitions/) |
+| [content-visibility](https://web-platform-dx.github.io/web-features-explorer/features/content-visibility/) | [prefers-reduced-motion media query](https://web-platform-dx.github.io/web-features-explorer/features/prefers-reduced-motion/) | [view-transition-class](https://web-platform-dx.github.io/web-features-explorer/features/view-transition-class/) |
+| [Cross-document view transitions](https://web-platform-dx.github.io/web-features-explorer/features/cross-document-view-transitions/) | [Scroll snap](https://web-platform-dx.github.io/web-features-explorer/features/scroll-snap/) | [Web animations](https://web-platform-dx.github.io/web-features-explorer/features/web-animations/) |
+
+### HTML & DOM (20 features)
+
+| | | |
+| :--- | :--- | :--- |
+| [:autofill](https://web-platform-dx.github.io/web-features-explorer/features/autofill/) | [Customizable &lt;select>](https://web-platform-dx.github.io/web-features-explorer/features/customizable-select/) | [Invoker commands](https://web-platform-dx.github.io/web-features-explorer/features/invoker-commands/) |
+| [&lt;details>](https://web-platform-dx.github.io/web-features-explorer/features/details/) | [Email, telephone, and URL &lt;input> types](https://web-platform-dx.github.io/web-features-explorer/features/input-email-tel-url/) | [moveBefore()](https://web-platform-dx.github.io/web-features-explorer/features/move-before/) |
+| [&lt;dialog closedby>](https://web-platform-dx.github.io/web-features-explorer/features/dialog-closedby/) | [Fetch priority](https://web-platform-dx.github.io/web-features-explorer/features/fetch-priority/) | [MutationObserver](https://web-platform-dx.github.io/web-features-explorer/features/mutationobserver/) |
+| [&lt;dialog>](https://web-platform-dx.github.io/web-features-explorer/features/dialog/) | [hidden="until-found"](https://web-platform-dx.github.io/web-features-explorer/features/hidden-until-found/) | [Mutually exclusive &lt;details> elements](https://web-platform-dx.github.io/web-features-explorer/features/details-name/) |
+| [&lt;link rel="expect">](https://web-platform-dx.github.io/web-features-explorer/features/link-rel-expect/) | [HTML in canvas](https://web-platform-dx.github.io/web-features-explorer/features/canvas-html/) | [Popover](https://web-platform-dx.github.io/web-features-explorer/features/popover/) |
+| [&lt;link rel="preload">](https://web-platform-dx.github.io/web-features-explorer/features/link-rel-preload/) | [inert](https://web-platform-dx.github.io/web-features-explorer/features/inert/) | [popover="hint"](https://web-platform-dx.github.io/web-features-explorer/features/popover-hint/) |
+| [blocking="render"](https://web-platform-dx.github.io/web-features-explorer/features/blocking-render/) | [Interest invokers](https://web-platform-dx.github.io/web-features-explorer/features/interest-invokers/) |  |
+
+### JavaScript & APIs (31 features)
+
+| | | |
+| :--- | :--- | :--- |
+| [AbortController and AbortSignal](https://web-platform-dx.github.io/web-features-explorer/features/aborting/) | [LanguageModel](https://web-platform-dx.github.io/web-features-explorer/features/languagemodel/) | [Speculation rules](https://web-platform-dx.github.io/web-features-explorer/features/speculation-rules/) |
+| [enterkeyhint](https://web-platform-dx.github.io/web-features-explorer/features/enterkeyhint/) | [Long animation frames](https://web-platform-dx.github.io/web-features-explorer/features/long-animation-frames/) | [Summarizer](https://web-platform-dx.github.io/web-features-explorer/features/summarizer/) |
+| [Event timing](https://web-platform-dx.github.io/web-features-explorer/features/event-timing/) | [Navigation API](https://web-platform-dx.github.io/web-features-explorer/features/navigation/) | [SVG](https://web-platform-dx.github.io/web-features-explorer/features/svg/) |
+| [Federated credential management](https://web-platform-dx.github.io/web-features-explorer/features/fedcm/) | [navigator.modelContext](https://web-platform-dx.github.io/web-features-explorer/features/navigator-modelcontext/) | [Temporal](https://web-platform-dx.github.io/web-features-explorer/features/temporal/) |
+| [Fetch](https://web-platform-dx.github.io/web-features-explorer/features/fetch/) | [Page visibility](https://web-platform-dx.github.io/web-features-explorer/features/page-visibility/) | [Top-level await](https://web-platform-dx.github.io/web-features-explorer/features/top-level-await/) |
+| [fetchLater](https://web-platform-dx.github.io/web-features-explorer/features/fetchlater/) | [Page visibility state](https://web-platform-dx.github.io/web-features-explorer/features/page-visibility-state/) | [Translator](https://web-platform-dx.github.io/web-features-explorer/features/translator/) |
+| [Form-associated WebMCP attributes](https://web-platform-dx.github.io/web-features-explorer/features/declarative-webmcp/) | [Partitioned cookies](https://web-platform-dx.github.io/web-features-explorer/features/partitioned-cookies/) | [User agent client hints](https://web-platform-dx.github.io/web-features-explorer/features/ua-client-hints/) |
+| [inputmode](https://web-platform-dx.github.io/web-features-explorer/features/inputmode/) | [Permissions policy](https://web-platform-dx.github.io/web-features-explorer/features/permissions-policy/) | [Web authentication](https://web-platform-dx.github.io/web-features-explorer/features/webauthn/) |
+| [Intersection observer](https://web-platform-dx.github.io/web-features-explorer/features/intersection-observer/) | [Registered custom properties](https://web-platform-dx.github.io/web-features-explorer/features/registered-custom-properties/) | [Web authentication signal methods](https://web-platform-dx.github.io/web-features-explorer/features/webauthn-signals/) |
+| [Intl.DurationFormat](https://web-platform-dx.github.io/web-features-explorer/features/intl-duration-format/) | [Resize observer](https://web-platform-dx.github.io/web-features-explorer/features/resize-observer/) |  |
+| [Language detector](https://web-platform-dx.github.io/web-features-explorer/features/languagedetector/) | [Scheduler API](https://web-platform-dx.github.io/web-features-explorer/features/scheduler/) |  |
+
 </details>
 
 <details>
-<summary>Covers <strong>128 real-world developer use cases</strong> with production-ready code patterns</summary>
+<summary><strong>128 real-world developer use cases</strong></summary>
 
 <h3>accessibility</h3>
 
@@ -198,7 +188,7 @@ Here's a tiny sampling of the **128 use-case-centric guides**:
 - **[defer-work-until-scroll-ends](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/performance/defer-work-until-scroll-ends.md)**: Defer expensive operations like DOM updates, data fetching, analytics tracking, or layout recalculation until after scrolling completes to maintain smooth scroll performance.
 - **[deprioritize-background-fetches](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/performance/deprioritize-background-fetches.md)**: Deprioritize background data fetches made with the Fetch API to prevent network contention with user-initiated requests.
 - **[detect-initial-visibility-state](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/performance/detect-initial-visibility-state.md)**: Reliably determine whether a page was initially loaded in the background, even in cases where the script is loaded asynchronously after the user foregrounded the page.
-- **[efficient-background-processing](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/performance/efficient-background-processing.md)**: Conserve system resources and battery life by pausing background JavaScript execution (such as `<canvas>` animations, WebGL rendering, or high-frequency WebSocket data polling) when the component is off-screen and then resume them just-in-time when they scroll back into view.
+- **[efficient-background-processing](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/performance/efficient-background-processing.md)**: Conserve system resources and battery life by pausing background JavaScript execution (such as `&lt;canvas&gt;` animations, WebGL rendering, or high-frequency WebSocket data polling) when the component is off-screen and then resume them just-in-time when they scroll back into view.
 - **[faster-spa-view-transitions](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/performance/faster-spa-view-transitions.md)**: Enable faster transitions back to previously visited views in a Single-Page Application (SPA) by preserving their structural DOM state instead of destroying and rebuilding them on every navigation.
 - **[full-session-analytics](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/performance/full-session-analytics.md)**: Reliably track analytics, errors, and telemetry data across the user's entire page visit, and defer sending of the data until the user leaves the page.
 - **[identify-heavy-scripts](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/performance/identify-heavy-scripts.md)**: Identify the scripts most responsible for long animation frames
@@ -260,7 +250,7 @@ Here's a tiny sampling of the **128 use-case-centric guides**:
 - **[light-dismiss-a-dialog](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/light-dismiss-a-dialog.md)**: Create a modal dialog that can be closed via light dismiss (i.e. clicking or tapping outside of the dialog)
 - **[manage-recurring-intervals](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/manage-recurring-intervals.md)**: Calculate recurring intervals for subscription billings or payroll cycles, automatically adjusting for edge cases such as month-end transitions (e.g., adding one month to January 31st) to ensure accurate period calculations.
 - **[model-partial-time-concepts](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/model-partial-time-concepts.md)**: Model date and time concepts that inherently lack a standard component (such as a specific year, day, or date) without using arbitrary placeholder values that introduce calculation errors.
-- **[move-dom-element-without-losing-state](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/move-dom-element-without-losing-state.md)**: Move or reparent a DOM element without losing important element state, such as interactivity states (:focus/:active), <iframe> loading state, animation/transition state, etc
+- **[move-dom-element-without-losing-state](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/move-dom-element-without-losing-state.md)**: Move or reparent a DOM element without losing important element state, such as interactivity states (:focus/:active), &lt;iframe&gt; loading state, animation/transition state, etc
 - **[navigation-drawer](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/navigation-drawer.md)**: Create a navigation drawer component that, when triggered from a menu button, slides in from the side overlayed on top of existing page content, and slides out when dismissed (by swiping away, tapping outside, or pressing escape).
 - **[overflow-clipping-control](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/overflow-clipping-control.md)**: Adjust the visible clipping boundary of an element to align with the content edge, padding edge, or border edge—or a specified offset from any of these—offering finer-grained control over how content is clipped.
 - **[parallax-scroll-effects](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/user-experience/parallax-scroll-effects.md)**: Create scroll-based effects (such as parallax) where foreground and background layers move at different rates, creating a sense of depth as the user scrolls.
@@ -304,145 +294,147 @@ Here's a tiny sampling of the **128 use-case-centric guides**:
 - **[agentic-javascript-tools](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/webmcp/agentic-javascript-tools.md)**: Programmatically register client-side JavaScript functions as tools for AI agents using the WebMCP Imperative API.
 </details>
 
-### The modern web platform that you can *use,* safely
+### Safe Adoption of Modern Features
 
-* **Responsible Fallbacks**: We don't recommend heavy polyfills that bloat your bundle or block the main thread. Instead, we suggest what an **in-tune senior front-end developer would appreciate**:
-  1. Prioritizing lightweight, case-specific custom implementations (\<50 lines of code).
-  2. Conditional loading of performant polyfills *only* when native support is absent. And avoiding both risky CDNs and heavy polyfills.
-  3. Using bulletproof prototype-level feature detection rather than naive environment checks.
-* **Gotchas & Quirk Mitigation**: Tricky API boundaries and platform quirks (e.g., the 64KB payload quota for `fetchLater()`, macOS specific scrollbar gutters, and WebKit flickering bugs) are fully documented.
-* **Baseline-Aware Decisions**: Dynamic compatibility data from the Baseline project ensures agents make micro-architectural decisions on-the-fly—applying progressive enhancement conditionally, not blindly.
+* **Progressive Enhancement & Nuanced Fallbacks**: We distinguish between purely additive enhancements (like speculative preloading) which are safe to let older browsers silently ignore, and critical behaviors (like dialog controls or network beacons) where we write highly considered, low-overhead fallbacks.
+* **Responsible Fallbacks**: We prioritize lightweight, case-specific custom fallbacks (<50 LOC) or conditionally-loaded polyfills instead of heavy third-party bundles.
+* **Gotchas & Quirks**: We document hidden platform limitations, such as the 64KB payload quota for `fetchLater()` or macOS-specific scrollbar behaviors.
+* **Baseline-Aware Integration**: We leverage real-time compatibility data from the **Baseline** project so agents can dynamically adapt to current browser support and any browser support preferences.
 
-## How
+## <img src=".github/img/cpu.svg" width="24" height="24" style="vertical-align: middle; margin-right: 4px;"> How It Works
 
-### How Coding Agents use our skill
+0. **Activation**: The coding agent activates the `modern-web-guidance` skill because of a relevant task. The agent is instructed to use the `modern-web` CLI for web platform queries.
+2. **Local Semantic Search**: The agent runs `modern-web search "<query>"`. The tool matches the query to the best guide using an offline, CPU-efficient TensorFlow.js model (no network calls, no API keys).
+3. **Guide Fetch**: The agent retrieves the guide via `modern-web retrieve <guide-id>`, inserting targeted code patterns, gotchas, and fallbacks directly into its context window.
 
-* **Bootstrapped Awareness**: When loaded, the agent receives a system prompt instruction: *"To use modern web platform APIs, query the `modern-web` tool."*
-* **Semantic Vector Discovery**: The agent executes `modern-web search "<query>"` in your terminal. The tool uses an optimized `MiniLM-L6-v2` TensorFlow.js model running **entirely offline** on your CPU (thx `MiniLM`! No network calls, latency, or API keys required) to calculate the **cosine distance** between the query and our pre-computed guide embeddings.
-* **Precision Retrieval**: The agent executes `modern-web retrieve <guide-id>` to fetch the exact, clean Markdown guidelines it discovered.
-* **State-of-the-Art Generation**: The guide's precise code snippets, DO/DO NOT rules, and responsible cross-browser fallbacks are injected directly into the agent's context window, enabling it to generate clean, modern code instantly.
+> [!TIP]
+> Note: We use `npx` to ensure the content doesn't go stale, but the CLI works offline, completely private and local.
+> The NPM package is self-contained, with no extra dependencies to ensure both low-latency and supply-chain security.
 
-Token-efficient, targeted, and private guidance injected right into the context window. Yeah, buddy.
+## <img src=".github/img/package.svg" width="24" height="24" style="vertical-align: middle; margin-right: 4px;"> Alternative Installation Methods
 
-## Get started
-
-```shell
-npx modern-web-guidance@latest install
-```
-
-This will run a quick interactive wizard to install the modern-web-guidance-skill to your preferences, and for your configured agents.
-
-### Not ready to install? All good. Search our guides manually
+<details>
+<summary><b>Vercel Skills CLI</b> (aka <code>npx skills</code>)</summary>
 
 ```shell
-# Search for relevant guides
-npx modern-web-guidance@latest search "animate a dialog modal backdrop"
-# Retrieve a guide by ID
-npx modern-web-guidance@latest retrieve "animate-to-from-top-layer"
+npx skills add GoogleChrome/modern-web-guidance
 ```
+</details>
 
-### Alternative installation methods
+<details>
+<summary><b>GitHub CLI</b></summary>
 
-#### Vercel `skills` CLI: `npx skills add GoogleChrome/modern-web-guidance`
+```shell
+gh skill install GoogleChrome/modern-web-guidance
+```
+</details>
 
-#### Google Antigravity: `agy plugin install https://github.com/GoogleChrome/modern-web-guidance`
+<details>
+<summary><b>Google Antigravity</b></summary>
 
-#### GitHub CLI: `gh skill install GoogleChrome/modern-web-guidance`
+```shell
+agy plugin install https://github.com/GoogleChrome/modern-web-guidance
+```
+</details>
 
-#### GitHub Copilot CLI:
+<details>
+<summary><b>GitHub Copilot CLI</b></summary>
 
 ```shell
 /plugin marketplace add GoogleChrome/modern-web-guidance
 /plugin install modern-web-guidance@googlechrome
 ```
+</details>
 
-#### Claude Code plugin
-
-We don't recommend this method, but it will work.
+<details>
+<summary><b>Claude Code Plugin</b></summary>
 
 ```shell
 /plugin marketplace add GoogleChrome/modern-web-guidance
 /plugin install modern-web-guidance@googlechrome
-/plugin  # Select GoogleChrome marketplace, hit enter, enable AutoUpdate
+/plugin  # Select GoogleChrome marketplace, press enter, enable AutoUpdate
 /reload-plugins
 ```
+</details>
 
-## Updating
+## <img src=".github/img/refresh-cw.svg" width="24" height="24" style="vertical-align: middle; margin-right: 4px;"> Updating
 
-If you installed the skill using `npx modern-web-guidance@latest install`, then you can update with this command:
-
-```sh
-# Update all installed skills
-npx modern-web-guidance@latest update
-```
+If you installed the skill using `npx modern-web-guidance@latest install`, you can update with: `npx modern-web-guidance@latest update`.
 
 Otherwise, consult your agent's documentation for updating plugins and skills.
 
-## Evals to prove this works well ;)
+## <img src=".github/img/shield-check.svg" width="24" height="24" style="vertical-align: middle; margin-right: 4px;"> Evals to prove this works well ;)
 
-Every piece of guidance in this pack isn't just a tutorial—it is **empirically proven and continuously calibrated** to guarantee AI agents write better code. We test every guide using an automated quality-assurance harness to ensure correct agent behavior.
-
-### Validation Pipeline
+We developed a robust eval harness to ensure that the content is **empirically proven and continuously calibrated** to guarantee AI agents write better code.  We run automated evaluations using a closed-loop validation pipeline:
 
 ```
-  [ SME-Authored Guidance ]
+  [ Expert-authored guidance and demo ]
             │
             ▼
-  [ Gemini CLI Generator ] ──> Playwright Grader (.spec.ts) & Calibrated Negative Demo (.html)
+  [ Generated assets ] ──> Playwright Grader (.spec.ts) & Negative Demo (.html)
             │
             ▼
-  [ Calibration Loop ] ───────> Runs Grader on Gold-Standard Demo (Must Pass 100%)
+  [ Calibration loop ] ───────> Runs Grader on Gold-Standard Demo (Must Pass 100%)
             │                   Runs Grader on Negative Demo (Must Fail 100%)
             ▼
-  [ E2E Agent Evals ] ────────> Runs coding agents in Guided vs. Unguided modes
-                                Compares accuracy pre/post guide injection to prove impact
+  [ E2E agent evals ] ────────> Runs coding agents in Guided vs. Unguided modes
+                                Compares accuracy w/ and w/o guide injection to prove impact
 ```
 
-### 1. Real-World, Outcome-Based Assertions
+0. **Simulated Developer Tasks**: We define realistic, intent-based developer prompts (in `tasks/task.md`) that mimic real-world requests (e.g., "make my images load faster"). These prompts avoid naming specific APIs or features, testing whether the agent can successfully discover and implement the correct modern patterns solely by reading the guide.
+1. **Outcome-Based Assertions**: We write browser automation scripts that verify the guide was followed correctly: exact runtime behaviors, computed styles, and accessibility states.
+2. **Self-Healing Calibration**: Graders are calibrated against both a reference implementation (100% pass target) and a control page (0% pass target). The agent automatically refines tests on failure.
+3. **E2E Testing**: We measure coding agent performance on real tasks with and without guidance. The _opportunity_ (100% - unguided pass rate) and _uplift_ (guided - unguided pass rate) are key. If there's little opportunity, then models already do a great job and our guidance isn't providing much value. Based on the results, we revise guides to maximize the uplift, optimizing their effectiveness.
 
-For each guide, we develop a Playwright script (`.spec.ts`) that asserts the guide's implementation details were followed, such as:
+### Recent eval results
 
-* Verifying accessibility tags and computed styles (e.g., `@media (prefers-contrast: more)` overrides).
-* Asserting exact functional layouts and performance behaviors as interpreted by the browser.
+| Suite | Agent + Model | Tasks | Unguided → Guided (Uplift) |
+| :--- | :--- | :---: | :---: |
+| Nightly (May 17) | ❂ codex_cli (gpt-5.5) | 75 | 37% → 65% (**+28%**) |
+| Nightly (May 17) | ✱ claude_code (opus-4-7) | 75 | 54% → 85% (**+31%**) |
+| Nightly (May 16) | ❂ codex_cli (gpt-5.5) | 75 | 49% → 82% (**+33%**) |
+| Nightly (May 16) | ✱ claude_code (opus-4-7) | 75 | 51% → 86% (**+35%**) |
+| Nightly (May 15) | ❂ codex_cli (gpt-5.5) | 74 | 52% → 81% (**+29%**) |
+| Nightly (May 15) | ✱ claude_code (opus-4-7) | 74 | 53% → 82% (**+29%**) |
+| Nightly (May 14) | ❂ codex_cli (gpt-5.5) | 68 | 54% → 86% (**+32%**) |
+| Nightly (May 14) | ✱ claude_code (opus-4-7) | 68 | 54% → 91% (**+37%**) |
+| Nightly (Apr 30) | ✱ claude_code (opus-4-6) | 66 | 44% → 81% (**+37%**) |
+| Nightly (Apr 28) | ✱ claude_code (opus-4-6) | 66 | 41% → 77% (**+36%**) |
 
-### 2. Self-Healing Playwright Calibration
 
-To ensure our test suites aren't nonsense, the pipeline runs a continuous, closed-loop calibration:
+## <img src=".github/img/boxes.svg" width="24" height="24" style="vertical-align: middle; margin-right: 4px;"> Available Skill Packs
 
-* **Golden Master vs. Anti-Pattern**: We run our per-usecase Playwright scripts against both a perfect reference implementation (`demo.html`, expects 100% pass) and a deliberately flawed implementation (`negative-demo.html`, expects 0% pass).
-* **Autonomous Refinement**: If calibration fails, the generator automatically retries with detailed failure context until the grader achieves 100% calibration.
+You can customize which skill packs are installed using the `--choose` flag:
 
-Last, we validate that the calibrated graders aren't taking shortcuts and honor the sanctity of the intent.
-
-### 3. E2E Agent Evals for Every Guide
-
-Finally, we run end-to-end evaluations on real base applications:
-
-* **Unguided (Control)**: The agent addresses a coding task using only its default training data.
-* **Guided (Experiment)**: The agent addresses the exact same task, but with access to this skill pack.
-
-We grade both outputs and only release guides that demonstrate a massive, quantifiable improvement in code quality (e.g., improving success rates from **20% up to 90%**).
-
-# Available Skills
-
-If you want to customize the skill packs installed and the scope at which they are installed, you can run install with `--choose`.
-
-* **`modern-web-guidance`**: (234 tokens) Everything mentioned above
-* **`chrome-extensions`**: (181 tokens) Manifest V3 development, background service workers, content scripts, and extension APIs. Manage Chrome Web Store metadata, permissions justifications, privacy policies, and publishing readiness.
-
-```sh
-# Choose which skills you want
+```shell
 npx modern-web-guidance@latest install --choose
 ```
 
-## Usage Statistics & Opt-Out
+* **`modern-web-guidance`** (~234 tokens): Comprehensive guidance on modern browser APIs, layouts, and performance.
+* **`chrome-extensions`** (~181 tokens): Guidance on Manifest V3, background workers, extension APIs, and Chrome Web Store publishing.
 
-Google collects anonymous usage statistics (such as search queries, guide retrievals, and installation) to improve the reliability, relevance, and performance of the Modern Web Guidance tool. See [modern-web.ts](https://github.com/GoogleChrome/modern-web-guidance-src/blob/main/serving/bin/modern-web.ts) to see exactly what data is collected.
+## <img src=".github/img/lock.svg" width="24" height="24" style="vertical-align: middle; margin-right: 4px;"> Telemetry & Privacy
 
-Data collection is enabled by default. You can opt-out completely at any time (suppressing all local console telemetry warnings, search/retrieve metric dispatches, and installation telemetry) by setting the `DISABLE_TELEMETRY=1` environment variable in your shell profile (e.g., `.bashrc` or `.zshrc`):
+Google collects anonymous usage statistics (such as search queries, guide retrievals, and installation) to improve the reliability, relevance, and performance of the tool. You can inspect what is collected in [modern-web.ts](https://github.com/GoogleChrome/modern-web-guidance-src/blob/main/serving/bin/modern-web.ts).
 
-```bash
-export DISABLE_TELEMETRY=1
-```
+> [!TIP]
+> **To Opt-Out:**, set the `DISABLE_TELEMETRY=1` env variable in your shell profile (e.g., `.bashrc` or `.zshrc`):
+> ```bash
+> export DISABLE_TELEMETRY=1
+> ```
 
 Google handles this data in accordance with the [Google Privacy Policy](https://policies.google.com/privacy).
+
+## <img src=".github/img/users.svg" width="24" height="24" style="vertical-align: middle; margin-right: 4px;"> Contributors
+
+Active contributors are what keep this project moving forward. Thanks to everyone who has contributed!
+
+<a href="https://github.com/GoogleChrome/modern-web-guidance/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=GoogleChrome/modern-web-guidance" />
+</a>
+
+(We build the project in the [modern-web-guidance-src](https://github.com/GoogleChrome/modern-web-guidance-src) repo.)
+
+## <img src=".github/img/file-text.svg" width="24" height="24" style="vertical-align: middle; margin-right: 4px;"> Attribution
+
+Portions of the documentation in this project are derived from [MDN Web Docs](https://developer.mozilla.org/) by Mozilla Contributors, and [W3C](https://www.w3.org/) specifications.
