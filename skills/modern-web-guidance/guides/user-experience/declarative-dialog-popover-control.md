@@ -112,19 +112,36 @@ This polyfill fully supports custom actions (starting with `--`) and dispatches 
 
 For the best performance, you should only load the polyfill if the browser doesn't support the API natively. This saves bandwidth and reduces script execution time for users on modern browsers.
 
+**NOTE:** This polyfill does not manage ARIA states (like `aria-pressed` or `aria-expanded`) for custom commands. You must manually synchronize these states in your event listener to ensure your site is accessible.
+
 ```javascript
-// Check for native support first
+// 1. Conditionally load the polyfill
 const hasNativeSupport = 'commandForElement' in HTMLButtonElement.prototype;
 
 if (!hasNativeSupport) {
-  // Dynamically import the polyfill only when needed
-  try {
-    await import('https://cdn.jsdelivr.net/npm/invokers-polyfill@latest/dist/index.min.js');
-    console.log('Invoker Commands polyfill loaded');
-  } catch (err) {
-    console.error('Error loading fallback:', err);
-  }
+  // Wrap in an async IIFE to avoid top-level await issues in older browsers
+  (async () => {
+    try {
+      await import('https://esm.run/invokers-polyfill');
+    } catch (err) {
+      console.error('Error loading fallback:', err);
+    }
+  })();
 }
+
+// 2. Manually manage ARIA states in your listener
+document.getElementById('action-target').addEventListener('command', (event) => {
+  const command = event.command;
+  const target = event.target;
+  const source = event.source; // The button that triggered the command
+
+  if (command === '--spin') {
+    const isSpun = target.classList.toggle('is-spun');
+    
+    // Polyfill tip: Manually update ARIA to match the new state
+    source?.setAttribute('aria-pressed', isSpun);
+  }
+});
 ```
 
 ### Manual fallback (Traditional pattern)
@@ -132,43 +149,50 @@ if (!hasNativeSupport) {
 If you prefer not to use a polyfill, you can use a combination of **event delegation** to dispatch events and a **command registry** to handle the actions. This is a common architectural pattern in traditional JavaScript development that remains highly efficient and scalable.
 
 ```javascript
-// 1. Define a registry of requested actions for cleaner logic
+// 1. **Optional:** Define a registry of requested actions for cleaner logic
 const commandRegistry = {
   '--spin': (target) => target.classList.toggle('is-spun'),
   '--grow': (target) => target.classList.toggle('is-grown'),
   '--reset': (target) => target.classList.remove('is-spun', 'is-grown'),
 };
 
-const supportsInvokers = 'commandForElement' in HTMLButtonElement.prototype;
+// 2. If CommandEvent doesn't exist, we assume no native support and provide the fallback
+if (!globalThis.CommandEvent) {
+  globalThis.CommandEvent = class CommandEvent extends Event {
+    constructor(type, { source, command, ...options } = {}) {
+      super(type, options);
+      this.source = source;
+      this.command = command;
+    }
+  }
+}
 
-// 2. The fallback: Dispatch events manually if native support is missing
-if (!supportsInvokers) {
+// 3. The fallback: Dispatch events manually if native support is missing
   document.addEventListener('click', (event) => {
-    const button = event.target.closest('button[commandfor]');
+    const button = event.composedPath().find((el) => el.matches?.("button[commandfor]"));
     if (!button) return;
 
     const target = document.getElementById(button.getAttribute('commandfor'));
     const command = button.getAttribute('command');
 
     if (target && command) {
-      target.dispatchEvent(new CustomEvent('command', {
-        bubbles: true,
-        detail: { command }
+      target.dispatchEvent(new CommandEvent('command', { 
+        command, 
+        source: button,
       }));
     }
   });
-}
 
-// 3. The unified listener: Registered directly on the target element
+// 4. **Mandatory:** Register the unified listener directly on the target element
 document.getElementById('action-target').addEventListener('command', (event) => {
-  const command = event.command || event.detail?.command;
-  const target = event.currentTarget;
+  const command = event.command;
+  const target = event.target;
   const action = commandRegistry[command];
 
   if (action) {
     action(target);
   }
-});
+ });
 ```
 
 ### Polyfilling the Popover Attribute
