@@ -11,7 +11,7 @@ WebMCP does not provide an `unregisterTool()` method. To unregister a tool, you 
 ```javascript
 const controller = new AbortController();
 
-document.modelContext.registerTool({
+await document.modelContext.registerTool({
   name: "get_user_preferences",
   description: "Retrieves the user's saved preferences.",
   inputSchema: { type: "object", properties: {} },
@@ -31,7 +31,7 @@ controller.abort();
 Parameters (params) are defined using the `inputSchema` property. This must be a **JSON Schema** object that describes the structured data the tool expects.
 
 ```javascript
-document.modelContext.registerTool({
+await document.modelContext.registerTool({
   name: "calculate_area",
   description: "Calculates the area of a rectangle.",
   inputSchema: {
@@ -104,7 +104,7 @@ export function createInventoryTool(inventoryManager) {
 
 ## Fallback strategies
 
-navigator.modelContext is not natively supported by any major browser yet.
+document.modelContext is not natively supported by any major browser yet.
 
 The WebMCP Imperative API should be used with feature detection to ensure compatibility with browsers that do not yet support WebMCP.
 

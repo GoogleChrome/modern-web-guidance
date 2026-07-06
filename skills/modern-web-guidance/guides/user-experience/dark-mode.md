@@ -289,8 +289,7 @@ If you are using custom properties to define colors, these will cascade to the l
 ### Fallbacks & browser support for accent-color
 
 accent-color has limited availability.
-Supported by: Chrome 93 (Aug 2021), Edge 93 (Sep 2021), and Firefox 92 (Sep 2021).
-Unsupported in: Safari.
+Supported by: Chrome 93 (Aug 2021), Edge 93 (Sep 2021), Firefox 92 (Sep 2021), and Safari 26.2 (Dec 2025).
 
 The `accent-color` property is progressive enhancement.
 Browsers that do not support this property will ignore it and use their default UI colors.
