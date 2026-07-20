@@ -88,21 +88,49 @@ Interest invokers must be conditionally polyfilled using the `interestfor` polyf
 </script>
 ```
 
+### Fallbacks & browser support for Popover
+
 Baseline status for Popover: Newly available. It's been Baseline since 2025-01-27.
 Supported by: Chrome 116 (Aug 2023), Edge 116 (Aug 2023), Firefox 125 (Apr 2024), Safari 17 (Sep 2023), and Safari iOS 18.3 (Jan 2025).
+
+The Popover API is mostly **progressive enhancement**, but its defining behaviors — top-layer promotion, light-dismiss, and `popovertarget` invocation — have no CSS-only equivalent. Older browsers need a polyfill, or a manual fallback if you would rather not ship one.
+
+**Polyfill:** To support the `popover` attribute in older browsers, conditionally load [`@oddbird/popover-polyfill`](https://github.com/oddbird/popover-polyfill). **MANDATORY:** Feature detect by checking for the `popover` property on `HTMLElement.prototype`, and load the polyfill **only** when native support is missing — do NOT load it unconditionally.
+
+With a bundler or import map:
+
+```js
+// MANDATORY: Feature detect 'popover' on HTMLElement.prototype.
+if (!("popover" in HTMLElement.prototype)) {
+  import("@oddbird/popover-polyfill");
+}
+```
+
+Without a bundler, import from a CDN inside a `<script type="module">`:
+
+```html
+<script type="module">
+  if (!("popover" in HTMLElement.prototype)) {
+    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+  }
+</script>
+```
+
+**Styling caveat:** The polyfill cannot define the real `:popover-open` pseudo-class, so it applies a `.\:popover-open` class instead. **MANDATORY:** Combine the two with `:is()` or `:where()`, otherwise browsers that lack `:popover-open` discard the entire rule:
+
+```css
+[popover]:is(:popover-open, .\:popover-open) {
+  display: block;
+}
+```
+
+Alternatively, for a legacy fallback without a polyfill, use `position: fixed` and manually calculate coordinates via `getBoundingClientRect()` or rely on default positioning with `inset: auto` if that's acceptable for the use case.
+
 popover="hint" has limited availability.
 Supported by: Chrome 133 (Feb 2025), Edge 133 (Feb 2025), and Firefox 149 (Mar 2026).
 Unsupported in: Safari.
 
-Popover and popover hint must conditionally be polyfilled with the `@oddbird/popover-polyfill` polyfill. The hint behavior will not be polyfilled in browsers that support `popover` but not `popover="hint"`. For those browsers, a tooltip opened via focus may stay open when a second tooltip opened via hover.
-
-```html
-<script type="module">
-  if(!HTMLElement.prototype.hasOwnProperty("popover")){
-    await import("https://unpkg.com/@oddbird/popover-polyfill@latest");
-  }
-</script>
-```
+The `popover-polyfill` does not polyfill the hint behavior in browsers that support `popover` but not `popover="hint"`. For those browsers, a tooltip opened via focus may stay open when a second tooltip opened via hover.
 
 Anchor positioning is not natively supported by any major browser yet.
 

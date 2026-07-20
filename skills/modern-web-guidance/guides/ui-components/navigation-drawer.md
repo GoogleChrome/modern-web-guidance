@@ -287,9 +287,6 @@ document.addEventListener('keydown', (event) => {
 
 ### Fallback strategies
 
-Baseline status for Popover: Newly available. It's been Baseline since 2025-01-27.
-Supported by: Chrome 116 (Aug 2023), Edge 116 (Aug 2023), Firefox 125 (Apr 2024), Safari 17 (Sep 2023), and Safari iOS 18.3 (Jan 2025).
-
 The drawer's core mechanics — scroll snap, `IntersectionObserver`, and `inert` — are all Baseline Widely available and required for the component to function. The popover API, the scroll-driven animation that fades the backdrop, and `scroll-initial-target` are progressive enhancements with simple fallbacks that can be easily implemented if wide browser support is required.
 
 #### Backdrop fade fallback (no `animation-timeline` support):
