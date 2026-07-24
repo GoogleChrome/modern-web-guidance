@@ -139,7 +139,7 @@
 - **DO** use the `<picture>` element with a fallback `<img>` for more fine-grained image control like switching between image formats, image sizes, and cropping images at different device sizes. 
 
 - **DON'T** apply `loading="lazy"` to above-the-fold or hero images. This delays LCP.
-- **DON'T** overuse `fetchpriority="high"`; prioritization is a zero-sum mechanism. Use `fetchpriority="low"` to demote non-critical trackers or carousel items.
+- **DON'T** overuse `fetchpriority="high"`; prioritization is a zero-sum mechanism. Use `fetchpriority="low"` to demote non-critical trackers or later carousel items.
 
 ### Code Example
 
