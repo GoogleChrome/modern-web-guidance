@@ -64,8 +64,6 @@ Unlike popovers, modal dialogs typically use separate buttons for opening and cl
 
 Baseline status for Invoker commands: Newly available. It's been Baseline since 2025-12-12.
 Supported by: Chrome 135 (Apr 2025), Edge 135 (Apr 2025), Firefox 144 (Oct 2025), and Safari 26.2 (Dec 2025).
-Baseline status for Popover: Newly available. It's been Baseline since 2025-01-27.
-Supported by: Chrome 116 (Aug 2023), Edge 116 (Aug 2023), Firefox 125 (Apr 2024), Safari 17 (Sep 2023), and Safari iOS 18.3 (Jan 2025).
 
 Because Invoker Commands and Popovers are not yet universally supported, you MUST use polyfills as fallbacks for older browsers.
 
@@ -195,44 +193,40 @@ document.getElementById('action-target').addEventListener('command', (event) => 
  });
 ```
 
-### Polyfilling the Popover Attribute
+### Fallbacks & browser support for Popover
 
-To support the `popover` attribute in older browsers, use the `@oddbird/popover-polyfill`.
+Baseline status for Popover: Newly available. It's been Baseline since 2025-01-27.
+Supported by: Chrome 116 (Aug 2023), Edge 116 (Aug 2023), Firefox 125 (Apr 2024), Safari 17 (Sep 2023), and Safari iOS 18.3 (Jan 2025).
 
-MANDATORY: Feature detect popover support by checking for the `popover` property on the `HTMLElement` prototype. Conditionally initialize the polyfill only if native support is missing.
+The Popover API is mostly **progressive enhancement**, but its defining behaviors — top-layer promotion, light-dismiss, and `popovertarget` invocation — have no CSS-only equivalent. Older browsers need a polyfill, or a manual fallback if you would rather not ship one.
 
-**Option 1: Using a bundler**
-Install the package via npm (`npm install @oddbird/popover-polyfill`). This method requires a bundler or import maps to resolve the module path.
+**Polyfill:** To support the `popover` attribute in older browsers, conditionally load [`@oddbird/popover-polyfill`](https://github.com/oddbird/popover-polyfill). **MANDATORY:** Feature detect by checking for the `popover` property on `HTMLElement.prototype`, and load the polyfill **only** when native support is missing — do NOT load it unconditionally.
 
-```javascript
+With a bundler or import map:
+
+```js
 // MANDATORY: Feature detect 'popover' on HTMLElement.prototype.
-if (!('popover' in HTMLElement.prototype)) {
-  import('@oddbird/popover-polyfill/fn').then(({ apply }) => {
-    apply();
-  });
+if (!("popover" in HTMLElement.prototype)) {
+  import("@oddbird/popover-polyfill");
 }
 ```
 
-**Option 2: Using a CDN**
-For projects without a bundler, dynamically import the polyfill directly from a CDN inside a `<script type="module">`.
+Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
-  // MANDATORY: Feature detect 'popover' on HTMLElement.prototype.
-  // Conditionally load the popover-polyfill from a CDN only in browsers lacking native support.
-  if (!('popover' in HTMLElement.prototype)) {
-    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover-fn.js').then(({ apply }) => {
-      apply();
-    });
+  if (!("popover" in HTMLElement.prototype)) {
+    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
   }
 </script>
 ```
 
-**Popover Polyfill Limitations & Styling Caveats**
-MANDATORY: Use `:is()` or `:where()` to combine `:popover-open` with the corresponding polyfill class, otherwise browsers that do not support `:popover-open` will throw away the entire rule.
+**Styling caveat:** The polyfill cannot define the real `:popover-open` pseudo-class, so it applies a `.\:popover-open` class instead. **MANDATORY:** Combine the two with `:is()` or `:where()`, otherwise browsers that lack `:popover-open` discard the entire rule:
 
 ```css
 [popover]:is(:popover-open, .\:popover-open) {
   display: block;
 }
 ```
+
+Alternatively, for a legacy fallback without a polyfill, use `position: fixed` and manually calculate coordinates via `getBoundingClientRect()` or rely on default positioning with `inset: auto` if that's acceptable for the use case.

@@ -115,40 +115,42 @@ Positioning the arrow based on the applied fallback is a progressive enhancement
 }
 ```
 
-### Polyfilling the Popover Attribute
+### Fallbacks & browser support for Popover
 
 Baseline status for Popover: Newly available. It's been Baseline since 2025-01-27.
 Supported by: Chrome 116 (Aug 2023), Edge 116 (Aug 2023), Firefox 125 (Apr 2024), Safari 17 (Sep 2023), and Safari iOS 18.3 (Jan 2025).
 
-To support the `popover` attribute in older browsers, use the `@oddbird/popover-polyfill`.
+The Popover API is mostly **progressive enhancement**, but its defining behaviors — top-layer promotion, light-dismiss, and `popovertarget` invocation — have no CSS-only equivalent. Older browsers need a polyfill, or a manual fallback if you would rather not ship one.
 
-MANDATORY: Feature detect popover support by checking for the `popover` property on the `HTMLElement` prototype. Conditionally initialize the polyfill only if native support is missing.
+**Polyfill:** To support the `popover` attribute in older browsers, conditionally load [`@oddbird/popover-polyfill`](https://github.com/oddbird/popover-polyfill). **MANDATORY:** Feature detect by checking for the `popover` property on `HTMLElement.prototype`, and load the polyfill **only** when native support is missing — do NOT load it unconditionally.
 
-**Option 1: Using a package manager**
-Install the package (`npm install @oddbird/popover-polyfill`).
+With a bundler or import map:
 
-```javascript
+```js
 // MANDATORY: Feature detect 'popover' on HTMLElement.prototype.
-if (!('popover' in HTMLElement.prototype)) {
-  import('@oddbird/popover-polyfill/fn').then(({ apply }) => {
-    apply();
-  });
+if (!("popover" in HTMLElement.prototype)) {
+  import("@oddbird/popover-polyfill");
 }
 ```
 
-**Option 2: Manual installation without npm**
-If you are not using a package manager, dynamically import the polyfill directly from a CDN (such as unpkg) inside a `<script type="module">`.
+Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
-  // MANDATORY: Feature detect 'popover' on HTMLElement.prototype.
-  // Conditionally load the popover-polyfill from a CDN only in browsers lacking native support.
-  if (!('popover' in HTMLElement.prototype)) {
-    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover-fn.js').then(({ apply }) => {
-      apply();
-    });
+  if (!("popover" in HTMLElement.prototype)) {
+    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
   }
 </script>
 ```
+
+**Styling caveat:** The polyfill cannot define the real `:popover-open` pseudo-class, so it applies a `.\:popover-open` class instead. **MANDATORY:** Combine the two with `:is()` or `:where()`, otherwise browsers that lack `:popover-open` discard the entire rule:
+
+```css
+[popover]:is(:popover-open, .\:popover-open) {
+  display: block;
+}
+```
+
+Alternatively, for a legacy fallback without a polyfill, use `position: fixed` and manually calculate coordinates via `getBoundingClientRect()` or rely on default positioning with `inset: auto` if that's acceptable for the use case.
 
 Browsers without support for the Popover API also do not support anchor positioning, so the tooltip will appear in the center of the screen.
