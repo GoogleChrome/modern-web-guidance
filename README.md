@@ -140,7 +140,7 @@ _View an example:_ [the `navigation-drawer` guide](https://github.com/GoogleChro
 </details>
 
 <details>
-<summary><strong>130 real-world developer use cases</strong></summary>
+<summary><strong>131 real-world developer use cases</strong></summary>
 
 <h3>accessibility</h3>
 
@@ -167,10 +167,7 @@ _View an example:_ [the `navigation-drawer` guide](https://github.com/GoogleChro
 - **[reduce-style-repetition](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/css/reduce-style-repetition.md)**: Reduce excessive style repetition by encapsulating complex or dynamic styling logic into reusable functions (such as a function that computes a gradient based on a set of input parameters).
 - **[size-aware-styling](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/css/size-aware-styling.md)**: Build a component whose styles can be conditionally dependent on its own width or height, rather than the width or height of the viewport. For example a card component that can change its layouts depending on how large it is, or a call-to-action button that can conditionally display helper text based on its width.
 - **[style-parent-with-has](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/css/style-parent-with-has.md)**: Style parent elements of a form field (e.g. labels or fieldsets) when the field is invalid.
-
-<h3>css-layout</h3>
-
-- **[usage-aware-component-variations](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/css-layout/usage-aware-component-variations.md)**: Build components that adapt visual logic based on semantic context using CSS container style queries.
+- **[usage-aware-component-variations](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/css/usage-aware-component-variations.md)**: Build components that adapt visual logic based on semantic context using CSS container style queries.
 
 <h3>forms</h3>
 
@@ -250,6 +247,7 @@ _View an example:_ [the `navigation-drawer` guide](https://github.com/GoogleChro
 - **[scroll-progress-indicator](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/ui-atoms/scroll-progress-indicator.md)**: Create a scroll progress bar, stepped progress tracker, or any visual affordance that communicates how far through a page or section the user has scrolled.
 - **[scrollability-affordance-hints](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/ui-atoms/scrollability-affordance-hints.md)**: Build scroll-shadow overlays, gradient fades, or directional arrow indicators that appear only when there's actually more content to scroll to in that direction.
 - **[shrinking-header-on-scroll](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/ui-atoms/shrinking-header-on-scroll.md)**: Smoothly animate a fixed header or full-page cover on scroll to dynamically shrink, gain shadows, and transform its layout over a predefined scroll distance.
+- **[state-aware-sticky-headers](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/ui-atoms/state-aware-sticky-headers.md)**: Build sticky section headers or navbars that visually transform when they're actually "stuck" at the top, changing their color scheme or gaining a shadow.
 
 <h3>ui-behaviors</h3>
 
@@ -387,6 +385,14 @@ grok plugin install https://github.com/GoogleChrome/modern-web-guidance --trust
 ```
 </details>
 
+<details>
+<summary><b>Kimi Code</b></summary>
+
+```shell
+/plugins install https://github.com/GoogleChrome/modern-web-guidance
+```
+</details>
+
 ## <img src="https://github.com/GoogleChrome/modern-web-guidance/raw/main/.github/img/refresh-cw.svg" width="24" height="24" style="vertical-align: middle; margin-right: 4px;"> Updating
 
 If you installed the skill using `npx modern-web-guidance@latest install`, you can update with: `npx modern-web-guidance@latest update`.
@@ -421,16 +427,16 @@ We developed a robust eval harness to ensure that the content is **empirically p
 <!-- INJECT_EVAL_RESULTS_START -->
 | Date | Agent + Model | Tasks / Assertions | Unguided → Guided (Uplift) |
 | :--- | :--- | :---: | :---: |
-| Jul 6 | codex_cli (gpt-5.5) | 129 / 1071 | 57% → 84% (**+27pp**) |
-| Jul 6 | claude_code (sonnet-5) | 129 / 1071 | 52% → 87% (**+35pp**) |
-| Jul 6 | antigravity | 129 / 1071 | 54% → 87% (**+33pp**) |
-| Jul 3 | codex_cli (gpt-5.5) | 129 / 1071 | 52% → 78% (**+26pp**) |
-| Jul 3 | claude_code (sonnet-5) | 129 / 1071 | 48% → 82% (**+34pp**) |
-| Jul 1 | claude_code (sonnet-5) | 129 / 1071 | 49% → 84% (**+35pp**) |
-| Jul 1 | antigravity | 129 / 1071 | 53% → 83% (**+30pp**) |
-| Jun 29 | codex_cli (gpt-5.5) | 129 / 1071 | 51% → 78% (**+27pp**) |
-| Jun 29 | claude_code (opus-4-8) | 129 / 1071 | 53% → 88% (**+35pp**) |
-| Jun 29 | antigravity | 129 / 1071 | 50% → 78% (**+28pp**) |
+| Aug 7 | codex_cli (gpt-5.5) | 130 / 1112 | 56% → 83% (**+27pp**) |
+| Aug 7 | claude_code (sonnet-5) | 130 / 1112 | 55% → 87% (**+32pp**) |
+| Aug 7 | antigravity (gemini-3.6-flash) | 130 / 1112 | 57% → 88% (**+31pp**) |
+| Aug 6 | antigravity (gemini-3.6-flash) | 130 / 1112 | 57% → 88% (**+31pp**) |
+| Aug 6 | claude_code (sonnet-5) | 130 / 1080 | 56% → 86% (**+30pp**) |
+| Aug 6 | codex_cli (gpt-5.5) | 130 / 1112 | 54% → 84% (**+30pp**) |
+| Aug 3 | codex_cli (gpt-5.5) | 129 / 1104 | 55% → 82% (**+27pp**) |
+| Aug 3 | claude_code (sonnet-5) | 129 / 1104 | 54% → 88% (**+34pp**) |
+| Aug 3 | antigravity | 129 / 1104 | 55% → 89% (**+34pp**) |
+| Jul 31 | codex_cli (gpt-5.5) | 129 / 1104 | 57% → 85% (**+28pp**) |
 <!-- INJECT_EVAL_RESULTS_END -->
 
 
@@ -447,7 +453,7 @@ npx modern-web-guidance@latest install --choose
 
 ## <img src="https://github.com/GoogleChrome/modern-web-guidance/raw/main/.github/img/lock.svg" width="24" height="24" style="vertical-align: middle; margin-right: 4px;"> Telemetry & Privacy
 
-Google collects anonymous usage statistics (such as search queries, guide retrievals, and installation) to improve the reliability, relevance, and performance of the tool. You can inspect what is collected in [modern-web.ts](https://github.com/GoogleChrome/modern-web-guidance-src/blob/main/serving/bin/modern-web.ts).
+Google collects anonymous usage information to improve the tool's reliability, relevance, and performance. Collected information includes installation counts, guide retrieval IDs, and CLI tool search queries generated by the agent (e.g. "dark mode scrollbar color-scheme"). Raw user prompts are not collected. You can inspect what is collected in [modern-web.ts](https://github.com/GoogleChrome/modern-web-guidance-src/blob/main/serving/bin/modern-web.ts).
 
 > [!TIP]
 > **To Opt-Out:** set the `DISABLE_TELEMETRY=1` env variable in your shell profile (e.g., `.bashrc` or `.zshrc`):

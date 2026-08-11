@@ -56,7 +56,7 @@ By default, CSS masks use `mask-mode: match-source`. This means the browser auto
 > **Note:** You can explicitly override the default mask mode using the `mask-mode` CSS property (e.g., `mask-mode: luminance;` or `mask-mode: alpha;`).
 
 ## Fallback strategies
-Baseline status for Masks: Newly available. It's been Baseline since 2023-12-07.
+Baseline status for Masks: Widely available. It's been Baseline since 2023-12-07.
 Supported by: Chrome 120 (Dec 2023), Edge 120 (Dec 2023), Firefox 53 (Apr 2017), and Safari 15.4 (Mar 2022).
 
 If a browser does not support `mask-image` or the prefixed version:
