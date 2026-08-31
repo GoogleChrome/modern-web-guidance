@@ -107,6 +107,7 @@ The following examples demonstrate dynamic container layout controls, showcasing
 
 Baseline status for overflow: clip: Widely available. It's been Baseline since 2022-09-12.
 Supported by: Chrome 90 (Apr 2021), Edge 90 (Apr 2021), Firefox 81 (Sep 2020), and Safari 16 (Sep 2022).
+
 overflow-clip-margin has limited availability.
 Supported by: Firefox 148 (Feb 2026).
 Unsupported in: Chrome, Edge, and Safari.

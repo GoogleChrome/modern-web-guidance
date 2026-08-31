@@ -114,6 +114,8 @@ This example shows a rule set that prefetches all links eagerly, and then goes f
 
 ## Browser support and fallback strategies
 
-Speculative loading is a new feature, and as such, is not supported in all modern browsers (Baseline limited availability).
+Speculation rules has limited availability.
+Supported by: Chrome 109 (Jan 2023) and Edge 109 (Jan 2023).
+Unsupported in: Firefox and Safari.
 
 However, speculative loading is a progressive enhancement. It is perfectly safe to use as an enhancement, and is highly recommended given the potential performance benefits. If a browser does not support speculation rules, it will simply ignore them.

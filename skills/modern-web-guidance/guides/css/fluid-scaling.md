@@ -1,3 +1,5 @@
+# Fluid Scaling
+
 ## Overview
 
 Fluid scaling allows components to adjust their internal proportions (like font sizes and spacing) based on their current dimensions. This creates a more cohesive design than jumping between fixed breakpoints.

@@ -67,8 +67,6 @@ select:user-valid {
 
 ## Fallbacking & Browser Support
 
-The `:user-invalid` pseudo-class is widely supported (Baseline 2023), but if you need to support older browsers, you must ensure consistency of the implementation.
-
 ### Fallbacks & browser support for :user-valid and :user-invalid
 
 Baseline status for :user-valid and :user-invalid: Widely available. It's been Baseline since 2023-11-02.

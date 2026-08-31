@@ -1,4 +1,4 @@
-# Passkey Authentication Guide
+# Passkey Authentication
 
 This guide details how to implement returning user authentication using discoverable credentials, both through explicit button triggers and seamless browser autofill suggestions (Conditional UI).
 

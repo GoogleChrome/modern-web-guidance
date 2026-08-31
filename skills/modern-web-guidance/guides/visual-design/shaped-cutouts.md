@@ -1,3 +1,5 @@
+# Shaped Cutouts
+
 ## Overview
 CSS Masking allows you to clip an element to a custom shape, such as adding a notch to a card or creating a shaped border. When combining shapes for complex layouts, choose your masking strategy based on the type of content the element contains:
 

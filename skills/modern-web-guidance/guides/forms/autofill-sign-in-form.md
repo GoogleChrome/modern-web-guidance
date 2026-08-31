@@ -129,6 +129,7 @@ Disallowing password pasting annoys users, encourages passwords that are memorab
 
 Baseline status for Email, telephone, and URL <input> types: Widely available. It's been Baseline since 2015-07-29.
 Supported by: Chrome 5 (May 2010), Edge 12 (Jul 2015), Firefox 4 (Mar 2011), Safari 5 (Jun 2010), and Safari iOS 3 (Jun 2009).
+
 Baseline status for inputmode: Widely available. It's been Baseline since 2021-12-07.
 Supported by: Chrome 66 (Apr 2018), Edge 79 (Jan 2020), Firefox 95 (Dec 2021), Safari 12.1 (Mar 2019), and Safari iOS 12.2 (Mar 2019).
 

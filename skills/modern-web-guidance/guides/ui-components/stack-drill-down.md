@@ -603,7 +603,16 @@ updateFromHistoryState(history.state, 'instant');
 
 ### Fallback strategies
 
-Most of the features used in this guide are Baseline Widely available, and do not require any fallback. The only features not widely available that may require fallbacks are scroll-snap-events and scroll-driven-animations, both of which have robust fallback or progressive enhancement stories, and are safe to use for this use case:
+Baseline status for Scroll snap: Widely available. It's been Baseline since 2020-01-15.
+Supported by: Chrome 69 (Sep 2018), Edge 79 (Jan 2020), Firefox 68 (Jul 2019), and Safari 11 (Sep 2017).
+
+Baseline status for Intersection observer: Widely available. It's been Baseline since 2019-03-25.
+Supported by: Chrome 58 (Apr 2017), Edge 16 (Oct 2017), Firefox 55 (Aug 2017), Safari 12.1 (Mar 2019), and Safari iOS 12.2 (Mar 2019).
+
+Baseline status for inert: Widely available. It's been Baseline since 2023-04-11.
+Supported by: Chrome 102 (May 2022), Edge 102 (May 2022), Firefox 112 (Apr 2023), and Safari 15.5 (May 2022).
+
+The features that may require fallbacks are scroll-snap-events and scroll-driven-animations, both of which have robust fallback or progressive enhancement stories, and are safe to use for this use case:
 
 #### Scroll snap events
 

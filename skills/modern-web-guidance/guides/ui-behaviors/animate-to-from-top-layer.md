@@ -1,3 +1,5 @@
+# Animate Elements To and From Top Layer
+
 Elements that render in the "top layer" (like `<dialog>`, elements with the `popover` attribute, or tooltips) have historically been difficult to animate because they toggle between `display: none` and a visible state. Modern CSS provides `@starting-style`, `transition-behavior: allow-discrete`, and the `overlay` property to enable smooth entry and exit transitions for these elements. Note that native CSS nesting is used in the examples below.
 
 ## Implementation
@@ -100,8 +102,10 @@ dialog[open]::backdrop,
 
 Baseline status for @starting-style: Newly available. It's been Baseline since 2024-08-06.
 Supported by: Chrome 117 (Sep 2023), Edge 117 (Sep 2023), Firefox 129 (Aug 2024), and Safari 17.5 (May 2024).
+
 Baseline status for transition-behavior: Newly available. It's been Baseline since 2024-08-06.
 Supported by: Chrome 117 (Sep 2023), Edge 117 (Sep 2023), Firefox 129 (Aug 2024), and Safari 17.4 (Mar 2024).
+
 overlay has limited availability.
 Supported by: Chrome 117 (Sep 2023) and Edge 117 (Sep 2023).
 Unsupported in: Firefox and Safari.

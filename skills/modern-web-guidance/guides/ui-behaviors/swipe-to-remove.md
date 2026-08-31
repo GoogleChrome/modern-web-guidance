@@ -443,7 +443,22 @@ With this setup, the spacers no longer need their own background-color (the trac
 
 ## Fallback strategies
 
-The scroll-snap mechanics that underpin this pattern (`scroll-snap-type`, `scroll-snap-align`), `IntersectionObserver`, `MutationObserver`, `ResizeObserver`, and the Web Animations API are all Baseline Widely Available, so the gesture, commit detection, lifecycle management, and removal animation work broadly. All newer features that are used are either not core to the experience or have robust fallbacks that can be reliably used now.
+Baseline status for Scroll snap: Widely available. It's been Baseline since 2020-01-15.
+Supported by: Chrome 69 (Sep 2018), Edge 79 (Jan 2020), Firefox 68 (Jul 2019), and Safari 11 (Sep 2017).
+
+Baseline status for Intersection observer: Widely available. It's been Baseline since 2019-03-25.
+Supported by: Chrome 58 (Apr 2017), Edge 16 (Oct 2017), Firefox 55 (Aug 2017), Safari 12.1 (Mar 2019), and Safari iOS 12.2 (Mar 2019).
+
+Baseline status for MutationObserver: Widely available. It's been Baseline since 2015-07-29.
+Supported by: Chrome 26 (Mar 2013), Edge 12 (Jul 2015), Firefox 14 (Jul 2012), and Safari 7 (Oct 2013).
+
+Baseline status for Resize observer: Widely available. It's been Baseline since 2020-07-28.
+Supported by: Chrome 64 (Jan 2018), Edge 79 (Jan 2020), Firefox 69 (Sep 2019), Safari 13.1 (Mar 2020), and Safari iOS 13.4 (Mar 2020).
+
+Baseline status for Web animations: Widely available. It's been Baseline since 2020-09-16.
+Supported by: Chrome 84 (Jul 2020), Edge 84 (Jul 2020), Firefox 75 (Apr 2020), and Safari 14 (Sep 2020).
+
+All newer features that are used are either not core to the experience or have robust fallbacks that can be reliably used now.
 
 ### Fallback for `overscroll-behavior`
 
@@ -451,7 +466,7 @@ overscroll-behavior has limited availability.
 Supported by: Chrome 144 (Jan 2026), Edge 144 (Jan 2026), and Firefox 150 (Apr 2026).
 Unsupported in: Safari.
 
-No fallback is needed for this use case. `overscroll-behavior` was Baseline Widely Available but no longer is due to an interop issue that only manifests on containers without scrollable overflow. But the track here is always horizontally scrollable (three full-width columns inside a 100%-width container), so the property behaves consistently across browsers and the swipe gesture is reliably contained.
+No fallback is needed for this use case. Although `overscroll-behavior` has an interop issue that manifests on containers without scrollable overflow, the track here is always horizontally scrollable (three full-width columns inside a 100%-width container), so the property behaves consistently across browsers and the swipe gesture is reliably contained.
 
 ### Fallback for `scrollbar-width`
 

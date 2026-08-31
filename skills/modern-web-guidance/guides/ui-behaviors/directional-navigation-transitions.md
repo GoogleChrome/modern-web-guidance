@@ -1,3 +1,5 @@
+# Directional Navigation Transitions
+
 Single Page Applications (SPAs) provide the appearance of navigation by replacing the content of the page without navigating to a new page. By default, the content is simply replaced, without any transitions. Directional transitions can visually reinforce a spatial relationship between views. 
 
 By sliding new content in from the direction the user is moving you create a mental map of the application structure. For instance, a product site may show a transition to the right for "forward," and to the left for "back", or a slideshow may transition up and down to show next and previous slides.
@@ -98,6 +100,7 @@ Always respect user preferences for reduced motion by disabling or simplifying a
 
 Baseline status for View transitions: Newly available. It's been Baseline since 2025-10-14.
 Supported by: Chrome 111 (Mar 2023), Edge 111 (Mar 2023), Firefox 144 (Oct 2025), and Safari 18 (Sep 2024).
+
 Baseline status for Active view transition: Newly available. It's been Baseline since 2026-01-13.
 Supported by: Chrome 125 (May 2024), Edge 125 (May 2024), Firefox 147 (Jan 2026), and Safari 18.2 (Dec 2024).
 

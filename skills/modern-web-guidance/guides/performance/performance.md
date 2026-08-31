@@ -1,3 +1,5 @@
+# Performance
+
 ## Critical Rendering Path (CRP) Optimization
 
 The Critical Rendering Path dictates how quickly the browser converts HTML, CSS, and JavaScript into painted pixels. 

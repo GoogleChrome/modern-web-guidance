@@ -1,4 +1,4 @@
-# Overview
+# Declarative Dialog and Popover Control
 
 Use the Invoker Commands API to toggle the visibility of `<dialog>` and `[popover]` elements directly from HTML buttons, eliminating the need for custom JavaScript event listeners.
 

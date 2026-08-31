@@ -1,3 +1,5 @@
+# Cross-Document Transitions
+
 Cross-document view transitions allow you to create smooth, app-like transitions between different pages of a Multi-Page Application (MPA). By default, the browser performs a cross-fade, but you can customize this to match your site's aesthetic.
 
 ### Implementation Steps

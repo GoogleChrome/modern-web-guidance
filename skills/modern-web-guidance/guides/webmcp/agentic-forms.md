@@ -1,3 +1,5 @@
+# Agentic Forms
+
 The Declarative API transforms standard HTML `<form>` elements into WebMCP tools via attributes. The browser synthesizes a JSON Schema from the form inputs and handles agent interactions.
 
 ## Form Attributes

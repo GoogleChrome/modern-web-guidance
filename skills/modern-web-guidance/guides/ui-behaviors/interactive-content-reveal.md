@@ -1,3 +1,5 @@
+# Interactive Content Reveal
+
 Add performant, interactive reveal effects to your site with CSS masks and registered custom properties. By using a radial gradient as a mask and registering its stop values, we can smoothly transition the entry and exit, while following a user's pointer with minimal JavaScript. 
 
 ## Implementation

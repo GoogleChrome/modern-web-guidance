@@ -1,4 +1,4 @@
-# Passkey Reauthentication Guide
+# Passkey Reauthentication
 
 This delta-focused guide details how to implement step-up authentication or re-verification for a signed-in user before they perform sensitive account changes (e.g. passwords updates, financial transfers).
 
