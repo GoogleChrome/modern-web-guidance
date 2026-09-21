@@ -162,7 +162,9 @@ For browsers that don't yet support `background-clip: border-area`, fall back to
 }
 ```
 
-attr() is not natively supported by any major browser yet.
+attr() has limited availability.
+Supported by: Chrome 133 (Feb 2025), Edge 133 (Feb 2025), and Firefox 155.
+Unsupported in: Safari.
 
 For browsers that don't support the `attr()` CSS function for any property, use a `MutationObserver` to automatically sync the `value` attribute to the `--value` custom property.
 

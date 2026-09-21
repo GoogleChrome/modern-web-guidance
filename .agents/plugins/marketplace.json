@@ -14,8 +14,8 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Development",
-      "version": "0.0.189"
+      "category": "Developer Tools",
+      "version": "0.0.190"
     }
   ]
 }

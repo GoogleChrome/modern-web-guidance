@@ -132,7 +132,9 @@ Unsupported in: Safari.
 
 The `popover-polyfill` does not polyfill the hint behavior in browsers that support `popover` but not `popover="hint"`. For those browsers, a tooltip opened via focus may stay open when a second tooltip opened via hover.
 
-Anchor positioning is not natively supported by any major browser yet.
+Anchor positioning has limited availability.
+Supported by: Safari 27.
+Unsupported in: Chrome, Edge, and Firefox.
 
 **MANDATORY:** To support browsers without anchor positioning, you MUST use the `@oddbird/css-anchor-positioning` polyfill. It does not support implicit anchors, so you MUST add anchor names to the trigger. Additionally, `position-area` is not supported on popovers by the polyfill, so you MUST use `anchor()` on the desired insets. 
 

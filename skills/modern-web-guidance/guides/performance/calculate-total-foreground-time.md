@@ -48,7 +48,7 @@ function getTotalForegroundTime() {
 
 ## Fallbacks & browser support
 
-Page visibility state has limited availability.
+Page visibility state performance entries has limited availability.
 Supported by: Chrome 115 (Jul 2023) and Edge 115 (Jul 2023).
 Unsupported in: Firefox and Safari.
 

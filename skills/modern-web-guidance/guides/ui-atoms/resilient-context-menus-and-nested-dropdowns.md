@@ -100,7 +100,9 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 
 Alternatively, for a legacy fallback without a polyfill, use `position: fixed` and manually calculate coordinates via `getBoundingClientRect()` or rely on default positioning with `inset: auto` if that's acceptable for the use case.
 
-Anchor positioning is not natively supported by any major browser yet.
+Anchor positioning has limited availability.
+Supported by: Safari 27.
+Unsupported in: Chrome, Edge, and Firefox.
 
 To support browsers without anchor positioning, you must set a reasonable position. By default popovers are centered in the middle of the screen, which may work for your use case.
 

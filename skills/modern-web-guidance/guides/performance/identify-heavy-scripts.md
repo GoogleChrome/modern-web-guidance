@@ -62,7 +62,7 @@ observer.observe({type: 'long-animation-frame', buffered: true});
 
 ## Browser support and fallback strategies
 
-Long animation frames has limited availability.
+Long animation frames performance entries has limited availability.
 Supported by: Chrome 123 (Mar 2024) and Edge 123 (Mar 2024).
 Unsupported in: Firefox and Safari..
 

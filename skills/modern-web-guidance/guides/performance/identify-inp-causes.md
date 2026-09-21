@@ -61,12 +61,12 @@ onINP((metric) => {
 
 ## Browser support and fallback strategies
 
-Baseline status for Event timing: Newly available. It's been Baseline since 2025-12-12.
+Baseline status for Event timing performance entries: Newly available. It's been Baseline since 2025-12-12.
 Supported by: Chrome 76 (Jul 2019), Edge 79 (Jan 2020), Firefox 89 (Jun 2021), and Safari 26.2 (Dec 2025).
 
 The Event Timing API is available in most modern browsers and is necessary to calculate INP and the INP subparts. For browsers that do not support this API INP cannot be measured.
 
-Long animation frames has limited availability.
+Long animation frames performance entries has limited availability.
 Supported by: Chrome 123 (Mar 2024) and Edge 123 (Mar 2024).
 Unsupported in: Firefox and Safari.
 
