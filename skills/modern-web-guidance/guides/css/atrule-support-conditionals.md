@@ -138,8 +138,8 @@ IMPORTANT:
 ## Fallback strategies
 
 Browser support for at-rule(): Limited availability.
-Supported by: Chrome 148 (May 2026) and Edge 148 (May 2026).
-Unsupported in: Firefox and Safari.
+Supported by: Chrome 148 (May 2026), Edge 148 (May 2026), and Firefox 157.
+Unsupported in: Safari.
 
 Unless this is within your support target, **ONLY** use `@supports (at-rule())` to detect at-rules for which support is narrower than the `@supports (at-rule())` feature itself.
 

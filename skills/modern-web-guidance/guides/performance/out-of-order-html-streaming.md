@@ -128,7 +128,7 @@ await response
 ## Fallback strategies
 
 Browser support for <template for>: Limited availability.
-Supported by: Chrome 150 and Edge 150.
+Supported by: Chrome 150 (Jun 2026) and Edge 150 (Jul 2026).
 Unsupported in: Firefox and Safari.
 
 HTML setter methods is not natively supported by any major browser yet.
@@ -136,7 +136,7 @@ HTML setter methods is not natively supported by any major browser yet.
 HTML streaming setters is not natively supported by any major browser yet.
 
 Browser support for HTML processing instructions: Limited availability.
-Supported by: Chrome 150 and Edge 150.
+Supported by: Chrome 150 (Jun 2026) and Edge 150 (Jul 2026).
 Unsupported in: Firefox and Safari.
 
 You can use polyfills like `template-for-polyfill` and `html-setters-polyfill` to emulate the API surface for non-supporting browsers.

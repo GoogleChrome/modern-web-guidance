@@ -58,7 +58,7 @@ Supported by: Chrome 114 (May 2023), Edge 114 (Jun 2023), Firefox 121 (Dec 2023)
 ### For `text-fit`
 
 Browser support for text-fit: Limited availability.
-Supported by: Chrome 150 and Edge 150.
+Supported by: Chrome 150 (Jun 2026) and Edge 150 (Jul 2026).
 Unsupported in: Firefox and Safari.
 
 Forced lines have a short, faithful fallback: measure each line at its base size and scale it by the ratio to the container, with the same cap.

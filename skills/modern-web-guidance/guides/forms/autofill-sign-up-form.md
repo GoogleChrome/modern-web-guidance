@@ -146,6 +146,6 @@ Baseline status for inputmode: Widely available. It's been Baseline since 2021-1
 Supported by: Chrome 66 (Apr 2018), Edge 79 (Jan 2020), Firefox 95 (Dec 2021), Safari 12.1 (Mar 2019), and Safari iOS 12.2 (Mar 2019).
 
 Baseline status for autocorrect: Newly available. It's been Baseline since 2026-09-11.
-Supported by: Chrome 153, Edge 153, Firefox 136 (Mar 2025), Safari 14.1 (Apr 2021), and Safari iOS 14.5 (Apr 2021).
+Supported by: Chrome 153, Edge 153 (Sep 2026), Firefox 136 (Mar 2025), Safari 14.1 (Apr 2021), and Safari iOS 14.5 (Apr 2021).
 
 Autofill is a progressive enhancement. In browsers that do not support autofill, users will simply need to manually enter their sign-up credentials. The semantic HTML constraints (such as `type`, `inputmode`, and `required`) will still function appropriately to validate user input and provide the correct virtual keyboards.

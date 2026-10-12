@@ -228,7 +228,7 @@ pre, code {
 ### Fallbacks & browser support for light-dark() image values
 
 Baseline status for light-dark() image values: Newly available. It's been Baseline since 2026-09-14.
-Supported by: Chrome 150, Edge 150, Firefox 150 (Apr 2026), and Safari 27.
+Supported by: Chrome 150 (Jun 2026), Edge 150 (Jul 2026), Firefox 150 (Apr 2026), and Safari 27.
 
 For browsers that do not support `light-dark()` for images, use `image-set()` as a switch:
 give each option a `type()` from a custom property, and set the inactive one to an unsupported MIME type so the browser discards that option.

@@ -146,7 +146,7 @@ export async function fetchWithPolicyHandling(url, { statusElement, ...fetchOpti
 ## Fallback strategy
 
 Browser support for Connection allowlists: Limited availability.
-Supported by: Chrome 152 and Edge 152.
+Supported by: Chrome 152 (Aug 2026) and Edge 152 (Aug 2026).
 Unsupported in: Firefox and Safari.
 
 Because `Connection-Allowlist` is enforced at the browser network layer via an HTTP response header, it cannot be polyfilled in client-side JavaScript. If your Baseline target includes browsers that do not yet support `Connection-Allowlist`, **pair `Connection-Allowlist` with a `Content-Security-Policy` (CSP) header** (and a `<meta http-equiv="Content-Security-Policy">` element for document-level fetch and subresource restrictions when HTTP response headers cannot be configured):

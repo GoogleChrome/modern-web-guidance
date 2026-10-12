@@ -48,8 +48,9 @@ Note: Other custom submission shortcuts (such as `Cmd+Enter` or `Ctrl+Enter`) do
 
 ## Fallback strategies
 
-Baseline status for the api.KeyboardEvent.isComposing capability: Newly available. It's been Baseline since 2026-09-14.
-Supported by: Chrome 56 (Jan 2017), Edge 79 (Jan 2020), Firefox 31 (Jul 2014), and Safari 27.
+Browser support for the api.KeyboardEvent.isComposing capability: Limited availability.
+Supported by: Chrome 56 (Jan 2017), Edge 79 (Jan 2020), and Firefox 31 (Jul 2014).
+Unsupported in: Safari.
 
 In recent versions of Safari, an event-ordering issue (WebKit bug 165004) delivered `compositionend` to script handlers before the confirming `Enter` `keydown`, even though the underlying events were dispatched in the opposite order. By the time the keydown handler ran, `event.isComposing` had already been reset to `false`, meaning the standard check alone would have failed to prevent premature submission.
 

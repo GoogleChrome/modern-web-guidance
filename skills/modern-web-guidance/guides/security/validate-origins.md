@@ -128,7 +128,7 @@ export function handleSandboxedWidgetMessage(event, expectedWidgetWindow) {
 ## Fallback strategy
 
 Browser support for Origin: Limited availability.
-Supported by: Chrome 145 (Feb 2026), Edge 145 (Feb 2026), and Safari 26.5.
+Supported by: Chrome 145 (Feb 2026), Edge 145 (Feb 2026), and Safari 26.5 (May 2026).
 Unsupported in: Firefox.
 
 If your Baseline target includes browsers that do not yet support the `Origin` interface, feature-detect `'Origin' in globalThis` and fall back to parsing URLs with `new URL()`:

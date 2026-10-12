@@ -118,7 +118,7 @@ reducedMotionQuery.addEventListener('change', (event) => {
 ## Fallback strategy
 
 Browser support for Lazy-loading media: Limited availability.
-Supported by: Chrome 150 and Edge 150.
+Supported by: Chrome 150 (Jun 2026) and Edge 150 (Jul 2026).
 Unsupported in: Firefox and Safari.
 
 If your Baseline target does not support `loading="lazy"` on `<video>` and `<audio>`, choose between progressive enhancement and an `IntersectionObserver` fallback based on how strictly bandwidth must be conserved:

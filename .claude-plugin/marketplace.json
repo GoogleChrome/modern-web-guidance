@@ -1,5 +1,6 @@
 {
   "name": "googlechrome",
+  "description": "Modern web development guidance for AI coding agents.",
   "owner": {
     "name": "Google Chrome"
   },
@@ -8,7 +9,7 @@
       "name": "modern-web-guidance",
       "source": "./",
       "description": "Keep your coding agent up to date with the latest web best practices",
-      "version": "0.0.193"
+      "version": "0.0.194"
     }
   ]
 }

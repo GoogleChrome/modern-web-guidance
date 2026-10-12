@@ -187,11 +187,11 @@ onINP(sendToAnalytics, { reportSoftNavs: true });
 ## Fallback strategies
 
 Browser support for Interaction contentful paint performance entries: Limited availability.
-Supported by: Chrome 151 and Edge 151.
+Supported by: Chrome 151 (Jul 2026) and Edge 151 (Jul 2026).
 Unsupported in: Firefox and Safari.
 
 Browser support for Soft navigation performance entries: Limited availability.
-Supported by: Chrome 151 and Edge 151.
+Supported by: Chrome 151 (Jul 2026) and Edge 151 (Jul 2026).
 Unsupported in: Firefox and Safari.
 
 If your Baseline target includes browsers that do not support `InteractionContentfulPaint` or `PerformanceSoftNavigation`, treat these APIs as a progressive enhancement for Real User Monitoring (RUM):

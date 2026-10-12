@@ -150,7 +150,7 @@ Supported by: Chrome 85 (Aug 2020), Edge 85 (Aug 2020), Firefox 128 (Jul 2024), 
 If `@property` is supported, the dash animation is automatically included via the `--progress-dash-animation` property's `initial-value`. In browsers without `@property` support, the property registration is ignored, and the animation falls back to a simple rotation. No JavaScript is required for this fallback.
 
 Browser support for background-clip: border-area: Limited availability.
-Supported by: Chrome 150, Edge 150, and Safari 18.2 (Dec 2024).
+Supported by: Chrome 150 (Jun 2026), Edge 150 (Jul 2026), and Safari 18.2 (Dec 2024).
 Unsupported in: Firefox.
 
 For browsers that don't yet support `background-clip: border-area`, fall back to a `mask-image` to hollow out the center.
