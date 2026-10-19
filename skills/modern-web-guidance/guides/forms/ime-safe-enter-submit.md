@@ -6,11 +6,11 @@ This works for users typing with direct Latin keyboard input (e.g. English), but
 
 In these contexts, the `Enter`/`Return` key is used to confirm the current character conversion candidate. If custom JavaScript listens to `keydown` on `Enter` and submits immediately, the user's message is sent while they are still converting characters, resulting in incomplete, fragmented, or incorrect messages.
 
-Note that the composition-active check only matters for multiline `<textarea>` fields where custom JavaScript intercepts `Enter` for submission. For single-line `<input>` fields inside a `<form>`, no explicit handling is required, as browsers natively suppress implicit submission when the `Enter` keystroke is consumed by an IME.
+The composition-active check applies to any custom `keydown` handler that acts on `Enter`, not only to multiline `<textarea>` fields. Single-line `<input>` fields with their own `Enter` handling, such as search and find bars, inline rename fields, modal dialog fields, and command palettes, receive the same IME-confirming `Enter` keydown as a `<textarea>` does, with `isComposing` set to `true`. Native implicit submission of a `<form>` from an `<input>` with no custom `Enter` handler needs no explicit handling, because browsers suppress implicit submission when the `Enter` keystroke is consumed by an IME.
 
 ## Implementation strategy
 
-For a `<textarea>` with custom enter-to-submit, check the native `isComposing` property of the `KeyboardEvent` before submitting the content. The default action of `Enter` in a `<textarea>` is to insert a newline, so you must also call `event.preventDefault()` to suppress that.
+For a `<textarea>` or `<input>` with custom enter-to-submit, check the native `isComposing` property of the `KeyboardEvent` before submitting the content. Also call `event.preventDefault()`: the default action of `Enter` inserts a newline in a `<textarea>`, and in an `<input>` inside a `<form>` it triggers the browser's implicit submission, which would submit a second time.
 
 ```html
 <form id="chat-form">
@@ -26,7 +26,7 @@ const form = document.getElementById('chat-form');
 
 textarea.addEventListener('keydown', (event) => {
   if (event.key === 'Enter' && !event.shiftKey) {
-    // Prevent the default newline behavior
+    // Prevent the default action (newline in a textarea, implicit form submission in an input)
     event.preventDefault();
 
     // If the user is composing text, return early.
@@ -38,6 +38,8 @@ textarea.addEventListener('keydown', (event) => {
   }
 });
 ```
+
+For a single-line `<input>`, use the same handler without the `!event.shiftKey` condition, which exists only because `Shift+Enter` inserts a newline in a `<textarea>`.
 
 Note: Other custom submission shortcuts (such as `Cmd+Enter` or `Ctrl+Enter`) do not conflict with IME confirmation keys and do not require IME safety checks.
 

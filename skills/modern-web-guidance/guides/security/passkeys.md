@@ -33,6 +33,7 @@ Specific passkey and WebAuthn implementation details are mapped to the following
 *   **Passkey Registration**: `passkey-registration` (via `npx -y modern-web-guidance@latest retrieve "passkey-registration"`) — Offering new passkey registration and promotions.
 *   **Passkey Conditional Create**: `passkey-conditional-create` (via `npx -y modern-web-guidance@latest retrieve "passkey-conditional-create"`) — Silently registering passkeys immediately after successful password login.
 *   **Passkey Authentication**: `passkey-authentication` (via `npx -y modern-web-guidance@latest retrieve "passkey-authentication"`) — Discoverable-autofill and button sign-ins.
+*   **Quick Sign-Ins**: `quick-sign-ins` (via `npx -y modern-web-guidance@latest retrieve "quick-sign-ins"`) — Contextual in-place sign-ins with local passkeys and saved passwords before page navigation.
 *   **Passkey Management**: `passkey-management` (via `npx -y modern-web-guidance@latest retrieve "passkey-management"`) — Syncing lists, renames, and deletions with password managers.
 *   **Passkey Reauthentication**: `passkey-reauthentication` (via `npx -y modern-web-guidance@latest retrieve "passkey-reauthentication"`) — Re-verifying returning signed-in users for sensitive steps.
 
