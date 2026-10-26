@@ -71,7 +71,7 @@ Because a 2D panning surface often lacks focusable child controls (for example, 
 ## Fallback strategies
 
 Browser support for scroll-axis-lock: Limited availability.
-Supported by: Chrome 153.
+Supported by: Chrome 153 (Sep 2026).
 Unsupported in: Edge, Firefox, and Safari.
 
 Choose between **progressive enhancement** and a **JavaScript fallback** based on your application's requirements:

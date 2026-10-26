@@ -23,7 +23,7 @@ The first step is to create a trigger button that opens the overlay container us
 </div>
 ```
 
-This creates an *implicit* anchor association between the button and the panel, so that the panel can be positioned relative to the button.
+This creates an *implicit* anchor association between the button and the panel, so that the panel can be positioned relative to the button natively without needing `anchor-name` on the button or `position-anchor` on the panel.
 
 ### 2. Positioning with `position-area`
 
@@ -104,7 +104,7 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 Alternatively, for a legacy fallback without a polyfill, use `position: fixed` and manually calculate coordinates via `getBoundingClientRect()` or rely on default positioning with `inset: auto` if that's acceptable for the use case.
 
 Browser support for Anchor positioning: Limited availability.
-Supported by: Safari 27.
+Supported by: Safari 27 (Sep 2026).
 Unsupported in: Chrome, Edge, and Firefox.
 
 To support browsers without anchor positioning, you must set a reasonable position. By default popovers are centered in the middle of the screen, which may work for your use case.

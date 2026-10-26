@@ -95,7 +95,7 @@ Alternatively, for a legacy fallback without a polyfill, use `position: fixed` a
 #### anchor-positioning
 
 Browser support for Anchor positioning: Limited availability.
-Supported by: Safari 27.
+Supported by: Safari 27 (Sep 2026).
 Unsupported in: Chrome, Edge, and Firefox.
 
 To support browsers without anchor positioning, you can choose between using a polyfill or a pure CSS fallback.

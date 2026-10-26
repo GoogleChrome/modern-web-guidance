@@ -271,7 +271,7 @@ When using the polyfill, the CSS API changes slightly to account for the lack of
 ```
 
 Browser support for Anchor positioning: Limited availability.
-Supported by: Safari 27.
+Supported by: Safari 27 (Sep 2026).
 Unsupported in: Chrome, Edge, and Firefox.
 
 Browser support for Cross-document view transitions: Limited availability.

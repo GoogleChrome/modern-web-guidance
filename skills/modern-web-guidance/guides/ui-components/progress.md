@@ -176,6 +176,6 @@ If `accent-color` is not supported and styling the progress bar is required, use
 ### Fallbacks & browser support for `revert-rule`
 
 Baseline status for revert-rule: Newly available. It's been Baseline since 2026-09-14.
-Supported by: Chrome 148 (May 2026), Edge 148 (May 2026), Firefox 150 (Apr 2026), and Safari 27.
+Supported by: Chrome 148 (May 2026), Edge 148 (May 2026), Firefox 150 (Apr 2026), and Safari 27 (Sep 2026).
 
 If `revert-rule` is not supported, `animation: var(--progress-bar-animation, revert-rule)` falls back to `animation-name: revert-rule` with a `0s` duration when `--progress-bar-animation` is unset, which is a harmless no-op when no `@keyframes revert-rule` exists.

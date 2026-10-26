@@ -58,6 +58,14 @@ Use a single `<textarea>` element for the street address if possible.
 
 This is the most flexible option for a variety of local and international address formats.
 
+If your data model needs separate address lines, use one `<input>` per line with the `address-line1`, `address-line2` (and, if needed, `address-line3`) `autocomplete` tokens so that autofill still works. Don't split the street address across inputs that lack these tokens, and make only the first line required.
+
+```html
+<!-- Alternative: one input per line, each with its own autocomplete token -->
+<input type="text" id="address-line1" name="address-line1" autocomplete="address-line1" required>
+<input type="text" id="address-line2" name="address-line2" autocomplete="address-line2">
+```
+
 ### Help save users from accidentally missing data fields
 
 Add the `required` attribute to mandatory fields.
@@ -68,8 +76,7 @@ Add the `required` attribute to mandatory fields.
 
 ### Fallback strategies
 
-Browser support for :autofill: Limited availability.
-Supported by: Chrome 110 (Feb 2023), Edge 110 (Feb 2023), and Safari 15 (Sep 2021).
-Unsupported in: Firefox.
+Baseline status for the html.elements.input.autocomplete capability: Widely available. It's been Baseline since 2015-07-29.
+Supported by: Chrome 14 (Sep 2011), Edge 12 (Jul 2015), Firefox 4 (Mar 2011), and Safari 6 (Jul 2012).
 
 Autofill is a progressive enhancement. In browsers that do not support autofill, users will simply need to manually enter their address details. The semantic HTML constraints (such as `type`, `inputmode`, and `required`) will still function appropriately as standard form validation.

@@ -94,9 +94,9 @@ You can help browsers store data correctly and autofill inputs, so users don't h
 1.  The `autocomplete`, `name`, `id`, and `type` attributes help browsers understand the role of inputs in order to store data that can later be used for autofill. To allow data to be stored for autofill, modern browsers also require inputs to have a stable `name` or `id` value (not randomly generated on each page load or site deployment), and to be in a `<form>` element with a `submit` button.
 1.  The `autocomplete` attribute helps browsers correctly autofill inputs using stored data.
 
-For email inputs use `autocomplete="username"`, since `username` is recognized by password managers in modern browsers—even though you should use `type="email"` and you may want to use `id="email"` and `name="email"`. For password inputs, use the appropriate `autocomplete` and `id` values to help browsers differentiate between new and current passwords.
+For email inputs use `autocomplete="username"`, since `username` is recognized by password managers in modern browsers—even though you should use `type="email"` and you may want to use `id="email"` and `name="email"`. For password inputs, use the appropriate `autocomplete` value to help browsers differentiate between new and current passwords.
 
-### Use autocomplete="new-password" and id="new-password" for a new password
+### Use autocomplete="new-password" for a new password
 
 MANDATORY: For a sign-up form, use `autocomplete="new-password"`.
 
@@ -146,6 +146,6 @@ Baseline status for inputmode: Widely available. It's been Baseline since 2021-1
 Supported by: Chrome 66 (Apr 2018), Edge 79 (Jan 2020), Firefox 95 (Dec 2021), Safari 12.1 (Mar 2019), and Safari iOS 12.2 (Mar 2019).
 
 Baseline status for autocorrect: Newly available. It's been Baseline since 2026-09-11.
-Supported by: Chrome 153, Edge 153 (Sep 2026), Firefox 136 (Mar 2025), Safari 14.1 (Apr 2021), and Safari iOS 14.5 (Apr 2021).
+Supported by: Chrome 153 (Sep 2026), Edge 153 (Sep 2026), Firefox 136 (Mar 2025), Safari 14.1 (Apr 2021), and Safari iOS 14.5 (Apr 2021).
 
 Autofill is a progressive enhancement. In browsers that do not support autofill, users will simply need to manually enter their sign-up credentials. The semantic HTML constraints (such as `type`, `inputmode`, and `required`) will still function appropriately to validate user input and provide the correct virtual keyboards.

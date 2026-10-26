@@ -180,7 +180,7 @@ Inside the `<iframe>` document served by `https://bank.example`, run the same `<
 ### WebOTP API fallback
 
 Browser support for WebOTP: Limited availability.
-Supported by: Chrome 93 (Aug 2021), Edge 93 (Sep 2021), and Safari 27.
+Supported by: Chrome 93 (Aug 2021), Edge 93 (Sep 2021), and Safari 27 (Sep 2026).
 Unsupported in: Firefox.
 
 If your target browsers do not support the WebOTP API (`OTPCredential`), do not load a third-party JavaScript polyfill, as reading incoming SMS messages requires operating-system-level integration. Instead, rely on the three-tier progressive enhancement built into the `<input>` markup:
