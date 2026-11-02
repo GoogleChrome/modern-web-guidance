@@ -1,4 +1,4 @@
-# WebMCP (Web Model Context Protocol)
+# WebMCP
 
 WebMCP is a browser-native JavaScript API that allows web pages to expose their client-side functionality as structured "tools" to AI agents, browser assistants, and assistive technologies. 
 

@@ -162,7 +162,7 @@ Permissions-Policy: local-network=(self "https://setup.partner.example.com"), lo
 ## Fallback Strategies
 
 Browser support for Local network access: Limited availability.
-Supported by: Chrome 142 (Oct 2025) and Edge 142 (Oct 2025).
+Supported by: Chrome 145 (Feb 2026) and Edge 145 (Feb 2026).
 Unsupported in: Firefox and Safari.
 
 If your Baseline target does not support Local Network Access permissions and `targetAddressSpace` options, implement **feature detection with progressive fallback**:

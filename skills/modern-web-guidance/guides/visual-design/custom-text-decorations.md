@@ -162,8 +162,6 @@ Use a pseudo-element when the line must be a shape `text-decoration` cannot draw
 }
 ```
 
-For a freeform path or a draw-on that follows the stroke, see `line-drawing-animation` (via `npx -y modern-web-guidance@latest retrieve "line-drawing-animation"`).
-
 ## Outline text with a box instead
 
 Two box properties decorate text by outlining it rather than running a line along it. Give the text padding so the outline does not touch it.
@@ -206,10 +204,10 @@ When only the corners need a different shape, such as a beveled, scooped, or not
 ## Choose a technique
 
 * **`text-decoration`** (line, ink skipping, spaces, inset): the line should run along the text, wrap with it, and follow its font metrics. This is the default choice.
-* **Pseudo-element with `border-shape` and `clip-path`**: the line is a custom shape or needs a draw-on animation. Choose it only when `text-decoration-style` cannot produce the look, because it needs extra positioning. For vector path animations, see `line-drawing-animation` (via `npx -y modern-web-guidance@latest retrieve "line-drawing-animation"`).
-* **`background-clip: border-area`**: the text needs a gradient outline. Use plain `border-color` when a solid outline is enough. For complete gradient border styling, see `gradient-borders` (via `npx -y modern-web-guidance@latest retrieve "gradient-borders"`).
+* **Pseudo-element with `border-shape` and `clip-path`**: the line is a custom shape or needs a draw-on animation. Choose it only when `text-decoration-style` cannot produce the look, because it needs extra positioning.
+* **`background-clip: border-area`**: the text needs a gradient outline. Use plain `border-color` when a solid outline is enough.
 * **`corner-shape`**: only the corners need a different shape, such as beveled, scooped, or notched. Pair it with `border-radius`, which sets the corner size.
-* **`border-shape`**: the outline needs a shape `border-radius` cannot draw, such as a tag or arrow. Use `border-radius` when rounded corners are enough. For shaped element styling, see `element-shape` (via `npx -y modern-web-guidance@latest retrieve "element-shape"`).
+* **`border-shape`**: the outline needs a shape `border-radius` cannot draw, such as a tag or arrow. Use `border-radius` when rounded corners are enough.
 * **Inset hover reveal**: worth adding when a link needs a hover affordance beyond a color change. Skip it for text that is not interactive.
 
 ## Fallback Strategies

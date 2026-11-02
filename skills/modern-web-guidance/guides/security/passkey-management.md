@@ -221,6 +221,7 @@ import 'webauthn-polyfills';
 Browser support for Web authentication signal methods: Limited availability.
 Supported by: Chrome 132 (Jan 2025), Edge 132 (Jan 2025), and Safari 26 (Sep 2025).
 Unsupported in: Firefox.
+
 If the browser does not support `PublicKeyCredential.parseRequestOptionsFromJSON`, use the 'webauthn-polyfills': 
   
 ```html 
@@ -229,7 +230,7 @@ If the browser does not support `PublicKeyCredential.parseRequestOptionsFromJSON
      await import('https://unpkg.com/webauthn-polyfills'); 
    } 
  </script> 
- ``` 
+``` 
 
 This will also add support for `PublicKeyCredential.prototype.toJSON`.
 
