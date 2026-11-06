@@ -19,7 +19,7 @@ Run `modern-web-guidance` directly with `npx` using a **2–5 word action-orient
 - **Example**: Search `"light dismiss dialog"` or `"responsive data table"`, **not** `"dialog"` (too terse), `"responsive table dark mode"` (compound — split into two searches), or `"close React settings modal on outside click"` (framework/app noise).
 
 ```sh
-npx -y modern-web-guidance@next search "<query>" --skill-version 2026_11_03-4f8cea78
+npx -y modern-web-guidance@next search "<query>" --skill-version 2026_11_05-4ab680e9
 ```
 
 > **Note**: Returns `[{ "id", "description" }, ...]`. Judge results by their `description` fields:
@@ -62,7 +62,7 @@ When you consult `modern-web-guidance` for a task, end the response where you de
 npx -y modern-web-guidance@next analyze <path> --json
 ```
 
-1. Scan: Run `analyze <path> --json` to detect legacy web platform patterns across a directory or file.
+1. Scan: Run `analyze <path> --json` to detect legacy web platform patterns across the project or directory.
 2. Verify: Check each finding against its `keepWhen` / `dropWhen` rubric; drop false positives (fallbacks, vendor code, lookalikes).
 3. Report: Summarize verified findings (and the modernization plan, if editing) for the user.
 4. Modernize (when the user asked to modernize rather than only audit/report): Retrieve each finding's guide (`retrieve "<guide-id>"` via Step 2), apply the replacement, and re-run `analyze <path>` on the modified files to confirm resolution.
