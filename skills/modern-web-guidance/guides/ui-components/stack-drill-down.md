@@ -707,9 +707,8 @@ if (!('onscrollsnapchange' in HTMLElement.prototype)) {
 
 #### Scroll-driven animations
 
-Browser support for Scroll-driven animations: Limited availability.
-Supported by: Chrome 115 (Jul 2023), Edge 115 (Jul 2023), and Safari 26 (Sep 2025).
-Unsupported in: Firefox.
+Baseline status for Scroll-driven animations: Newly available. It's been Baseline since 2026-10-27.
+Supported by: Chrome 115 (Jul 2023), Edge 115 (Jul 2023), Firefox 159 (Oct 2026), and Safari 26 (Sep 2025).
 
 The scroll-driven parallax / dim / shadow effect is a progressive enhancement on top of the navigation core. The CSS `@supports (animation-timeline: view())` gate (shown in step 2) confines the animation to supporting browsers; everywhere else the views simply cut between snap stops with no transition. The component is fully functional without the parallax — snap, history sync, focus management, and `inert` all still work.
 

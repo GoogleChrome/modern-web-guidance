@@ -234,7 +234,7 @@ The `@oddbird/popover-polyfill` package does not polyfill `popover="hint"` in br
 ### Fallbacks & browser support for Interest invokers
 
 Browser support for Interest invokers: Limited availability.
-Supported by: Chrome 142 (Oct 2025) and Edge 142 (Oct 2025).
+Supported by: Chrome 149 (Jun 2026) and Edge 149 (Jun 2026).
 Unsupported in: Firefox and Safari.
 
 Interest invokers must be conditionally polyfilled using the `interestfor` polyfill package from NPM. Prefer bundling the polyfill over using the CDN.

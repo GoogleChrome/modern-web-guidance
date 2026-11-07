@@ -170,7 +170,9 @@ The geometric `scroll` + `requestAnimationFrame` fallback closely emulates the b
 
 ### Fallbacks & browser support for focusgroup
 
-focusgroup is not natively supported by any major browser yet.
+Browser support for focusgroup: Limited availability.
+Supported by: Chrome 150 (Jun 2026) and Edge 150 (Jul 2026).
+Unsupported in: Firefox and Safari.
 
 Keep `focusgroup="toolbar wrap"` in the markup. If `'focusGroup' in HTMLElement.prototype` is false, implement a roving tabindex pattern on the gallery controls, and manually apply a `role="toolbar"` to the container. Never install it when native focusgroup is present.
 

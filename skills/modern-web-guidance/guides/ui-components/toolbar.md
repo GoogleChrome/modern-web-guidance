@@ -135,7 +135,9 @@ Add a trailing "More actions" menu when the toolbar has secondary actions or mus
 
 ### Fallbacks & browser support for `focusgroup`
 
-focusgroup is not natively supported by any major browser yet.
+Browser support for focusgroup: Limited availability.
+Supported by: Chrome 150 (Jun 2026) and Edge 150 (Jul 2026).
+Unsupported in: Firefox and Safari.
 
 Keep `focusgroup` in the markup. Only if `'focusGroup' in HTMLElement.prototype` is false, load a roving-tabindex fallback; never install it when native focusgroup is present. The fallback implements what focusgroup does natively:
 
@@ -167,7 +169,7 @@ if (!('focusGroup' in HTMLElement.prototype)) {
 ### Fallbacks & browser support for Interest invokers
 
 Browser support for Interest invokers: Limited availability.
-Supported by: Chrome 142 (Oct 2025) and Edge 142 (Oct 2025).
+Supported by: Chrome 149 (Jun 2026) and Edge 149 (Jun 2026).
 Unsupported in: Firefox and Safari.
 
 Do not load an `interestfor` polyfill here: when native interest invokers or anchor positioning are missing, the upgrade script is skipped and buttons keep their baseline `title` tooltip.

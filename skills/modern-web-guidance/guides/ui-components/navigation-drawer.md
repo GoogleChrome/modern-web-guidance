@@ -320,9 +320,8 @@ The popover API, the scroll-driven animation that fades the backdrop, and `scrol
 
 #### Backdrop fade fallback (no `animation-timeline` support):
 
-Browser support for Scroll-driven animations: Limited availability.
-Supported by: Chrome 115 (Jul 2023), Edge 115 (Jul 2023), and Safari 26 (Sep 2025).
-Unsupported in: Firefox.
+Baseline status for Scroll-driven animations: Newly available. It's been Baseline since 2026-10-27.
+Supported by: Chrome 115 (Jul 2023), Edge 115 (Jul 2023), Firefox 159 (Oct 2026), and Safari 26 (Sep 2025).
 
 Detect with `CSS.supports('animation-timeline: scroll()')` and write `--drawer-backdrop` from a `scroll` event listener if not supported. The CSS `@supports` block in step 2 ensures the keyframes never apply in unsupported browsers, so the JavaScript value is the only writer.
 

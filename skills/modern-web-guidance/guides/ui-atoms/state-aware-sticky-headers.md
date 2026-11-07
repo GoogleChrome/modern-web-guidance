@@ -88,7 +88,7 @@ DO NOT: Rely on `overflow-anchor: none` for elements stuck to the **bottom**. Sc
 
 ### Fallback strategies
 Browser support for Container scroll-state queries: Limited availability.
-Supported by: Chrome 133 (Feb 2025) and Edge 133 (Feb 2025).
+Supported by: Chrome 144 (Jan 2026) and Edge 144 (Jan 2026).
 Unsupported in: Firefox and Safari.
 
 Scroll state queries are a progressive enhancement. In browsers that do not support `container-type: scroll-state`, the header will still stick to the top (due to `position: sticky`), but it will not visually transform. For most use cases, this is the recommended approach.

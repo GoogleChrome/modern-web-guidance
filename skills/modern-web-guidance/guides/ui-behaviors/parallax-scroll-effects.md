@@ -174,9 +174,8 @@ As for setting the `animation-range`:
 
 ## Browser support and fallback strategies
 
-Browser support for Scroll-driven animations: Limited availability.
-Supported by: Chrome 115 (Jul 2023), Edge 115 (Jul 2023), and Safari 26 (Sep 2025).
-Unsupported in: Firefox.. Therefore, a fallback strategy is typically required.
+Baseline status for Scroll-driven animations: Newly available. It's been Baseline since 2026-10-27.
+Supported by: Chrome 115 (Jul 2023), Edge 115 (Jul 2023), Firefox 159 (Oct 2026), and Safari 26 (Sep 2025).. Therefore, a fallback strategy is typically required.
 
 For browsers that do not support scroll-driven animations, you can use a fallback to recreate the visual effects. The fallbacks are typically built with either a scroll listener (for ScrollTimeline effects) or the IntersectionObserver API (for ViewTimeline effects).
 

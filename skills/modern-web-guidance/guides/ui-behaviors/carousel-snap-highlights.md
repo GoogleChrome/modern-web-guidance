@@ -108,7 +108,7 @@ Finally, to ensure consistent operability across different browsers and assistiv
 ## Fallback strategies
 
 Browser support for Container scroll-state queries: Limited availability.
-Supported by: Chrome 133 (Feb 2025) and Edge 133 (Feb 2025).
+Supported by: Chrome 144 (Jan 2026) and Edge 144 (Jan 2026).
 Unsupported in: Firefox and Safari.
 
 For browsers that do not support scroll-state queries, you should provide a functional base experience where all items are legible, even without the "active" highlight.

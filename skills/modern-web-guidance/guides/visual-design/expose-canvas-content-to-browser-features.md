@@ -406,7 +406,7 @@ Use these options to control hit testing:
 
 ## Fallback strategies
 
-HTML in canvas is not natively supported by any major browser yet.
+HTML-in-canvas is not natively supported by any major browser yet.
 
 The HTML-in-Canvas API is not currently supported in all modern browsers, thus a fallback strategy is typically required.
 

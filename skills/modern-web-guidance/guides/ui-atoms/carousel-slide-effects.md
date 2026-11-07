@@ -148,9 +148,8 @@ When using the `view-timeline` property to create a scroll-driven animation:
 
 ## Browser support and fallback strategies
 
-Browser support for Scroll-driven animations: Limited availability.
-Supported by: Chrome 115 (Jul 2023), Edge 115 (Jul 2023), and Safari 26 (Sep 2025).
-Unsupported in: Firefox.
+Baseline status for Scroll-driven animations: Newly available. It's been Baseline since 2026-10-27.
+Supported by: Chrome 115 (Jul 2023), Edge 115 (Jul 2023), Firefox 159 (Oct 2026), and Safari 26 (Sep 2025).
 
 Therefore, a fallback strategy is typically required.
 

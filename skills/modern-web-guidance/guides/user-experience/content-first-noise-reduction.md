@@ -81,7 +81,7 @@ Put long or rarely needed content (specs, FAQs, fine print) in a `details` eleme
 ### Scroll-state queries
 
 Browser support for Container scroll-state queries: Limited availability.
-Supported by: Chrome 133 (Feb 2025) and Edge 133 (Feb 2025).
+Supported by: Chrome 144 (Jan 2026) and Edge 144 (Jan 2026).
 Unsupported in: Firefox and Safari.
 
 Without scroll-state queries, the bar never hides, but it stays compact and usable. If your Baseline target includes those browsers, add a small script so the bar hides there too. Browsers that support other scroll-state queries but not `scrolled` also keep the bar visible.

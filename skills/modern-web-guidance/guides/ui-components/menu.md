@@ -310,7 +310,9 @@ Put a trailing indicator or shortcut in a `<span class="hint" aria-hidden="true"
 
 ### Fallbacks & browser support for focusgroup
 
-focusgroup is not natively supported by any major browser yet.
+Browser support for focusgroup: Limited availability.
+Supported by: Chrome 150 (Jun 2026) and Edge 150 (Jul 2026).
+Unsupported in: Firefox and Safari.
 
 Keep `focusgroup="menu nomemory"` in the markup. If `'focusGroup' in HTMLElement.prototype` is false, install Up, Down, Home, and End, set `role="menu"` on each menu container, and `role="menuitem"` on buttons with no role; leave checkable items, `<hr>`, and `role="group"` alone. Never install it when native focusgroup is present. Left, Right, preview, open, and close are author script either way.
 
