@@ -17,6 +17,7 @@
     display,
     overlay;
   transition-duration: 0.2s;
+  /* Separate after transition so the shorthand doesn't reset it or fail in older browsers */
   transition-behavior: allow-discrete;
 }
 ```

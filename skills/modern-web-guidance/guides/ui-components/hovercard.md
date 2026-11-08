@@ -67,7 +67,7 @@ If users are likely to move through multiple triggers in quick succession, set t
 }
 ```
 
-Use `@starting-style` to define the entry animation and `transition-behavior: allow-discrete` (along with `display` and `overlay`) to animate the exit from the top layer, gating the transitions behind `@media (prefers-reduced-motion: no-preference)`.
+Use `@starting-style` to define the entry animation and `transition-behavior: allow-discrete` (along with `display` and `overlay`) to animate the exit from the top layer, gating the transitions behind `@media (prefers-reduced-motion: no-preference)`. Declare `transition-behavior: allow-discrete` as a separate property after `transition` rather than inside the `transition` shorthand so older browsers do not ignore the entire `transition` declaration.
 
 ```css
 [popover].hovercard {
@@ -96,6 +96,7 @@ Use `@starting-style` to define the entry animation and `transition-behavior: al
       display,
       overlay;
     transition-duration: 0.4s;
+    /* Separate after transition so the shorthand doesn't reset it or fail in older browsers */
     transition-behavior: allow-discrete;
   }
 }

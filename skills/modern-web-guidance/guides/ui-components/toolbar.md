@@ -1,6 +1,6 @@
 # Build a toolbar
 
-A toolbar groups related controls (formatting, alignment, view options) into one composite widget with a **single tab stop**. Users `Tab` into it once, move between controls with the arrow keys, and `Tab` out. Use it only for controls that act on something else (an editor, preview, canvas). For site navigation use a navbar; for a dropdown or context menu of commands without a persistent row of controls, see `menu` (via `npx -y modern-web-guidance@latest retrieve "menu"`).
+A toolbar groups related controls (formatting, alignment, view options) into one composite widget with a **single tab stop**. Users `Tab` into it once, move between controls with the arrow keys, and `Tab` out. Use it only for controls that act on something else (an editor, preview, canvas). For site navigation, see `navbar` (via `npx -y modern-web-guidance@latest retrieve "navbar"`); for a dropdown or context menu of commands without a persistent row of controls, see `menu` (via `npx -y modern-web-guidance@latest retrieve "menu"`).
 
 ## Structure and semantics
 
