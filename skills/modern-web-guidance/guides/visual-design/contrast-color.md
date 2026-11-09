@@ -1,6 +1,6 @@
 # Ensure text readability with dynamic background colors
 
-When building reusable UI components (like badges or buttons) or supporting dynamic themes, ensuring text is readable against an unpredictable background color can be challenging. The `contrast-color()` CSS function resolves to `black` or `white`, maximizing the contrast ratio against the specified background color.
+When building reusable UI components (like badges, buttons, headers, or footers) or supporting customizable themes, ensuring text remains readable against a variable background color can be challenging. The `contrast-color()` CSS function resolves to `black` (`rgb(0, 0, 0)`) or `white` (`rgb(255, 255, 255)`), maximizing the contrast ratio (targeting at least 4.5:1 WCAG AA contrast) against the specified solid `<color>` value.
 
 ## Determine optimal text color
 
@@ -50,7 +50,7 @@ DO NOT: Hard-code a separate text color for each interaction state when the back
 Baseline status for contrast-color(): Newly available. It's been Baseline since 2026-04-10.
 Supported by: Chrome 147 (Apr 2026), Edge 147 (Apr 2026), Firefox 146 (Dec 2025), and Safari 26 (Sep 2025).
 
-To support browsers without `contrast-color()`, you must provide a fallback. If the background color is known and fixed, use a hard-coded contrasting color. For dynamic backgrounds where the color is unknown, choose a strategy from the table below based on your UI requirements and browser support targets.
+To support browsers without `contrast-color()`, you must provide a fallback. If the background color is known and fixed, use a hard-coded contrasting color. For variable background colors (such as theme custom properties where the runtime color is unknown), choose one of the five fallback strategies from the table below based on your UI requirements and browser support targets.
 
 | Strategy | Best For... | Considerations |
 | :--- | :--- | :--- |

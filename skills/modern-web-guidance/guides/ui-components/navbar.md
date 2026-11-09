@@ -2,7 +2,7 @@
 
 Build a site navigation bar that uses one semantic navigation tree at every size, presents a native popover when the links do not fit, becomes an inline navigation when they do, and identifies the current page.
 
-This guide describes site-navigation integration. It is navigation, not an application menu: links stay in the `Tab` order, with no `focusgroup`, `role="menubar"`, `role="menu"`, `role="menuitem"`, `aria-haspopup="menu"`, or arrow-key handling. For application command menus and menubars, see `menu` (via `npx -y modern-web-guidance@latest retrieve "menu"`). For the menu and chevron icons, see `icons` (via `npx -y modern-web-guidance@latest retrieve "icons"`).
+This guide describes site-navigation integration. It is navigation, not an application menu: links stay in the `Tab` order, with no `focusgroup`, `role="menubar"`, `role="menu"`, `role="menuitem"`, `aria-haspopup="menu"`, or arrow-key handling. For application command menus, see `menu` (via `npx -y modern-web-guidance@latest retrieve "menu"`); for menubars, see `app-menus` (via `npx -y modern-web-guidance@latest retrieve "app-menus"`). For the menu and chevron icons, see `icons` (via `npx -y modern-web-guidance@latest retrieve "icons"`).
 
 For component-driven layouts, fluid sizing, and typographic line-wrapping, see `size-aware-styling` (via `npx -y modern-web-guidance@latest retrieve "size-aware-styling"`), `fluid-scaling` (via `npx -y modern-web-guidance@latest retrieve "fluid-scaling"`), and `improve-text-layout-and-legibility` (via `npx -y modern-web-guidance@latest retrieve "improve-text-layout-and-legibility"`).
 

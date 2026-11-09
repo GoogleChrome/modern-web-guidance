@@ -19,10 +19,10 @@ See the `spinner` (via `npx -y modern-web-guidance@latest retrieve "spinner"`) f
 Use a wrapper to hold both the visual ring and the optional center content. The `<progress>` element remains the semantic source of truth. Use a utility class to visually hide the native progress bar while keeping it accessible.
 
 ```html
-<div class="ring-wrapper">
+<div class="progress-ring-wrapper">
   <progress value="75" max="100" aria-label="Task progress" class="progress-ring"></progress>
   <!-- Optional: Content to display in the center -->
-  <div class="ring-content">
+  <div class="progress-ring-content">
     75%
   </div>
 </div>
@@ -35,19 +35,19 @@ To style the `<progress>` element as a progress ring, first hide the default bro
 
 ```css
 /* Hide native bars */
-progress.loading-spinner:indeterminate::-webkit-progress-bar {
+progress.progress-ring::-webkit-progress-bar {
   display: none;
   background: none;
 }
-progress.loading-spinner:indeterminate::-webkit-progress-value {
+progress.progress-ring::-webkit-progress-value {
   display: none;
   background: none;
 }
-progress.loading-spinner:indeterminate::-moz-progress-bar {
+progress.progress-ring::-moz-progress-bar {
   display: none;
   background: none;
 }
-progress.loading-spinner:indeterminate::slider-fill {
+progress.progress-ring::slider-fill {
   display: none;
   background: none;
 }
