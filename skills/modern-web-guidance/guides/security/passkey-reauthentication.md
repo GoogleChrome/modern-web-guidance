@@ -45,7 +45,7 @@ Applications choose from two reauthentication interfaces depending on the transa
 
 ### A. Button Flow (No Input Fields)
 
-Trigger reauthentication when a user presses a "Verify Identity" or "Proceed with Transaction" button.
+Trigger reauthentication when a user presses a "Verify Identity" or "Proceed with Transaction" button. When signaling an unknown credential on HTTP `404`, always pass `rpId: publicKey.rpId` from the server's request options—**DO NOT** derive `rpId` from `window.location.hostname` on the client.
 
 ```html
 <button id="reauth-btn" data-testid="reauth-button">Confirm Transaction</button>
@@ -84,7 +84,7 @@ async function triggerButtonReauth() {
         showTransactionSuccessUI();
       } else if (verifyResponse.status === 404 && PublicKeyCredential.signalUnknownCredential) {
         await PublicKeyCredential.signalUnknownCredential({
-          rpId, // RP ID must match the one defined on the server
+          rpId: publicKey.rpId, // Always use the server-provided rpId; DO NOT use window.location.hostname
           credentialId: encodedCredential.id
         });
       }
@@ -108,21 +108,35 @@ document
 Baseline status for the api.PublicKeyCredential.getClientCapabilities_static capability: Newly available. It's been Baseline since 2025-02-06.
 Supported by: Chrome 133 (Feb 2025), Edge 133 (Feb 2025), Firefox 135 (Feb 2025), and Safari 17.4 (Mar 2024).
 
-Always install 'webauthn-polyfills' and import it in the context.
-Consider as long as  `PublicKeyCredential` is supported, `PublicKeyCredential.getClientCapabilities` is also supported. 
+Load `webauthn-polyfills` so `PublicKeyCredential.getClientCapabilities()` is available whenever `PublicKeyCredential` is supported:
 
-```js 
+```js
+// With a bundler (`npm install webauthn-polyfills`):
 import 'webauthn-polyfills';
-``` 
+```
+
+Without a bundler, serve the package from your own origin, or import it from a CDN such as `https://esm.sh/webauthn-polyfills@0.1.7` (pin the exact version). For third-party URLs, add Subresource Integrity: the `integrity` attribute on the `<script>` tag, or an import map's `integrity` field for `import` statements.
+
+### Signal API Synchronization Fallback
+
+Browser support for Web authentication signal methods: Limited availability.
+Supported by: Chrome 132 (Jan 2025), Edge 132 (Jan 2025), and Safari 26 (Sep 2025).
+Unsupported in: Firefox.
+
+The WebAuthn Signal API (`webauthn-signals`) is a progressive optimization used to keep password managers in sync with the server credential state.
+
+- **Fallback Experience**: Gate calls behind `if (PublicKeyCredential.signalUnknownCredential)`. If unsupported, the background verification sync is bypassed gracefully without throwing browser exceptions.
 
 ### Easy JSON Serialization Fallback
 
 Baseline status for the api.PublicKeyCredential.parseRequestOptionsFromJSON_static capability: Newly available. It's been Baseline since 2025-03-31.
 Supported by: Chrome 129 (Sep 2024), Edge 129 (Sep 2024), Firefox 119 (Oct 2023), and Safari 18.4 (Mar 2025).
 
-Always install 'webauthn-polyfills' and import it in the context.
-Consider as long as  `PublicKeyCredential` is supported, `PublicKeyCredential.parseRequestOptionsFromJSON` and `PublicKeyCredential.prototype.toJSON` are also supported. 
+Load `webauthn-polyfills` so `PublicKeyCredential.parseRequestOptionsFromJSON()` and `PublicKeyCredential.prototype.toJSON()` are available whenever `PublicKeyCredential` is supported:
 
-```js 
+```js
+// With a bundler (`npm install webauthn-polyfills`):
 import 'webauthn-polyfills';
-``` 
+```
+
+Without a bundler, serve the package from your own origin, or import it from a CDN such as `https://esm.sh/webauthn-polyfills@0.1.7` (pin the exact version). For third-party URLs, add Subresource Integrity: the `integrity` attribute on the `<script>` tag, or an import map's `integrity` field for `import` statements.

@@ -51,7 +51,7 @@ E.g. this will not work:
 ```
 
 For many types of container queries, you can use `container-type` with a suitable value.
-E.g. `@supports (container-type: scroll-state)` for scroll-state queries or `@supports (container-type: size)`container-type: anchored` for `anchored()` queries.
+E.g. `@supports (container-type: scroll-state)` for scroll-state queries, `@supports (container-type: size)` for size queries, or `@supports (container-type: anchored)` for `anchored()` queries.
 
 However, there is no `container-type` for style queries.
 IMPORTANT: Do NOT try `@supports (container-type: style)` to detect support for style queries, as this will not work.
@@ -88,8 +88,6 @@ In some cases, if the conditional CSS to apply can be reduced to a single proper
 
 
 For a more general-purpose solution, you can register a non-inheriting property and set it to ` ` (a space) on the root element:
-
-{# Testcase: https://codepen.io/leaverou/pen/KwWzpVr #}
 
 ```css
 @property --supports-atproperty {

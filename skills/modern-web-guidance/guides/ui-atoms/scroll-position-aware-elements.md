@@ -57,7 +57,7 @@ Use the `@container` rule with the `scroll-state` function. To check if the user
 ## Fallback strategies
 
 Browser support for Container scroll-state queries: Limited availability.
-Supported by: Chrome 133 (Feb 2025) and Edge 133 (Feb 2025).
+Supported by: Chrome 144 (Jan 2026) and Edge 144 (Jan 2026).
 Unsupported in: Firefox and Safari.
 
 ### Basic Fallback

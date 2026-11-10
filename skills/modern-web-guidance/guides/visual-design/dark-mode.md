@@ -94,7 +94,8 @@ You can use `scrollbar-color` together with `light-dark()` to set custom scrollb
 ```css
 :root {
   --color-scrollbar-track: light-dark(#eee, #222);
-  --color-scrollbar-thumb: light-dark(#999, #666);
+  /* Example values: the thumb needs at least 3:1 contrast against the track */
+  --color-scrollbar-thumb: light-dark(#6b6b6b, #8a8a8a);
   scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
 }
 ```
@@ -173,11 +174,15 @@ To adapt to the user's preferences in older browsers, use `prefers-color-scheme`
   /* Define brand colors for each mode */
   --color-brand-light: #0056b3;
   --color-brand-dark: #00e5ff;
+  --color-brand-text-light: white;
+  --color-brand-text-dark: #001f24;
   --color-brand: var(--color-brand-light);
+  --color-brand-text: var(--color-brand-text-light);
 
   /* MANDATORY: Fallback for browsers without light-dark support */
   @media (prefers-color-scheme: dark) {
     --color-brand: var(--color-brand-dark);
+    --color-brand-text: var(--color-brand-text-dark);
   }
 
   /* Ignored in older browsers */
@@ -186,6 +191,7 @@ To adapt to the user's preferences in older browsers, use `prefers-color-scheme`
 
 button.primary {
 	background-color: var(--color-brand);
+	color: var(--color-brand-text);
 }
 ```
 

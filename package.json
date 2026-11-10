@@ -3,10 +3,15 @@
   "displayName": "Modern Web Guidance",
   "description": "Keep your agent up to date on the latest web best practices.",
   "license": "Apache-2.0",
-  "version": "0.0.197",
+  "version": "1.0.0",
   "publisher": "GoogleChrome",
+  "homepage": "https://developer.chrome.com/docs/modern-web-guidance",
   "repository": {
-    "url": "https://github.com/GoogleChrome/modern-web-guidance-src"
+    "type": "git",
+    "url": "https://github.com/GoogleChrome/modern-web-guidance-src.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GoogleChrome/modern-web-guidance-src/issues"
   },
   "engines": {
     "vscode": "^1.90.0",

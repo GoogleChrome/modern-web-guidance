@@ -54,38 +54,40 @@ Finally, you can use the `animation-range` property to specify the exact range o
 ## Example code
 
 ```css
-html {
-  timeline-scope: --tl-1, --tl-2, --tl-3, --tl-4, --tl-5;
-}
-
-#tracked {
-  section:nth-child(1){ view-timeline: --tl-1 block; }
-  section:nth-child(2){ view-timeline: --tl-2 block; }
-  section:nth-child(3){ view-timeline: --tl-3 block; }
-  section:nth-child(4){ view-timeline: --tl-4 block; }
-  section:nth-child(5){ view-timeline: --tl-5 block; }
-}
-
-@keyframes animate-in {
-  from { scale: 0.5; opacity: 0; transform: rotateY(-180deg); }
-  to { transform: rotateY(0deg); }
-}
-@keyframes animate-out {
-  to { translate: 100% 0; opacity: 0; }
-}
-
-#animated {
-  section {
-    animation: animate-in auto linear both, animate-out auto linear forwards;
-    animation-range: entry 25% cover 50%, exit 50% exit 75%;
-    backface-visibility: hidden;
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+  html {
+    timeline-scope: --tl-1, --tl-2, --tl-3, --tl-4, --tl-5;
   }
 
-  section:nth-child(1){ animation-timeline: --tl-1; }
-  section:nth-child(2){ animation-timeline: --tl-2; }
-  section:nth-child(3){ animation-timeline: --tl-3; }
-  section:nth-child(4){ animation-timeline: --tl-4; }
-  section:nth-child(5){ animation-timeline: --tl-5; }
+  #tracked {
+    section:nth-child(1){ view-timeline: --tl-1 block; }
+    section:nth-child(2){ view-timeline: --tl-2 block; }
+    section:nth-child(3){ view-timeline: --tl-3 block; }
+    section:nth-child(4){ view-timeline: --tl-4 block; }
+    section:nth-child(5){ view-timeline: --tl-5 block; }
+  }
+
+  @keyframes animate-in {
+    from { scale: 0.5; opacity: 0; transform: rotateY(-180deg); }
+    to { transform: rotateY(0deg); }
+  }
+  @keyframes animate-out {
+    to { translate: 100% 0; opacity: 0; }
+  }
+
+  #animated {
+    section {
+      animation: animate-in auto linear both, animate-out auto linear forwards;
+      animation-range: entry 25% cover 50%, exit 50% exit 75%;
+      backface-visibility: hidden;
+    }
+
+    section:nth-child(1){ animation-timeline: --tl-1; }
+    section:nth-child(2){ animation-timeline: --tl-2; }
+    section:nth-child(3){ animation-timeline: --tl-3; }
+    section:nth-child(4){ animation-timeline: --tl-4; }
+    section:nth-child(5){ animation-timeline: --tl-5; }
+  }
 }
 
 /* MANDATORY Copy-Paste Safety: Disable continuous storytelling motion for sensitive users */
@@ -118,9 +120,8 @@ When using the `view-timeline` property to create a scroll-driven animation:
 
 ## Fallback strategies
 
-Browser support for Scroll-driven animations: Limited availability.
-Supported by: Chrome 115 (Jul 2023), Edge 115 (Jul 2023), and Safari 26 (Sep 2025).
-Unsupported in: Firefox.
+Baseline status for Scroll-driven animations: Newly available. It's been Baseline since 2026-10-27.
+Supported by: Chrome 115 (Jul 2023), Edge 115 (Jul 2023), Firefox 159 (Oct 2026), and Safari 26 (Sep 2025).
 
 For browsers that do not support scroll-driven animations, you can use a fallback to recreate the visual effects. The fallbacks are typically built with either a scroll listener (for ScrollTimeline effects) or the IntersectionObserver API (for ViewTimeline effects).
 
@@ -132,13 +133,16 @@ For this use-case specifically, the following script applies the fallback for br
 
 ```js
 const animatedSections = document.querySelectorAll('#animated section');
+// The CSS only hides the sections once this class is set, so they stay visible if the script doesn't run
+document.querySelector('#animated').classList.add('scroll-fallback');
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     const sectionIndex = Array.from(document.querySelectorAll('#tracked section')).indexOf(entry.target);
     if (sectionIndex !== -1) {
       const animatedSection = animatedSections[sectionIndex];
-      const ratio = entry.intersectionRatio;
+      // Reaches 1 once the section fills the viewport, even when it's taller than the viewport
+      const ratio = Math.min(1, entry.intersectionRect.height / Math.min(entry.boundingClientRect.height, innerHeight));
 
       // Animate-in
       animatedSection.style.opacity = ratio;
@@ -162,7 +166,7 @@ document.querySelectorAll('#tracked section').forEach(section => {
 And the accompanying CSS:
 
 ```css
-#animated section {
+#animated.scroll-fallback section {
   opacity: 0;
   transform: scale(0.5)  rotateY(-180deg);
   backface-visibility: hidden;

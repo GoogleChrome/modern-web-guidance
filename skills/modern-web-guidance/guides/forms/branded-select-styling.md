@@ -86,7 +86,7 @@ The following example demonstrates a custom select styled with a monospace font 
 
 - **DO** use `appearance: base-select` when your design system requires high-fidelity, visual consistency across all form controls that cannot be achieved with standard cross-browser select overrides.
 - **DO NOT** use this if you rely on the operating system's native picker experience (e.g., the standard scroll wheel picker on iOS devices). Opting into `base-select` opts out of native mobile UI controls in favor of web-rendered top-layer menus.
-- **DO** verify that color contrast meets WCAG standards. The customizable picker allows you to set ad-hoc colors, but you are responsible for ensuring text remains legible against custom backgrounds.
+- **DO** verify that color contrast meets WCAG standards (at least `3:1` with the background color). The customizable picker allows you to set ad-hoc colors, but you are responsible for ensuring text remains legible against custom backgrounds.
 - Test layout behavior. Setting `appearance: base-select` removes the default browser behavior of sizing the select based on its longest option width. You may need to set a fixed width or use flex/grid constraints to prevent layout shifts.
 - Ensure your `<select>` has a `name` attribute and an associated `<label>`. This ensures that even with a custom UI, the component remains accessible to screen readers and works correctly with standard form submissions.
 - Use standard `value` attributes on options to ensure form submission works exactly as before.

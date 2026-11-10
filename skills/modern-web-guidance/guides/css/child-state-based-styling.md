@@ -6,7 +6,7 @@ By combining `:has()` with state pseudo-classes (like `:checked`, `:focus`, `:va
 
 This is particularly useful for components that need to respond to internal interactions, such as a localized theme toggle reacting to a checkbox (`:checked`), a form group highlighting an error (`:invalid`), or a card elevating when a child link is focused (`:focus-within`).
 
-### Implementing state-based container styling
+## Implementing state-based container styling
 
 **MANDATORY**: You must use the `:has()` selector on the container element to detect the specific state (e.g., `:checked`, `:focus`, `:invalid`) of its interactive child element.
 
@@ -64,7 +64,7 @@ To build a component that changes its styling based on a child's state:
 
 **Performance tip**: When using `:has()`, scope the selector to the most specific container possible (like `.theme-card`). Avoid anchoring it to very high-level elements like `body:has(...)` if the styling changes are localized, as broad `:has()` queries can trigger more layout recalculations.
 
-### Fallback strategies
+## Fallback strategies
 
 Baseline status for :has(): Widely available. It's been Baseline since 2023-12-19.
 Supported by: Chrome 105 (Sep 2022), Edge 105 (Sep 2022), Firefox 121 (Dec 2023), and Safari 15.4 (Mar 2022).

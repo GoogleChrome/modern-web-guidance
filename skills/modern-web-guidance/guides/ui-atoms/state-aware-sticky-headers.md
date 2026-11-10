@@ -44,6 +44,15 @@ Set `container-type: scroll-state` on the `position: sticky` element, not on its
 
 **Important:** The scroll state is queried by **descendants** of the scroll-state container. The styles in the `@container` query will not apply to the `.sticky-container` itself, but to its children (like `.sticky-header`). You cannot style the container element itself with its own scroll-state query.
 
+Add `scroll-padding-top` to the scrollport and set the value to be equal or greater than the sticky element's height. This approach should ensure that when controls receive focus, they'll be consistently visible below the sticky content, adhering to WCAG 2.4.11 Focus Not Obscured (Minimum), which requires that focused components are not fully obscured.
+
+```css
+html {
+  /* Accounts for the height of the header */
+  scroll-padding-top: var(--header-height); 
+}
+```
+
 
 ### 3. Target the Stuck State
 Use the `@container scroll-state(...)` query to apply styles when the header is stuck.
@@ -59,7 +68,7 @@ Use the `@container scroll-state(...)` query to apply styles when the header is 
 }
 ```
 
-**Tip:** You can also use logical properties like `stuck: inset-block-start` or `stuck: inset-inline-start` to better support internationalization (i18n) and right-to-left (RTL) layouts by querying flow-relative edges rather than physical ones.
+**Tip:** You can also use logical properties like `stuck: block-start` or `stuck: inline-start` to better support internationalization (i18n) and right-to-left (RTL) layouts by querying flow-relative edges rather than physical ones.
 
 ### Notes on Dimension Changes
 
@@ -79,7 +88,7 @@ DO NOT: Rely on `overflow-anchor: none` for elements stuck to the **bottom**. Sc
 
 ### Fallback strategies
 Browser support for Container scroll-state queries: Limited availability.
-Supported by: Chrome 133 (Feb 2025) and Edge 133 (Feb 2025).
+Supported by: Chrome 144 (Jan 2026) and Edge 144 (Jan 2026).
 Unsupported in: Firefox and Safari.
 
 Scroll state queries are a progressive enhancement. In browsers that do not support `container-type: scroll-state`, the header will still stick to the top (due to `position: sticky`), but it will not visually transform. For most use cases, this is the recommended approach.

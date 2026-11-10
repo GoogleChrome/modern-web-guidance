@@ -9,6 +9,8 @@ You can customize the appearance of scrollbars using the standard CSS properties
 
 MANDATORY: Use `scrollbar-color` and `scrollbar-width` on the scrollable container.
 
+Choose a thumb color with a contrast ratio of at least 3:1 against the track color, and against the container's background where the track may be transparent, such as with macOS overlay scrollbars, so users can see the thumb and how far they've scrolled (WCAG 1.4.11 Non-text Contrast).
+
 When using `scrollbar-color`, use CSS variables to keep thumb and track colors separate, for readability and maintainability (especially when using fallbacks).
 
 ```css

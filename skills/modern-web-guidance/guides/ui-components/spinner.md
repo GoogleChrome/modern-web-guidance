@@ -47,7 +47,7 @@ progress.loading-spinner:indeterminate::slider-fill {
 ```
 
 #### Spinner Ring and Trail
-The spinner uses a `conic-gradient` to create a visual trail.
+The spinner uses a `conic-gradient` to create a visual trail. Forced colors mode removes background gradients, so in `@media (forced-colors: active)`, opt the spinner out with `forced-color-adjust: none` and draw it with system colors, or the spinner disappears.
 
 ```css
 @property --arc-start {
@@ -72,7 +72,7 @@ progress.loading-spinner:indeterminate {
   --_to: calc(90deg + var(--arc-end, 158deg));
   --size: 40px;
   --thickness: 2px;
-  --spinner-color: #3b82f6;
+  --spinner-color: #2563eb;
   --track-color: #e2e5e7;
   --spinner-duration: 1.5s;
   --_used-spinner-duration: var(--spinner-duration);
@@ -99,6 +99,13 @@ progress.loading-spinner:indeterminate {
   }
 
   /* ... fallback for background-clip: border-area ... */
+
+  @media (forced-colors: active) {
+    /* Keeps the gradient, which forced colors mode removes, and draws it in system colors */
+    forced-color-adjust: none;
+    --spinner-color: CanvasText;
+    --track-color: Canvas;
+  }
 
   /* The dash animation is only included if @property is supported */
   animation:
@@ -130,14 +137,17 @@ progress.loading-spinner:indeterminate {
 
 #### Respecting Motion Preferences
 
-Users with motion sensitivities may find fast-spinning elements disorienting. Always respect the `prefers-reduced-motion` media query. Set the internal `--_used-spinner-duration` property to override the user's `--spinner-duration` value.
+Users with motion sensitivities may find fast-spinning elements disorienting. Always respect the `prefers-reduced-motion` media query. Set the internal `--_used-spinner-duration` property to override the user's `--spinner-duration` value, using the same selector as the spinner rule so that the override applies, and drop the dash animation so that only a slow rotation remains.
 
 ```css
 @media (prefers-reduced-motion: reduce) {
-  .loading-spinner {
+  progress.loading-spinner:indeterminate {
     /* Slow down the animation significantly rather than stopping it entirely,
        so the user still knows that the process is active. */
     --_used-spinner-duration: 6s;
+    /* Drops the dash animation, so the arc keeps a fixed length */
+    --progress-dash-animation: ;
+    --arc-end: 158deg;
   }
 }
 ```

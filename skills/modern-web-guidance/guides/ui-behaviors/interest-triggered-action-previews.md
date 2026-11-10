@@ -52,7 +52,7 @@ The start and end delay for an interest invoker (i.e. the element with the `inte
 ### Fallbacks & browser support for Interest invokers
 
 Browser support for Interest invokers: Limited availability.
-Supported by: Chrome 142 (Oct 2025) and Edge 142 (Oct 2025).
+Supported by: Chrome 149 (Jun 2026) and Edge 149 (Jun 2026).
 Unsupported in: Firefox and Safari.
 
 Interest invokers must be conditionally polyfilled using the `interestfor` polyfill package from NPM. Prefer bundling the polyfill over using the CDN.
@@ -61,7 +61,7 @@ Interest invokers must be conditionally polyfilled using the `interestfor` polyf
 
 ```html
 <script type="module">
-  if (!HTMLButtonElement.prototype.hasOwnProperty("interestForElement")) {
+  if (!("interestForElement" in HTMLButtonElement.prototype)) {
     // CDN link only used for example, prefer bundling.
     await import("https://unpkg.com/interestfor@latest");
   }

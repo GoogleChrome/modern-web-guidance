@@ -23,6 +23,8 @@ Popovers can be toggled open and closed using a single button.
 
 If you need to control opening and closing with separate buttons, you can use the `show-popover` and `hide-popover` commands.
 
+**IMPORTANT:** Do NOT combine `popovertarget` and `commandfor` on the same `<button>`, for the same popover. This will double-toggle it, breaking functionality.
+
 ```html
 <!-- MANDATORY: Use 'show-popover' to explicitly open the popover. It will not close the popover if clicked again. -->
 <button commandfor="my-explicit-popover" command="show-popover">
@@ -38,6 +40,8 @@ If you need to control opening and closing with separate buttons, you can use th
   </button>
 </div>
 ```
+
+Hiding a popover, using a button inside the popover itself, will result in a loss of focus as the button will be hidden and won't retain focus. In this situation, provide additional scripting to return focus to the trigger/show control, so that people can continue to navigate from where they were previously.
 
 ## Implementing Declarative Modal Dialogs
 
@@ -99,34 +103,7 @@ For projects without a bundler, dynamically import the polyfill directly from a 
 **Invokers Polyfill Limitations**
 MANDATORY: This polyfill does not handle the ARIA states (e.g., `aria-expanded`) of the command button the way native browsers do. You are strongly encouraged to handle these states yourself to ensure your site is fully accessible.
 
-Baseline status for Invoker commands: Newly available. It's been Baseline since 2025-12-12.
-Supported by: Chrome 135 (Apr 2025), Edge 135 (Apr 2025), Firefox 144 (Oct 2025), and Safari 26.2 (Dec 2025).
-
-If the Invoker Commands API is not supported, the `command` event will not fire. For full support across all modern browsers, it is recommended to use the invokers-polyfill from https://github.com/keithamus/invokers-polyfill via `npm install` or CDN.
-
-This polyfill fully supports custom actions (starting with `--`) and dispatches the `command` event exactly like the native API.
-
-### Dynamic Import (Performance Optimization)
-
-For the best performance, you should only load the polyfill if the browser doesn't support the API natively. This saves bandwidth and reduces script execution time for users on modern browsers.
-
-**NOTE:** This polyfill does not manage ARIA states (like `aria-pressed` or `aria-expanded`) for custom commands. You must manually synchronize these states in your event listener to ensure your site is accessible.
-
 ```javascript
-// 1. Conditionally load the polyfill
-const hasNativeSupport = 'commandForElement' in HTMLButtonElement.prototype;
-
-if (!hasNativeSupport) {
-  // Wrap in an async IIFE to avoid top-level await issues in older browsers
-  (async () => {
-    try {
-      await import('https://esm.run/invokers-polyfill');
-    } catch (err) {
-      console.error('Error loading fallback:', err);
-    }
-  })();
-}
-
 // 2. Manually manage ARIA states in your listener
 document.getElementById('action-target').addEventListener('command', (event) => {
   const command = event.command;
@@ -142,57 +119,6 @@ document.getElementById('action-target').addEventListener('command', (event) => 
 });
 ```
 
-### Manual fallback (Traditional pattern)
-
-If you prefer not to use a polyfill, you can use a combination of **event delegation** to dispatch events and a **command registry** to handle the actions. This is a common architectural pattern in traditional JavaScript development that remains highly efficient and scalable.
-
-```javascript
-// 1. **Optional:** Define a registry of requested actions for cleaner logic
-const commandRegistry = {
-  '--spin': (target) => target.classList.toggle('is-spun'),
-  '--grow': (target) => target.classList.toggle('is-grown'),
-  '--reset': (target) => target.classList.remove('is-spun', 'is-grown'),
-};
-
-// 2. If CommandEvent doesn't exist, we assume no native support and provide the fallback
-if (!globalThis.CommandEvent) {
-  globalThis.CommandEvent = class CommandEvent extends Event {
-    constructor(type, { source, command, ...options } = {}) {
-      super(type, options);
-      this.source = source;
-      this.command = command;
-    }
-  }
-}
-
-// 3. The fallback: Dispatch events manually if native support is missing
-  document.addEventListener('click', (event) => {
-    const button = event.composedPath().find((el) => el.matches?.("button[commandfor]"));
-    if (!button) return;
-
-    const target = document.getElementById(button.getAttribute('commandfor'));
-    const command = button.getAttribute('command');
-
-    if (target && command) {
-      target.dispatchEvent(new CommandEvent('command', { 
-        command, 
-        source: button,
-      }));
-    }
-  });
-
-// 4. **Mandatory:** Register the unified listener directly on the target element
-document.getElementById('action-target').addEventListener('command', (event) => {
-  const command = event.command;
-  const target = event.target;
-  const action = commandRegistry[command];
-
-  if (action) {
-    action(target);
-  }
- });
-```
-
 ### Fallbacks & browser support for Popover
 
 Baseline status for Popover: Newly available. It's been Baseline since 2025-01-27.
@@ -206,27 +132,19 @@ With a bundler or import map:
 
 ```js
 // MANDATORY: Feature detect 'popover' on HTMLElement.prototype.
-if (!("popover" in HTMLElement.prototype)) {
+if (!Object.hasOwn(HTMLElement.prototype, "popover")) {
   import("@oddbird/popover-polyfill");
 }
 ```
 
-Without a bundler, import from a CDN inside a `<script type="module">`:
+If not using a package manager, import from a CDN, e.g. `"https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js"`.
 
-```html
-<script type="module">
-  if (!("popover" in HTMLElement.prototype)) {
-    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
-  }
-</script>
-```
-
-**Styling caveat:** The polyfill cannot define the real `:popover-open` pseudo-class, so it applies a `.\:popover-open` class instead. **MANDATORY:** Combine the two with `:is()` or `:where()`, otherwise browsers that lack `:popover-open` discard the entire rule:
+Caveats when using the polyfill:
+- Do NOT use the `popover` IDL attribute for any code that may run before the polyfill is fully loaded. It will not be mirrored as an attribute, the popover will not be picked up by the polyfill, and the property will be shadowing the accessor the polyfill adds forever. Use `setAttribute()`/`removeAttribute()` instead.
+- **Styling caveat:** The polyfill cannot define the real `:popover-open` pseudo-class, so it applies a `.\:popover-open` class instead. **MANDATORY:** Combine the two with `:is()` or `:where()`, otherwise browsers that lack `:popover-open` discard the entire rule:
 
 ```css
 [popover]:is(:popover-open, .\:popover-open) {
   display: block;
 }
 ```
-
-Alternatively, for a legacy fallback without a polyfill, use `position: fixed` and manually calculate coordinates via `getBoundingClientRect()` or rely on default positioning with `inset: auto` if that's acceptable for the use case.
