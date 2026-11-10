@@ -74,6 +74,7 @@ Any horizontally scrollable row of items, such as a carousel, gallery, or row of
 - Native overflow scrolling gives swiping its physics and momentum, and snapping makes each swipe come to rest on an item, with no touch listeners.
 - If none of the scroller's items contains a link, button, or other focusable element, make the scroller itself focusable and labeled (`<div class="scroller" role="region" aria-label="Featured items" tabindex="0">`), so keyboard users can reach it and scroll it with the arrow keys. When items are focusable, tabbing to them already scrolls them into view.
 - To highlight the item that snaps into place, see `carousel-snap-highlights` (via `npx -y modern-web-guidance@latest retrieve "carousel-snap-highlights"`). To swipe a list item aside to reveal actions, see `swipe-to-reveal` (via `npx -y modern-web-guidance@latest retrieve "swipe-to-reveal"`). For side menus that close when swiped away, see `navigation-drawer` (via `npx -y modern-web-guidance@latest retrieve "navigation-drawer"`).
+- For carousel controls such as previous and next buttons and scroll markers, see `carousel` (via `npx -y modern-web-guidance@latest retrieve "carousel"`).
 
 ### Add motion blur to large, fast movements (optional)
 

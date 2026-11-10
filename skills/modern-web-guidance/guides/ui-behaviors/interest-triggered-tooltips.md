@@ -2,6 +2,14 @@
 
 Users expect to see additional related information without completely changing their context. Showing a tooltip when a user is interested in more information can be useful to provide definitions for a term, clarifying the action an icon-only button will take, or provide additional form field guidance.
 
+## Should you use a tooltip?
+
+A toggletip is a small button, usually an "i" or "?" icon, placed next to a control or a piece of content, whose only job is to reveal more information. The choice between tooltip, toggletip, and inline content is about how important and how long the information is:
+
+- **Tooltip** (on the control itself): a short clarification of what the control does. Missing it costs the user little.
+- **Toggletip** (an "i" or "?" next to the control or content): information users may well want but most don't need every time, such as why a field is required, how a total was computed, or what a policy means, or anything longer than a phrase. Showing it inline would add clutter, but it deserves an explicit, visible affordance so every user can find it deliberately rather than by happening to hover, including on touch and with a screen reader. See below for guidance on creating toggletips.
+- **Inline content**: information most users need in order to act, or need while they act (password rules while typing, a value they copy). A popover closes as soon as they click or focus elsewhere.
+
 ## Creating the tooltip
 
 You can create a popover with the required behavior by adding the `popover="hint"` attribute to a `<div>` or other semantically appropriate element. When the user opens the tooltip, this hides other `popover="hint"` tooltips, but doesn't hide `auto` or `manual` tooltips. It also handles dismissing nested tooltips.
@@ -28,13 +36,35 @@ A user expresses interest in the additional information by hovering or focusing 
 
 The trigger must have a visual indicator to indicate that there is additional information available by interacting with the trigger.
 
-### Accessibility built in to `interestfor`
+### Accessibility
 
-When you use `interestfor`, the browser handles the assistive-technology wiring for you:
+`interestfor` is specified to wire hint popovers (`popover="hint"`) for assistive technology itself, based on what the target contains. A **plain hint** (text and images only) becomes the trigger's accessible description, or its name if it has none. A **rich hint** (headings, links, or other interactive content) gets a minimum role of `tooltip`, the trigger gets `aria-expanded` and an `aria-details` relation while the hint is open, and the open hint comes right after the trigger in the tab order so keyboard users can reach its content.
 
-- **Implicit semantics:** A target with `popover="hint"` gains an implicit minimum role of `tooltip`. **DO NOT** set `role="tooltip"` yourself.
-- **Implicit association:** The browser implicitly associates the source element with the target via `aria-describedby` when the target is plaintext, or via `aria-details` when the target contains interactive content. **DO NOT** add `aria-describedby` or `aria-details` to the trigger.
-- **Interactive content:** Because the association switches to `aria-details` when needed, the target IS allowed to contain interactive content (e.g. a link inside an "interest card").
+Browsers and screen readers do not yet expose this consistently, so add explicit ARIA as well:
+
+- **Hint that repeats the trigger's accessible name** (e.g. an icon-only button with `aria-label="Bold"` and a "Bold" tooltip): add nothing. A description identical to the name would be read twice.
+- **Hint on a trigger with no visible label of its own** (e.g. an icon-only button without `aria-label`): `aria-labelledby` on the trigger pointing at the hint, so the hint becomes the name.
+- **Hint whose trigger also opens it on activation** (a toggletip, or any button whose only job is the hint: give it `popovertarget` with `popovertargetaction="show"`): `role="tooltip"` on the hint and `aria-expanded` on the trigger, kept in sync with the popover's `toggle` event. A description read right after "button" suggests further actions and muddles the role; the expanded state tells the user there is content to reveal and whether it is open, and pressing the button delivers it. Place the hint right after the trigger in the DOM so reading keys reach its content once it is open.
+- **Hint whose trigger does something else on activation** (a link, a button with its own action): `role="tooltip"` on the hint and `aria-describedby` on the trigger, never `aria-expanded`. A trigger announced as "collapsed" suggests `Enter` would expand it, but `Enter` navigates or acts. The hint must be something the user can afford to miss: a hovercard previews the destination, a tooltip on an action button describes the action.
+- **DO NOT** attach a hint that opens on activation to a control that already uses `aria-expanded` for something else (for example, a menu button). Give that hint its own trigger instead.
+- **DO NOT** move focus into the target when interest is shown (no `autofocus`, no `focus()` in an `interest` listener). Interest is triggered by hover or focus alone, so moving focus would fail WCAG 3.2.1 (On Focus).
+
+Not every screen reader reads descriptions when moving through the page (NVDA skips them in browse mode by design), so a hint exposed as a description must only carry content the user can afford to miss. Link previews and tooltips on action controls qualify; anything the user needs belongs in a toggletip or inline.
+
+Wire this with a short script instead of hand-authoring the attributes, so the markup stays declarative and the same rules apply to every hint. The script should:
+
+1. Run in every browser, before loading the `interestfor` polyfill, once the DOM is parsed, and expose a function that can be called again for content inserted later. Scanning upfront is required: a browse-mode screen reader user needs the attributes in place before any interaction, so wiring them lazily on `focus` or `interest` is too late, and so is waiting for the polyfill, which wires its ARIA only on `load` and adds no `role="tooltip"` to plain hints.
+2. For every `[interestfor]` trigger whose target has `popover="hint"`, normalize whitespace and compare the hint text with the trigger's accessible name (`aria-labelledby` targets, else `aria-label`, else text content including image `alt`, else `title`). Equal: do nothing. Otherwise set `role="tooltip"` on the hint if it has no role.
+3. When the trigger has no name, point `aria-labelledby` at the hint unless it already has one. Otherwise, if the trigger also opens the hint on activation (a `popovertarget` or `commandfor` naming the hint), set `aria-expanded` to the popover's current state (`:popover-open`) unless it already has `aria-expanded`, and remember which triggers the script owns; if not, point `aria-describedby` at the hint unless it already has one.
+4. Keep `aria-expanded` in sync from the popover's `toggle` event in every browser with a single capturing listener on `document`, updating every trigger with a matching `interestfor` that the script owns (the `interestfor` polyfill does not sync `aria-expanded` on plain-text hints or when a toggletip is opened via `popovertarget`).
+
+Things that are easy to get wrong:
+
+- `toggle` does not bubble. A bubbling listener on `document` never fires; use the capture phase (or a listener per popover).
+- Sync `aria-expanded` from `toggle`, not from `interest`/`loseinterest`. The popover is the source of truth: it can be closed by `Escape`, light dismiss, or another invoker, and several triggers can share one hint.
+- A hidden popover is a valid `aria-describedby` or `aria-labelledby` target. Do not force the hint open or duplicate its text to make it "visible".
+- Do not add `aria-haspopup` or a live region to any hint.
+- Do not override author ARIA: an existing `aria-describedby`, `aria-labelledby`, or `aria-expanded` on the trigger wins.
 
 ### Accessibility Constraints (WCAG 1.4.13)
 
@@ -60,6 +90,22 @@ In modern browsers supporting native anchor positioning, you do **not** need to 
 }
 ```
 
+## Toggletips: an "i" or "?" button
+
+Give a toggletip both triggers: `interestfor` opens it on hover, focus, and long-press; `popovertarget` opens it on click, tap, and `Enter`.
+
+```html
+<label>Shipping <input name="shipping"></label>
+<!-- The name says what the button reveals; the "?" alone is not a name. -->
+<button type="button" interestfor="shipping-help" popovertarget="shipping-help" popovertargetaction="show" aria-label="More about shipping">?</button>
+<!-- Right after the trigger, so it reads in sequence. -->
+<div id="shipping-help" popover="hint">Free shipping applies to orders over $50. Orders placed before 2pm ship the same day.</div>
+```
+
+- Use `popovertargetaction="show"`, not the default `toggle`: hover has usually opened the popover already, and a toggle would close it on the click that follows. `Escape`, light dismiss, and losing interest close it.
+- Keep `popover="hint"`: hovering across a toggletip must not close an open menu, which an `auto` popover would.
+- Position it like any tooltip. The button is the popover's implicit anchor through either attribute.
+
 ## Fallback strategies
 
 ### Fallbacks & browser support for Interest invokers
@@ -74,7 +120,7 @@ Interest invokers must be conditionally polyfilled using the `interestfor` polyf
 
 ```html
 <script type="module">
-  if (!HTMLButtonElement.prototype.hasOwnProperty("interestForElement")) {
+  if (!("interestForElement" in HTMLButtonElement.prototype)) {
     // CDN link only used for example, prefer bundling.
     await import("https://unpkg.com/interestfor@latest");
   }
@@ -142,6 +188,23 @@ Supported by: Chrome 151 (Jul 2026), Edge 151 (Jul 2026), and Firefox 153 (Jul 2
 Unsupported in: Safari.
 
 The `@oddbird/popover-polyfill` package does not polyfill `popover="hint"` in browsers that already support native `popover` (`auto` and `manual`). In those browsers, the unrecognized `"hint"` value defaults to `popover="manual"` (the HTML invalid value default), so a tooltip opened via keyboard focus may remain open if a second tooltip is opened via pointer hover unless explicitly dismissed on loss of interest by the invoker.
+
+A toggletip can also be opened by click, with no interest to lose, so a `manual` fallback would never close. Where `hint` is unsupported, switch toggletips to `popover="auto"` as they open. This MUST happen in `beforetoggle`: the browser reads the popover type after that event, whereas changing the type of an already open popover closes it. `beforetoggle` does not bubble, so delegate with a capturing listener:
+
+```js
+// The `popover` property reports the state the browser actually uses: "manual" when `hint` is unsupported.
+const probe = document.createElement("div");
+probe.popover = "hint";
+if (probe.popover !== "hint") {
+  document.addEventListener("beforetoggle", ({ target, newState }) => {
+    const toggletip = target.getAttribute("popover") === "hint"
+      && document.querySelector(`[popovertarget="${CSS.escape(target.id)}"]`);
+    if (newState === "open" && toggletip) {
+      target.popover = "auto";
+    }
+  }, true);
+}
+```
 
 ### Fallbacks & browser support for Anchor positioning
 

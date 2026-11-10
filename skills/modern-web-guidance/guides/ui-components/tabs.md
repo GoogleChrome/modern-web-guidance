@@ -113,7 +113,7 @@ Optionally, also shrink the inactive tabs, so more tabs fit before either kicks 
 
 #### Fading the edges
 
-Fade the content with a `mask-image` gradient on the scroller itself. Animate the gradient's stops with a scroll-driven animation on the scroller's own scroll position: each fade grows from 0 as the user scrolls away from that end, and shrinks back to 0 as they reach the other end. When the content fits, the scroll timeline is inactive and there is no fade.
+Fade the content with a mask on the scroller itself: an opaque layer minus a gradient band at each end. Masking only the bands keeps everything else visible, including a focus outline on the scroller, which a single gradient clipped to the border box would hide. Animate each band's size with a scroll-driven animation on the scroller's own scroll position: each fade grows from 0 as the user scrolls away from that end, and shrinks back to 0 as they reach the other end. When the content fits, the scroll timeline is inactive and there is no fade.
 
 ```css
 @property --fade-start {
@@ -132,9 +132,14 @@ Fade the content with a `mask-image` gradient on the scroller itself. Animate th
   overflow-x: auto;
   /* Example value: how far each fade reaches */
   --fade-size: 3rem;
+  /* Gradient directions and positions are physical, so flip them for right-to-left content */
   --fade-dir: right;
-  mask-image: linear-gradient(to var(--fade-dir), transparent, black var(--fade-start),
-    black calc(100% - var(--fade-end)), transparent);
+  --fade-start-pos: 0;
+  --fade-end-pos: 100%;
+  mask:
+    linear-gradient(black, black) no-clip subtract,
+    linear-gradient(to var(--fade-dir), black, transparent) var(--fade-start-pos) 0 / var(--fade-start) 100% no-repeat no-clip,
+    linear-gradient(to var(--fade-dir), transparent, black) var(--fade-end-pos) 0 / var(--fade-end) 100% no-repeat no-clip;
   animation: reveal-fade-start linear both, hide-fade-end linear both;
   animation-timeline: scroll(self inline);
   /* Each fade animates over the first or last --fade-size of scrolling */
@@ -142,6 +147,8 @@ Fade the content with a `mask-image` gradient on the scroller itself. Animate th
 
   &:dir(rtl) {
     --fade-dir: left;
+    --fade-start-pos: 100%;
+    --fade-end-pos: 0;
   }
 }
 
@@ -160,8 +167,8 @@ Fade the content with a `mask-image` gradient on the scroller itself. Animate th
 
 - MANDATORY: Register `--fade-start` and `--fade-end` with `@property`. Unregistered custom properties do not interpolate, so the fades would jump.
 - Set `scroll-padding-inline` (or `scroll-padding-block`) to the fade size if the scroller uses scroll snapping or contains focusable items, so snapped and focused items never stop inside a fade.
-- For vertical scrollers, use `to bottom`, `scroll(self block)`, and `overflow-y`.
-- For right-to-left content, use `to left` in the gradient. The scroll timeline follows the writing direction but gradient directions are physical, so `to right` would put each fade on the wrong edge.
+- For vertical scrollers, use `to bottom`, put the bands at `0 0` and `0 100%` with sizes `100% var(--fade-start)` and `100% var(--fade-end)`, and use `scroll(self block)` and `overflow-y`.
+- For right-to-left content, flip `--fade-dir` and swap the band positions, as in the `:dir(rtl)` rule above. The scroll timeline follows the writing direction, but gradient directions and mask positions are physical.
 
 ### Strategy 2: overflow menu
 
@@ -232,8 +239,8 @@ It is more well suited to user-driven tablists (e.g. a document editor) rather t
 
 - Let inactive tabs shrink and keep the selected tab at its full width: `flex: 0 1 auto` on the tabs, and `min-inline-size: max-content` on the selected tab, which also overrides any `max-inline-size`, so its label is never truncated. DO NOT use `flex-shrink: 0` for this: it cannot transition smoothly (see below).
 - Set a `min-inline-size` on the tabs. Once every inactive tab is at its minimum, the remaining overflow is handled by scrolling or the overflow menu.
-- Truncate shrunk labels with `text-overflow: ellipsis`. Put the label in its own element, since `text-overflow` needs `overflow: hidden` and would otherwise clip the focus ring.
-- Keep the full label in the DOM, so the accessible name and find-in-page are unaffected. Show it to sighted users on hover and focus with a tooltip; see `interest-triggered-tooltips` (via `npx -y modern-web-guidance@latest retrieve "interest-triggered-tooltips"`).
+- Truncate shrunk labels with `text-overflow: ellipsis`. Put the label in its own element, so `overflow: hidden` applies to the text only and an icon beside it is never clipped.
+- Keep the full label in the DOM, so the accessible name and find-in-page are unaffected. Reveal it by scrolling the label inside the tab on hover, and on focus when activation is manual (with automatic activation the focused tab is selected, so it is already full width). See `single-line-overflow` (via `npx -y modern-web-guidance@latest retrieve "single-line-overflow"`) for more details.
 - If tabs have icons, keep the icon visible and truncate only the label, so a minimum-width tab is still recognizable.
 - Transition `min-inline-size` so tabs resize smoothly when the selection changes, instead of jumping. Set `interpolate-size: allow-keywords` on the tablist so it interpolates to and from `max-content`; no view transition is needed. Only transition it when `prefers-reduced-motion` is `no-preference`. Transitioning `flex-shrink` does not work: any value above 0 shrinks a tab all the way to its minimum when the tabs overflow.
 
