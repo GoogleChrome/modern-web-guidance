@@ -243,8 +243,8 @@ Caveats when using the polyfill:
 ### Fallbacks & browser support for Anchor positioning
 
 Browser support for Anchor positioning: Limited availability.
-Supported by: Safari 27 (Sep 2026).
-Unsupported in: Chrome, Edge, and Firefox.
+Supported by: Chrome 157 (Nov 2026), Edge 157 (Nov 2026), and Safari 27 (Sep 2026).
+Unsupported in: Firefox.
 
 For the mobile menu, put an absolute fallback declaration before the `anchor()` declaration. Do not wrap this simple fallback in an `@supports` rule: an unsupported `anchor()` declaration is discarded while the preceding declaration remains valid. Without Anchor Positioning the menu still opens as a popover at a fixed offset from the top of the viewport.
 

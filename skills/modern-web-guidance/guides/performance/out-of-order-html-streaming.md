@@ -154,7 +154,9 @@ Browser support for <template for>: Limited availability.
 Supported by: Chrome 150 (Jun 2026) and Edge 150 (Jul 2026).
 Unsupported in: Firefox and Safari.
 
-HTML setter methods is not natively supported by any major browser yet.
+Browser support for HTML setter methods: Limited availability.
+Supported by: Chrome 157 (Nov 2026) and Edge 157 (Nov 2026).
+Unsupported in: Firefox and Safari.
 
 HTML streaming setters is not natively supported by any major browser yet.
 

@@ -128,10 +128,10 @@ By default, interest is shown and lost for keyboard and mouse users with a delay
 }
 ```
 
-If users are likely to move through multiple triggers in quick succession, set the initial delay to `0s` if an interest-triggered popover is already open.
+If users are likely to move through multiple triggers in quick succession, set the initial delay to `0s` if an interest-triggered popover is already open. To prevent performance issues with `:has()`, select a nearby container with a small number of child nodes, and target the triggers as directly as possible.
 
 ```css
-:root:has(:interest-source) [interestfor] {
+.container:has( > li > a:interest-source) [interestfor] {
   interest-delay-start: 0s;
 }
 ```
@@ -246,8 +246,8 @@ Where the Clipboard API is unavailable, `navigator.clipboard` is undefined and t
 ### Fallbacks & browser support for Anchor positioning
 
 Browser support for Anchor positioning: Limited availability.
-Supported by: Safari 27 (Sep 2026).
-Unsupported in: Chrome, Edge, and Firefox.
+Supported by: Chrome 157 (Nov 2026), Edge 157 (Nov 2026), and Safari 27 (Sep 2026).
+Unsupported in: Firefox.
 
 Without anchor positioning, a popover is placed by the UA at the center of the viewport. Tooltips need no fallback: the `title` upgrade above is skipped without anchor positioning. For the overflow menu, position it from script so it stays attached to its trigger. Keep the CSS inside `@supports not (position-area: block-end)` so supporting browsers are unaffected.
 

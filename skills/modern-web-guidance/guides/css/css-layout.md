@@ -216,8 +216,8 @@ Baseline status for Popover: Newly available. It's been Baseline since 2025-01-2
 Supported by: Chrome 116 (Aug 2023), Edge 116 (Aug 2023), Firefox 125 (Apr 2024), Safari 17 (Sep 2023), and Safari iOS 18.3 (Jan 2025).
 
 Browser support for Anchor positioning: Limited availability.
-Supported by: Safari 27 (Sep 2026).
-Unsupported in: Chrome, Edge, and Firefox.
+Supported by: Chrome 157 (Nov 2026), Edge 157 (Nov 2026), and Safari 27 (Sep 2026).
+Unsupported in: Firefox.
 
 **When to use each overlay primitive:**
 
@@ -228,7 +228,7 @@ Unsupported in: Chrome, Edge, and Firefox.
 **Anchor positioning (spatial layout of overlays):**
 
 - Use `position-area` (or `anchor()` on insets) and `anchor-size()` to position and size an overlay relative to its trigger.
-- Use `position-try-fallbacks: flip-block` (or `flip-inline`) to let the browser reposition when the overlay overflows the viewport.
+- Use `position-try-fallbacks` to let the browser reposition when the overlay overflows the viewport. `flip-block, flip-inline, flip-block flip-inline` is a reasonable default, or define use-case specific fallbacks.
 - Don't mix physical and logical keywords in a single `position-area` value — pick one coordinate system.
 - Feature-detect with `@supports (anchor-name: --x)` and provide an absolute-position fallback.
 
@@ -288,7 +288,9 @@ Supported by: Chrome 108 (Nov 2022), Edge 108 (Dec 2022), Firefox 101 (May 2022)
 
 ## 8 Grid lanes (aka masonry)
 
-Grid lanes is not natively supported by any major browser yet.
+Browser support for Grid lanes: Limited availability.
+Supported by: Safari 27.2.
+Unsupported in: Chrome, Edge, and Firefox.
 
 The specification is in development under the name "grid lanes" (e.g., `display: grid-lanes`), while earlier experimental prototypes used `grid-template-rows: masonry`.
 

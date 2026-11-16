@@ -17,9 +17,6 @@ if ('content' in HTMLCanvasElement.prototype) {
 }
 ```
 
-> [!NOTE]
-> HTML-in-Canvas is supported from Chrome 157.
-
 2. Initialize `<canvas>` to support descendant HTML elements by adding the `content="drawable"` attribute to the `<canvas>` HTML element. Place your HTML content inside the `<canvas>` element, and add the `drawable` attribute to every element that you draw. An element with `drawable` captures its subtree, except nested descendants that are also `drawable`:
 
 ```html
@@ -251,9 +248,6 @@ if ('content' in HTMLCanvasElement.prototype) {
 }
 ```
 
-> [!NOTE]
-> HTML-in-Canvas is supported from Chrome 157.
-
 2. Create a custom geometry and material for the HTML content.
 
 3. Pass the DOM element into THREE.HTMLTexture. The renderer adds the element to its canvas, and sets the required attributes:
@@ -421,7 +415,9 @@ function animate() {
 
 ### Fallback strategies
 
-HTML-in-canvas is not natively supported by any major browser yet.
+Browser support for HTML-in-canvas: Limited availability.
+Supported by: Chrome 157 (Nov 2026) and Edge 157 (Nov 2026).
+Unsupported in: Firefox and Safari.
 
 The HTML-in-Canvas API is not currently supported in all modern browsers, thus a fallback strategy is typically required.
 

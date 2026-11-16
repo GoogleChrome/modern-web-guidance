@@ -1,6 +1,8 @@
 # Break Up Long Tasks
 
-Heavy computations or long loops can block the main thread, delaying event handlers and causing poor Interaction to Next Paint (INP) responsiveness. To prevent this, you should yield control back to the browser periodically. The `scheduler.yield()` API allows you to pause a long task and let the browser handle user input or rendering before continuing.
+Heavy computations or long loops can block the main thread, delaying event handlers and causing poor Interaction to Next Paint (INP) responsiveness. To prevent this, yield control back to the browser periodically with `scheduler.yield()`, which pauses an already-running task so the browser can handle pending user input and rendering before continuing.
+
+`scheduler.yield()` only splits a single running task—it does not order separate work streams (`'user-blocking'`, `'user-visible'`, `'background'`), defer non-urgent background work before it starts, or abort and reprioritize queued tasks via `TaskController`. **DO NOT** replace `scheduler.postTask()` or `TaskController` with `scheduler.yield()` alone when scheduling work at different priorities; see `schedule-tasks-by-priority` (via `npx -y modern-web-guidance@latest retrieve "schedule-tasks-by-priority"`). When a background task scheduled with `scheduler.postTask()` itself exceeds 50ms, combine both APIs by calling `await scheduler.yield()` inside the `postTask()` callback—continuations automatically inherit the enclosing task's priority and `TaskSignal`.
 
 ### Breaking up long tasks
 
@@ -34,7 +36,7 @@ Browser support for Scheduler API: Limited availability.
 Supported by: Chrome 129 (Sep 2024), Edge 129 (Sep 2024), and Firefox 142 (Aug 2025).
 Unsupported in: Safari.
 
-Some browsers may not support the `scheduler` API. You MUST implement a fallback using `setTimeout` to ensure code executes without breaking.
+If your Baseline target does not support the Scheduler API, implement a fallback using `setTimeout` so long loops still yield to the main thread without throwing. (If combining `scheduler.yield()` with `scheduler.postTask()`, feature-detect `postTask` separately as well.)
 
 #### Fallback for `scheduler.yield()`
 

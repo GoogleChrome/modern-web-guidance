@@ -20,13 +20,15 @@ function reorder(container, orderedNodes) {
 
 ### Reordering table rows
 
-For a `<table>`, move the `<tr>` elements within their `<tbody>` using the same function: `reorder(tbody, orderedRows)`. Never reorder header rows in `<thead>` or recreate the `<tbody>`. 
+For a `<table>`, move the `<tr>` elements within their `<tbody>` using the same function: `reorder(tbody, orderedRows)`. Never reorder header rows in `<thead>` or recreate the `<tbody>`.
 
 ## Optionally animate the reorder with view transitions
 
 Animation is an enhancement; the reorder works without it. To animate, wrap the DOM reorder in a view transition and give every item a unique `view-transition-name` so each one animates from its old position to its new one. Without it the list snaps.
 
 Use `view-transition-name: match-element` so you do not need to generate a name per item.
+
+MANDATORY: Always respect user preferences for reduced motion using the `prefers-reduced-motion` media query.
 
 Baseline status for View transitions: Newly available. It's been Baseline since 2025-10-14.
 Supported by: Chrome 111 (Mar 2023), Edge 111 (Mar 2023), Firefox 144 (Oct 2025), and Safari 18 (Sep 2024).

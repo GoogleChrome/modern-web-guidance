@@ -3,7 +3,7 @@
   "displayName": "Modern Web Guidance",
   "description": "Keep your agent up to date on the latest web best practices.",
   "license": "Apache-2.0",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "GoogleChrome",
   "homepage": "https://developer.chrome.com/docs/modern-web-guidance",
   "repository": {

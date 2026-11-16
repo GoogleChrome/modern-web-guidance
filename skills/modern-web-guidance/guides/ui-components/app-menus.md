@@ -9,6 +9,7 @@ Each menu in the bar is a complete popup menu: invoker-triggered popover, nested
 ## Structure
 
 * Put `role="menubar"` with an `aria-label` on the container of the top-level triggers, never on a popover. Each top-level trigger is a direct child of the menubar, immediately followed by its popover.
+* Each top-level trigger has an accessible name that describes its purpose, and has a `role="menuitem"` attribute.
 * Style the bar as one continuous strip with no gaps or borders between triggers. Visually separate buttons signal one `Tab` stop each; a continuous bar signals one widget.
 * Give the trigger with `aria-expanded="true"` a visible active style so users can tell which menu is open or previewed.
 
@@ -16,7 +17,7 @@ Each menu in the bar is a complete popup menu: invoker-triggered popover, nested
 <div role="menubar" aria-label="Document commands">
   <!-- Only the active trigger is tabbable; the script moves tabindex with ArrowLeft and ArrowRight. -->
   <button id="file-trigger" type="button" aria-haspopup="menu" aria-expanded="false"
-    commandfor="file-menu" command="toggle-popover">File</button>
+    commandfor="file-menu" command="toggle-popover" role="menuitem">File</button>
   <div id="file-menu" popover="auto">
     <div focusgroup="menu nomemory" aria-labelledby="file-trigger">
       <!-- Items and submenus as in the menu guide -->
@@ -163,8 +164,8 @@ Caveats when using the polyfill:
 ### Fallbacks & browser support for Anchor positioning
 
 Browser support for Anchor positioning: Limited availability.
-Supported by: Safari 27 (Sep 2026).
-Unsupported in: Chrome, Edge, and Firefox.
+Supported by: Chrome 157 (Nov 2026), Edge 157 (Nov 2026), and Safari 27 (Sep 2026).
+Unsupported in: Firefox.
 
 Without CSS Anchor Positioning, a popover falls back to the UA's centered viewport placement. Never ship that for a menu: it detaches the menu from its trigger, and a centered submenu covers its parent. Gate the anchored rules behind `@supports (position-area: block-end)` and position the menu from script when it fails:
 

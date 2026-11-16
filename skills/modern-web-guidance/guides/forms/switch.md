@@ -18,7 +18,7 @@ Add the boolean `switch` attribute to a standard checkbox input:
 
 ## Styling
 
-Customize the control's highlight color using `accent-color` (see `brand-consistent-forms` (via `npx -y modern-web-guidance@latest retrieve "brand-consistent-forms"`)) and ensure visible focus styling:
+Customize the control's highlight color using `accent-color` (see `brand-consistent-forms` (via `npx -y modern-web-guidance@latest retrieve "brand-consistent-forms"`)) and ensure visible focus styling with a contrast ratio of at least 3:1 against adjacent colors (WCAG 1.4.11 Non-text Contrast):
 
 ```css
 input[type="checkbox"][switch] {
@@ -28,7 +28,7 @@ input[type="checkbox"][switch] {
 }
 
 input[type="checkbox"][switch]:focus-visible {
-  outline: 3px solid var(--focus-color, #ff8c00);
+  outline: 3px solid var(--focus-color, #d35400);
   outline-offset: 4px;
 }
 ```

@@ -151,6 +151,14 @@ When using the polyfill, the CSS API changes slightly to account for the lack of
 }
 ```
 
+Set the initial delay to `0s` if an interest-triggered popover is already open and users are likely to move through multiple triggers in quick succession.
+
+```css
+.container:has([interestfor]:is(:interest-source, .interest-source)) [interestfor] {
+  --interest-delay-start: 0s;
+}
+```
+
 ### Fallbacks & browser support for Popover
 
 Baseline status for Popover: Newly available. It's been Baseline since 2025-01-27.
@@ -209,8 +217,8 @@ if (probe.popover !== "hint") {
 ### Fallbacks & browser support for Anchor positioning
 
 Browser support for Anchor positioning: Limited availability.
-Supported by: Safari 27 (Sep 2026).
-Unsupported in: Chrome, Edge, and Firefox.
+Supported by: Chrome 157 (Nov 2026), Edge 157 (Nov 2026), and Safari 27 (Sep 2026).
+Unsupported in: Firefox.
 
 Without CSS Anchor Positioning, tethered elements such as `[popover]` overlays fall back to their default user-agent placement (centered in the viewport for popovers). Depending on whether spatial tethering is required for your use case, either conditionally load the polyfill or gate your positioning rules with `@supports`.
 

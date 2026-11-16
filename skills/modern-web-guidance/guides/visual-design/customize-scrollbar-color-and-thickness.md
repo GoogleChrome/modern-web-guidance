@@ -36,15 +36,21 @@ This feature is progressive enhancement and does not always require fallbacks.
 
 If the styling is important and the user's Baseline target is "Baseline Widely Available" or earlier, you SHOULD include the non-standard `::-webkit-scrollbar` pseudo-elements as fallbacks.
 
-Wrap legacy fallbacks in an `@supports not (scrollbar-color: auto)` block to prevent conflicts between standard properties and legacy WebKit selectors in browsers that support both natively.
+Place legacy fallbacks after the base rule inside an `@supports not (scrollbar-color: auto)` block to prevent conflicts between standard properties and legacy WebKit selectors in browsers that support both natively. If you also set `scrollbar-width: thin` on the scrollable container, reset `scrollbar-width: auto` on the same selector inside `@supports not (scrollbar-color: auto)` so browsers that support `scrollbar-width` without `scrollbar-color` do not suppress `::-webkit-scrollbar` styling.
 
 If you are using custom properties to define colors, these will cascade to the legacy WebKit selectors automatically. You do NOT need to duplicate them.
 
 ```css
 /* Legacy fallback for WebKit/Blink browsers */
 @supports not (scrollbar-color: auto) {
+  .scroller {
+    /* Reset scrollbar-width: thin (if set) so it does not disable
+       ::-webkit-scrollbar in browsers without scrollbar-color */
+    scrollbar-width: auto;
+  }
+
   .scroller::-webkit-scrollbar {
-    /* Must define base size in WebKit for custom colors to be visual */
+    /* Must define a base size (e.g., 8px for thin or 12px for default) for custom colors to render in WebKit */
     width: 12px;
     height: 12px;
   }
