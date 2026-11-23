@@ -161,11 +161,30 @@ Caveats when using the polyfill:
 }
 ```
 
+To prevent popovers from showing before the polyfill loads, hide them with CSS:
+
+```css
+@supports not selector(:popover-open) {
+  [popover]:not(.\:popover-open) {
+    display: none;
+  }
+}
+```
+
+The Popover polyfill can not fully emulate the top layer behavior. Avoid making the menus a containing block for any submenus, which can happen when adding a `translate` opening transition. Wrap any properties that create a containing block (`filter`, `translate`, `scale`, `transform`, etc.) in an `@supports selector(:popover-open)` query.
+
+```css
+[popover]:has(> [focusgroup~="menu"]){
+  @supports selector(:popover-open){
+    translate: 0 -.25rem;
+  }
+}
+```
+
 ### Fallbacks & browser support for Anchor positioning
 
-Browser support for Anchor positioning: Limited availability.
-Supported by: Chrome 157 (Nov 2026), Edge 157 (Nov 2026), and Safari 27 (Sep 2026).
-Unsupported in: Firefox.
+Baseline status for the css.properties.position-area capability: Newly available. It's been Baseline since 2026-01-13.
+Supported by: Chrome 129 (Sep 2024), Edge 129 (Sep 2024), Firefox 147 (Jan 2026), and Safari 26 (Sep 2025).
 
 Without CSS Anchor Positioning, a popover falls back to the UA's centered viewport placement. Never ship that for a menu: it detaches the menu from its trigger, and a centered submenu covers its parent. Gate the anchored rules behind `@supports (position-area: block-end)` and position the menu from script when it fails:
 
@@ -173,23 +192,18 @@ Without CSS Anchor Positioning, a popover falls back to the UA's centered viewpo
 * Run it in the `toggle` handler when the menu opens, and apply the result as `left` and `top` on the menu. Use `position: fixed` with `inset: auto` and `margin: 0` so the coordinates are viewport-relative.
 * Keep these overrides inside `@supports not (position-area: block-end)`, so browsers with anchor positioning are unaffected.
 
-Baseline status for the api.HTMLElement.showPopover.options_source_parameter.implicit_anchor_reference capability: Newly available. It's been Baseline since 2026-01-13.
-Supported by: Chrome 137 (May 2025), Edge 137 (May 2025), Firefox 147 (Jan 2026), and Safari 26 (Sep 2025).
+Baseline status for ToggleEvent source: Newly available. It's been Baseline since 2026-05-11.
+Supported by: Chrome 140 (Sep 2025), Edge 140 (Sep 2025), Firefox 145 (Nov 2025), and Safari 26.5 (May 2026).
 
 If targeting earlier implementations where `showPopover({ source })` does not establish an implicit anchor (no `source` on `ToggleEvent.prototype`), give each trigger a unique `anchor-name` and each menu a matching `position-anchor` from script, instead of writing per-menu CSS rules.
-
-For browsers without anchor positioning at all, see `viewport-aware-dropdowns` (via `npx -y modern-web-guidance@latest retrieve "viewport-aware-dropdowns"`) for the polyfill route.
 
 ### Fallbacks & browser support for Invoker commands
 
 Baseline status for Invoker commands: Newly available. It's been Baseline since 2025-12-12.
 Supported by: Chrome 135 (Apr 2025), Edge 135 (Apr 2025), Firefox 144 (Oct 2025), and Safari 26.2 (Dec 2025).
 
-Without invokers, `command="toggle-popover"` does nothing, so script must toggle the menu.
+Without invokers, `command="toggle-popover"` does nothing. Use `popovertarget` instead, which has longer support and is supported by the popover polyfill.
 
-* Feature-detect the interface, not an instance: `'commandForElement' in HTMLButtonElement.prototype`.
-* On each trigger `click`, call `preventDefault()` so a browser with invokers cannot toggle twice.
-* If the menu is open, close it with `closeAndRestore(menu)`. Otherwise call `menu.showPopover({ source: trigger })`.
 * Mark the menu in `enterOnOpen` unless the click came from the pressed trigger (`pointerTrigger`), so only keyboard opens enter the menu.
 * `Enter` and `Space` still work because they generate a click on buttons.
 

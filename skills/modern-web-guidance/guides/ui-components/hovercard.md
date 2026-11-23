@@ -173,7 +173,7 @@ By assigning matching `view-transition-name` values to elements in the hovercard
 <body>
   <main id="main-content">
     <h1>The buzz on hummingbirds</h1>
-    <img src="bird.jpg">
+    <img src="bird.jpg" alt="A hummingbird in flight">
   </main>
 </body>
 ```
@@ -238,6 +238,16 @@ Caveats when using the polyfill:
 ```css
 [popover]:is(:popover-open, .\:popover-open) {
   display: block;
+}
+```
+
+To prevent popovers from showing before the polyfill loads, hide them with CSS:
+
+```css
+@supports not selector(:popover-open) {
+  [popover]:not(.\:popover-open) {
+    display: none;
+  }
 }
 ```
 

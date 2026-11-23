@@ -19,7 +19,7 @@ Use `<dialog>` opened as a modal, declaratively with `command="show-modal"` (see
 
 <!-- MANDATORY: no role="dialog" or aria-modal; the native modal already provides them -->
 <dialog id="confirm" aria-labelledby="confirm-title">
-  <h2 id="confirm-title">Delete this item?</h2>
+  <h1 id="confirm-title">Delete this item?</h1>
   <form method="dialog">
     <button value="cancel" autofocus>Cancel</button>
     <button value="delete">Delete</button>
@@ -135,6 +135,8 @@ The default depends on how the dialog is opened. If `closedby` is absent or inva
 - **DON'T** add `role="dialog"`, `aria-modal`, a manual focus trap or `inert` toggling to a native modal.
 - **DO** use a native `<button>` with an accessible name for close controls.
 - **DO** use one consistent heading level for dialog titles.
+- **DO** use a level-1 heading for the main heading in modal dialogs, as it's the first heading in scope.
+- **DO** Ensure that non-modal dialogs are displayed where there is no or minimal content. To adhere to WCAG 2.4.11, ensure that focused elements are completely obscured by the non-modal dialog.
 
 ## Fallback strategies
 
@@ -214,5 +216,15 @@ Caveats when using the polyfill:
 ```css
 [popover]:is(:popover-open, .\:popover-open) {
   display: block;
+}
+```
+
+To prevent popovers from showing before the polyfill loads, hide them with CSS:
+
+```css
+@supports not selector(:popover-open) {
+  [popover]:not(.\:popover-open) {
+    display: none;
+  }
 }
 ```

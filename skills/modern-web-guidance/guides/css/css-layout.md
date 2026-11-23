@@ -289,7 +289,7 @@ Supported by: Chrome 108 (Nov 2022), Edge 108 (Dec 2022), Firefox 101 (May 2022)
 ## 8 Grid lanes (aka masonry)
 
 Browser support for Grid lanes: Limited availability.
-Supported by: Safari 27.2.
+Supported by: Safari 27.2 (Oct 2026).
 Unsupported in: Chrome, Edge, and Firefox.
 
 The specification is in development under the name "grid lanes" (e.g., `display: grid-lanes`), while earlier experimental prototypes used `grid-template-rows: masonry`.

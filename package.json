@@ -3,7 +3,7 @@
   "displayName": "Modern Web Guidance",
   "description": "Keep your agent up to date on the latest web best practices.",
   "license": "Apache-2.0",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "GoogleChrome",
   "homepage": "https://developer.chrome.com/docs/modern-web-guidance",
   "repository": {
@@ -30,5 +30,13 @@
   },
   "bin": {
     "modern-web-guidance": "skills/modern-web-guidance/modern-web.mjs"
+  },
+  "keywords": [
+    "pi-package"
+  ],
+  "pi": {
+    "skills": [
+      "./skills"
+    ]
   }
 }

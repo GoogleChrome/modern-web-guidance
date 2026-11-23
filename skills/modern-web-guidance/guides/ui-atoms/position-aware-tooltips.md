@@ -170,4 +170,14 @@ Caveats when using the polyfill:
 }
 ```
 
+To prevent popovers from showing before the polyfill loads, hide them with CSS:
+
+```css
+@supports not selector(:popover-open) {
+  [popover]:not(.\:popover-open) {
+    display: none;
+  }
+}
+```
+
 Browsers without support for the Popover API also do not support anchor positioning, so the tooltip will appear in the center of the screen.
