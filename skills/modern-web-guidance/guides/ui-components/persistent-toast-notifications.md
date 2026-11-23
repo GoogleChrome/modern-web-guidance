@@ -69,6 +69,16 @@ Caveats when using the polyfill:
 }
 ```
 
+To prevent popovers from showing before the polyfill loads, hide them with CSS:
+
+```css
+@supports not selector(:popover-open) {
+  [popover]:not(.\:popover-open) {
+    display: none;
+  }
+}
+```
+
 ### Fallbacks & browser support for ariaNotify()
 
 Baseline status for ariaNotify(): Newly available. It's been Baseline since 2026-09-14.

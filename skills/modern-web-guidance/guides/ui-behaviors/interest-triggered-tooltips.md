@@ -189,6 +189,16 @@ Caveats when using the polyfill:
 }
 ```
 
+To prevent popovers from showing before the polyfill loads, hide them with CSS:
+
+```css
+@supports not selector(:popover-open) {
+  [popover]:not(.\:popover-open) {
+    display: none;
+  }
+}
+```
+
 ### Fallbacks & browser support for `popover="hint"`
 
 Browser support for popover="hint": Limited availability.

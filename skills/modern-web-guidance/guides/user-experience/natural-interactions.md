@@ -140,6 +140,16 @@ Caveats when using the polyfill:
 }
 ```
 
+To prevent popovers from showing before the polyfill loads, hide them with CSS:
+
+```css
+@supports not selector(:popover-open) {
+  [popover]:not(.\:popover-open) {
+    display: none;
+  }
+}
+```
+
 ### Anchor positioning
 
 Baseline status for the html.elements.button.popovertarget.implicit_anchor_reference capability: Newly available. It's been Baseline since 2026-01-13.

@@ -136,6 +136,8 @@ If your Baseline target does not include Invoker Commands, keep the same markup 
 if (!('CommandEvent' in window)) {
   // Resolve the target from commandfor, as the browser does for command events
   document.addEventListener('click', (event) => {
+    // Respect handlers that already canceled the button's activation.
+    if (event.defaultPrevented) return;
     const button = event.target.closest('button[command^="--copy"]');
     if (!button) return;
     const target = document.getElementById(button.getAttribute('commandfor'));
@@ -157,12 +159,19 @@ Only as a last resort, when you cannot control the protocol of the host page (fo
 
 ```js
 function legacyCopy(text) {
+  const previousFocus = document.activeElement;
   const field = Object.assign(document.createElement('textarea'), { value: text });
   field.setAttribute('readonly', '');
   field.style.cssText = 'position:fixed;inset-block-start:0;opacity:0';
   document.body.append(field);
   field.select();
-  try { return document.execCommand('copy'); } finally { field.remove(); }
+  try {
+    return document.execCommand('copy');
+  } finally {
+    field.remove();
+    // Selecting the temporary field can move focus; restore it even if copying fails.
+    previousFocus?.focus({ preventScroll: true });
+  }
 }
 
 // In copy(), replace the plain write with:
@@ -202,6 +211,16 @@ Caveats when using the polyfill:
 ```css
 [popover]:is(:popover-open, .\:popover-open) {
   display: block;
+}
+```
+
+To prevent popovers from showing before the polyfill loads, hide them with CSS:
+
+```css
+@supports not selector(:popover-open) {
+  [popover]:not(.\:popover-open) {
+    display: none;
+  }
 }
 ```
 

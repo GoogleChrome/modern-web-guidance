@@ -139,6 +139,16 @@ Caveats when using the polyfill:
 }
 ```
 
+To prevent popovers from showing before the polyfill loads, hide them with CSS:
+
+```css
+@supports not selector(:popover-open) {
+  [popover]:not(.\:popover-open) {
+    display: none;
+  }
+}
+```
+
 ### Invoker commands
 
 Baseline status for Invoker commands: Newly available. It's been Baseline since 2025-12-12.

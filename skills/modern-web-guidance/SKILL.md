@@ -20,7 +20,7 @@ Run `modern-web-guidance` directly with `npx` using a **2–5 word action-orient
 - **Example**: Search `"light dismiss dialog"` or `"responsive data table"`, **not** `"dialog"` (too terse), `"responsive table dark mode"` (compound — split into two searches), or `"close React settings modal on outside click"` (framework/app noise).
 
 ```sh
-npx -y modern-web-guidance@latest search "<query>" --skill-version 2026_11_10-47b4c80e
+npx -y modern-web-guidance@latest search "<query>" --skill-version 2026_11_16-268fb9ea
 ```
 
 > **Note**: Returns `[{ "id", "description" }, ...]`. Judge results by their `description` fields:
@@ -30,7 +30,7 @@ npx -y modern-web-guidance@latest search "<query>" --skill-version 2026_11_10-47
 
 ### Step 2. Retrieve Best Practices
 
-Once you have relevant `id`(s) from the search results, call `retrieve` to get the full guide(s)—including both specific use-case guides that match your task and any broader discipline guide (e.g., `html`, `css`, `forms`, `accessibility`, `color`, `performance`, `security`) that applies. You can pass multiple IDs separated by commas.
+Once you have relevant `id`(s) from the search results, call `retrieve` to get the full guide(s)—including both specific use-case guides that match your task and any broader discipline guide (e.g., `html`, `css`, `js`, `forms`, `accessibility`, `color`, `performance`, `security`) that applies. You can pass multiple IDs separated by commas.
 
 ```sh
 npx -y modern-web-guidance@latest retrieve "<id>"
